@@ -609,29 +609,54 @@ class Client:
     @json_dump_prompt
     def query_laptops(self):
         read_all = get_yes_no_choice("Read all laptops? Enter \"N\" to read a single laptop (Y/N):")
+        read_msg = {
+            "data_type": "laptop",
+            "action": "read",
+            "port": self.port
+        }
         if read_all == 'y':
-            logging.info("Reading info for all laptops")
-            laptops = self.laptop_utils.read_all_laptops()
-            print("Info for all laptops:")
-            for laptop in laptops:
-                print(str(laptop))
-            return laptops
-        read_by_model = get_yes_no_choice("Read laptops by model name? Enter \"N\" to read by engineer name (Y/N):")
-        if read_by_model == 'y':
-            model = input("Enter the model of laptops to read:")
-            logging.info(f"Reading info for model {model} laptops")
-            laptops = self.laptop_utils.read_laptops_by_model(model)
-            print(f"Info for laptops of model {model}:")
-            for laptop in laptops:
-                print(str(laptop))
-            return laptops
+            logging.info("Asking server to read info for all laptops")
+            read_msg["model"] = "all"
+
         else:
-            engin_name = input("Enter the name of engineer whose loaned laptop will be read:")
-            logging.info(f"Reading info for laptop loaned by engineer {engin_name}")
-            laptop = self.laptop_utils.read_laptop_by_owner(engin_name)
-            print(f"Info for laptop loaned by {engin_name}:")
-            print(str(laptop))
-            return laptop
+            read_by_model = get_yes_no_choice("Read laptops by model name? Enter \"N\" to read by engineer name (Y/N):")
+            if read_by_model == 'y':
+                model = input("Enter the model of laptops to read:")
+                logging.info(f"Asking server to read info for model {model} laptops")
+                read_msg["model"] = model
+
+            else:
+                engin_name = input("Enter the name of engineer whose loaned laptop will be read:")
+                logging.info(f"Asking server to read info for laptop loaned by engineer {engin_name}")
+                read_msg["model"] = ""
+                read_msg["engineer"] = engin_name
+
+        send_message("localhost", self.server_port, read_msg)
+        
+        server_response = self.get_server_response()
+
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return None
+
+        try:
+            laptops_json = server_response["laptops"]
+        except:
+            error_msg = "Server response for laptop read job was marked successful, but had no entry \"laptops\" with data for read laptops"
+            logging.error(error_msg)
+            print(error_msg)
+            return None
+        
+        success_msg = "Successfully read laptops. Laptop info:"
+        logging.info(success_msg)
+        print(success_msg)
+
+        for laptop in laptops_json:
+            logging.info(laptop)
+            print(laptop)
+        
+        return laptops_json
 
     # Query contact details, prompt for each column
     @docx_dump_prompt

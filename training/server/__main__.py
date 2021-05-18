@@ -860,7 +860,76 @@ class Server:
         
 
     def query_laptop(self, job_json, client_port):
-        pass
+        msg = {
+            "status": None
+        }
+
+        try:
+            model = job_json["model"]
+        except:
+            error_msg = "Client laptop read job had no entry for \"model\""
+            logging.error(error_msg)
+            msg["status"] = "error"
+            msg["text"] = error_msg
+            send_message("localhost", client_port, msg)
+            return
+        
+        if model == "":
+            try:
+                engin_name = job_json["engineer"]
+            except:
+                error_msg = "Client laptop read job left model blank, but did not provide an entry for \"engineer\""
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            
+            logging.info(f"Attempting to read laptop loaned by engineer {engin_name}")
+            laptop = self.laptop_utils.read_laptop_by_owner(engin_name)
+            if laptop is None:
+                error_msg = f"No laptop is loaned by engineer {engin_name}"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["status"] = "success"
+            msg["laptops"] = [laptop.to_json()]
+            logging.info(f"Successfully read laptop loaned by engineer {engin_name}")
+            send_message("localhost", client_port, msg)
+            return
+
+        elif model == "all":
+            logging.info("Attempting to read all laptops")
+            laptops = self.laptop_utils.read_all_laptops()
+            if not laptops:
+                error_msg = "No laptops exist in the database"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["laptops"] = [lap.to_json() for lap in laptops]
+            logging.info("Successfully read all laptops")
+        
+        else:
+            logging.info(f"Attempting to read laptops with model {model}")
+            laptops = self.laptop_utils.read_laptops_by_model(model)
+            if not laptops:
+                error_msg = f"No laptops of model {model} exist in the database"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["laptops"] = [lap.to_json() for lap in laptops]
+            logging.info(f"Successfully read laptops with model {model}")
+        
+        msg["status"] = "success"
+        send_message("localhost", client_port, msg)
+        
+
 
     def add_contact_details(self, job_json, client_port):
         msg = {
