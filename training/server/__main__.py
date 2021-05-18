@@ -606,7 +606,64 @@ class Server:
 
 
     def query_engineer(self, job_json, client_port):
-        pass
+        msg = {
+            "status": None
+        }
+
+        try:
+            name = job_json["name"]
+        except:
+            error_msg = "Client engineer read job has no entry for \"name\""
+            logging.error(error_msg)
+            msg["status"] = "error"
+            msg["text"] = error_msg
+            send_message("localhost", client_port, msg)
+            return
+        
+        if name == "":
+            try:
+                id = job_json["id"]
+            except:
+                error_msg = "Client left engineer name blank, but did not provide an entry for \"id\""
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info(f"Attempting to read engineer with id {id} from the database.")
+            engin = self.engin_utils.read_engineer_by_id(id)
+            if engin is None:
+                error_msg = f"No engineer with id {id} exists in the database"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["status"] = "success"
+            msg["engineers"] = [engin.to_json()]
+            logging.info(f"Successfully read engineer with id {id}:" + str(engin))
+            send_message("localhost", client_port, msg)
+        elif name == "all":
+            logging.info("Attempting to read all engineers.")
+            engins = self.engin_utils.read_all_engineers()
+            msg["engineers"] = [eng.to_json() for eng in engins]
+        
+        else:
+            logging.info(f"Attempting to read engineer named {name}")
+            engin = self.engin_utils.read_engineer_by_name(name)
+            if engin is None:
+                error_msg = f"No engineer named {name} exists in the database"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["engineers"] = [engin.to_json()]
+        
+        logging.info(f"Engineer(s) successfully read from the database.")
+        msg["status"] = "success"
+        send_message("localhost", client_port, msg)
+
 
     def add_laptop(self, job_json, client_port):
         msg = {

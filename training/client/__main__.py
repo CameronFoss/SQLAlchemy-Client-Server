@@ -78,6 +78,24 @@ class Client:
                 continue
         return server_response
 
+    def check_server_status(self, server_response):
+        """Returns False in case of an error. Returns the status otherwise."""
+        try:
+            status = server_response["status"]
+        except:
+            error_msg = "Server response did not include entry \"status\" to let the client know how to proceed."
+            logging.error(error_msg)
+            print(error_msg)
+            return False
+
+        if status == "error":
+            error_msg = server_response["text"]
+            logging.error(error_msg)
+            print(error_msg)
+            return False
+
+        return status
+
     # Add a vehicle to the DB, update quantity if model already exists
     def add_vehicle(self, model=None, prompt_engin_assign=True):
         if model is None:
@@ -111,14 +129,12 @@ class Client:
         # Wait for server response
         server_response = self.get_server_response()
 
-        status = server_response["status"]
-        if status == "error":
-            error_msg = server_response["text"]
-            logging.error(error_msg)
-            print(error_msg)
+        status = self.check_server_status(server_response)
+
+        if not status:
             return
 
-        elif status == "updated":
+        if status == "updated":
             update_msg = server_response["text"]
             logging.info(update_msg)
             print(update_msg)
@@ -144,12 +160,8 @@ class Client:
                 send_message("localhost", new_server_port, assign_msg)
 
                 server_response = self.get_server_response()
-                status = server_response["status"]
-
-                if status == "error":
-                    error_msg = server_response["text"]
-                    logging.error(error_msg)
-                    print(error_msg)
+                status = self.check_server_status(server_response)
+                if not status:
                     return
 
                 assigned = server_response["assigned"]
@@ -189,18 +201,9 @@ class Client:
 
         server_response = self.get_server_response()
 
-        try:
-            status = server_response["status"]
-        except:
-            no_status = "Server response did not include entry \"status\" to let the client know how to proceed."
-            logging.error(no_status)
-            print(no_status)
-            return None
-        
-        if status == "error":
-            error_msg = server_response["text"]
-            logging.error(error_msg)
-            print(error_msg)
+        status = self.check_server_status(server_response)
+
+        if not status:
             return None
 
         try:
@@ -228,11 +231,9 @@ class Client:
                 send_message("localhost", new_server_port, assign_msg)
 
                 server_response = self.get_server_response()
-                status = server_response["status"]
+                status = self.check_server_status(server_response)
 
-                if status == "error":
-                    error_msg = server_response["text"]
-                    logging.error(error_msg)
+                if not status:
                     return
                 
                 assigned = server_response["assigned"]
@@ -274,18 +275,9 @@ class Client:
         while not success:
             server_response = self.get_server_response()
 
-            try:
-                status = server_response["status"]
-            except:
-                error_msg = "Server response has no entry for \"status\" to let client know how to proceed."
-                print(error_msg)
-                logging.error(error_msg)
-                return
+            status = self.check_server_status(server_response)
 
-            if status == "error":
-                error_msg = server_response["text"]
-                logging.error(error_msg)
-                print(error_msg)
+            if not status:
                 return
 
             elif status == "success":
@@ -351,18 +343,9 @@ class Client:
 
         server_response = self.get_server_response()
 
-        try:
-            status = server_response["status"]
-        except:
-            error_msg = "Server response has no entry \"status\" to let the client know how to proceed."
-            logging.error(error_msg)
-            print(error_msg)
-            return
-        
-        if status == "error":
-            error_msg = server_response["text"]
-            logging.error(error_msg)
-            print(error_msg)
+        status = self.check_server_status(server_response)
+
+        if not status:
             return
         
         success_msg = f"Successfully added new contact information for {engin_name}!"
@@ -390,18 +373,9 @@ class Client:
 
         server_response = self.get_server_response()
 
-        try:
-            status = server_response["status"]
-        except:
-            error_msg = "Server response has no entry for \"status\" to let the client know how to proceed."
-            logging.error(error_msg)
-            print(error_msg)
-            return
+        status = self.check_server_status(server_response)
 
-        if status == "error":
-            error_msg = server_response["text"]
-            logging.error(error_msg)
-            print(error_msg)
+        if not status:
             return
         
         success_msg = f"Successfully deleted engineer {engin_name} and their contact details from the database."
@@ -428,18 +402,9 @@ class Client:
 
         server_response = self.get_server_response()
 
-        try:
-            status = server_response["status"]
-        except:
-            error_msg = "Server response has no entry \"status\" to let the client know how to proceed."
-            logging.error(error_msg)
-            print(error_msg)
-            return
-        
-        if status == "error":
-            error_msg = server_response["text"]
-            logging.error(error_msg)
-            print(error_msg)
+        status = self.check_server_status(server_response)
+
+        if not status:
             return
 
         success_msg = f"Successfully deleted all {model} vehicle records."
@@ -465,18 +430,9 @@ class Client:
 
         server_response = self.get_server_response()
 
-        try:
-            status = server_response["status"]
-        except:
-            error_msg = "Server response did not include an entry \"status\" to let the client know how to proceed."
-            logging.error(error_msg)
-            print(error_msg)
-            return
-        
-        if status == "error":
-            error_msg = server_response["text"]
-            logging.error(error_msg)
-            print(error_msg)
+        status = self.check_server_status(server_response)
+
+        if not status:
             return
         
         success_msg = f"Successfully deleted laptop from the database"
@@ -509,18 +465,9 @@ class Client:
 
         server_response = self.get_server_response()
 
-        try:
-            status = server_response["status"]
-        except:
-            error_msg = "Server response had no entry \"status\" to let the client know how to proceed."
-            logging.error(error_msg)
-            print(error_msg)
-            return
-        
-        if status == "error":
-            error_msg = server_response["text"]
-            logging.error(error_msg)
-            print(error_msg)
+        status = self.check_server_status(server_response)
+
+        if not status:
             return
         
         success_msg = "Successfully deleted contact details."
@@ -532,6 +479,8 @@ class Client:
     def json_dump_prompt(func):
         def wrapper(*args, **kwargs):
             json_object = func(*args, **kwargs)
+            if json_object is None:
+                return None
             dump = get_yes_no_choice("Dump the result as JSON? (Y/N)")
             if dump == 'n':
                 return json_object
@@ -548,6 +497,8 @@ class Client:
     def docx_dump_prompt(func):
         def wrapper(*args, **kwargs):
             json_object = func(*args, **kwargs)
+            if json_object is None:
+                return None
             dump = get_yes_no_choice("Dump the result to a Word document? (Y/N):")
             if dump == 'n':
                 return
@@ -585,19 +536,10 @@ class Client:
 
         server_response = self.get_server_response()
 
-        try:
-            status = server_response["status"]
-        except:
-            error_msg = "Server response for vehicle read job had no entry for \"status\" to let the client know how to proceed."
-            logging.error(error_msg)
-            print(error_msg)
-            return
-        
-        if status == "error":
-            error_msg = server_response["text"]
-            logging.error(error_msg)
-            print(error_msg)
-            return
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return None
 
         try:
             cars_json = server_response["vehicles"]
@@ -605,8 +547,7 @@ class Client:
             error_msg = "Server response was marked as successful, but did not provide an entry \"vehicles\" containing data for vehicle information "
             logging.error(error_msg)
             print(error_msg)
-            return
-
+            return None
 
         success_msg = "Successfully read vehicles. Vehicle info:"
         logging.info(success_msg)
@@ -624,27 +565,44 @@ class Client:
     def query_engineers(self):
         name = input("Enter the name of the engineer to read.\nEnter \"all\" to read all vehicles.\n(Leave blank to read by engineer ID):")
         name = name.strip()
+        read_msg = {
+            "data_type": "engineer",
+            "action": "read",
+            "port": self.port,
+            "name": name
+        }
         if name == "":
             id = get_digit_choice("Enter the engineer ID to read:",
                                   "Invalid engineer ID. Enter a number > 0", 1, inf)
             logging.info(f"Reading info for engineer with ID {id}")
-            engin = self.engin_utils.read_engineer_by_id(id)
-            print(f"Info for engineer ID {id}:")
-            print(str(engin))
-            return engin
-        elif name == "all":
-            engins = self.engin_utils.read_all_engineers()
-            logging.info("Reading info for all engineers.")
-            print("Info for all engineers:")
-            for engin in engins:
-                print(str(engin))
-            return engins
-        else:
-            logging.info(f"Reading info for engineer named {name}")
-            engin = self.engin_utils.read_engineer_by_name(name)
-            print(f"Info for engineer {name}:")
-            print(str(engin))
-            return engin
+            read_msg["id"] = id
+
+        send_message("localhost", self.server_port, read_msg)
+
+        server_response = self.get_server_response()
+
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return None
+
+        try:
+            engins_json = server_response["engineers"]
+        except:
+            error_msg = "Server response was marked successful, but did not include an entry \"engineers\" with data of the read engineers."
+            logging.error(error_msg)
+            print(error_msg)
+            return None
+        
+        success_msg = "Successfully read engineers. Engineer info:"
+        logging.info(success_msg)
+        print(success_msg)
+
+        for engin in engins_json:
+            logging.info(engin)
+            print(engin)
+        
+        return engins_json
 
     # Query laptops, prompt for each column
     @docx_dump_prompt
