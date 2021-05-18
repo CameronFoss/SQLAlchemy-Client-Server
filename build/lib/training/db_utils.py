@@ -14,7 +14,7 @@ class VehicleUtils:
     # Create a new vehicle
     def add_vehicle_db(self, model, quantity, price, manufacture_date):
         # if vehicle exists, update quantity
-        car_exists = (session.query(literal(True)).filter(Vehicle.model == model, Vehicle.manufacture_date == manufacture_date).first())
+        car_exists = (session.query(literal(True)).filter(Vehicle.model == model).first())
         if car_exists is not None:
             cars = self.read_vehicles_by_model(model)
             for car in cars:

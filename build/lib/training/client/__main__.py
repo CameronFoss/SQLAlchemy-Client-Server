@@ -1,8 +1,10 @@
 from json.decoder import JSONDecodeError
 from math import inf
 from datetime import date
+from os import replace
 
 from sqlalchemy.orm.exc import UnmappedInstanceError
+from sqlalchemy.sql.expression import delete, insert
 from training.choice_funcs import get_digit_choice, get_yes_no_choice, get_day, get_month, get_year
 from training.sock_utils import send_message, decode_message_chunks, get_data_from_connection
 from docx import Document
@@ -51,7 +53,6 @@ def dump_to_docx(object, out_file_name):
 class Client:
 
     def __init__(self, server_port, listen_port):
-        self.server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_port = server_port
         self.port = listen_port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -59,7 +60,7 @@ class Client:
         self.sock.bind(("localhost", self.port))
         self.sock.listen()
         self.sock.settimeout(1)
-        logging.basicConfig(filename="utilities.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s: %(message)s")
+        logging.basicConfig(filename="client.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s: %(message)s")
 
     def get_server_response(self):
         server_response = None
@@ -105,7 +106,7 @@ class Client:
             "manufacture_month": month,
             "manufacture_date": day
         }
-        send_message(self.server_sock, "localhost", self.server_port, insert_msg)
+        send_message("localhost", self.server_port, insert_msg)
 
         # Wait for server response
         server_response = self.get_server_response()
@@ -117,7 +118,7 @@ class Client:
             print(error_msg)
             return
 
-        elif status == "update":
+        elif status == "updated":
             update_msg = server_response["text"]
             logging.info(update_msg)
             print(update_msg)
@@ -125,7 +126,6 @@ class Client:
 
         # Else: insert was successful
         new_server_port = server_response["port"]
-        new_server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # Added a new vehicle, prompt user to assign engineers to the vehicle
         success_msg = f"Successfully added new vehicle!\nModel: {model}\nQuantity: {quantity}\nPrice: {price}\nManufacture Date: {manufacture_date}"
         print(success_msg)
@@ -141,7 +141,7 @@ class Client:
                     "response": "y",
                     "engineers": engineer_names
                 }
-                send_message(new_server_sock, "localhost", new_server_port, assign_msg)
+                send_message("localhost", new_server_port, assign_msg)
 
                 server_response = self.get_server_response()
                 status = server_response["status"]
@@ -162,7 +162,7 @@ class Client:
                 assign_msg = {
                     "response": "n"
                 }
-                send_message(new_server_sock, "localhost", new_server_port, assign_msg)
+                send_message("localhost", new_server_port, assign_msg)
                 logging.info(f"User skipped assigning any engineers to new vehicle {model} manufactured on {manufacture_date}")
 
     # Add an engineer to the DB
@@ -173,133 +173,234 @@ class Client:
         birth_month = get_month(f"Enter engineer {engin_name}'s birth month:")
         birth_day = get_day(f"Enter engineer {engin_name}'s birth date:")
         date_of_birth = date(birth_year, birth_month, birth_day)
-        new_engin = self.engin_utils.add_engineer_db(engin_name, date_of_birth)
-        success_msg = f"Successfully added new engineer {engin_name} born on {date_of_birth}"
-        print(success_msg)
+        
+
+        logging.info(f"Asking server to add new engineers {engin_name} born on {date_of_birth} to the database.")
+        insert_msg = {
+            "data_type": "engineer",
+            "action": "add",
+            "port": self.port,
+            "name": engin_name,
+            "birth_year": birth_year,
+            "birth_month": birth_month,
+            "birth_date": birth_day
+        }
+        send_message("localhost", self.server_port, insert_msg)
+
+        server_response = self.get_server_response()
+
+        try:
+            new_server_port = server_response["port"]
+        except:
+            no_port = "Server response did not include entry \"port\" to let the client know where to send yes/no response."
+            logging.error(no_port)
+            return None
+        
+        try:
+            status = server_response["status"]
+        except:
+            no_status = "Server response did not include entry \"status\" to let the client know how to proceed."
+            logging.error(no_status)
+            return None
+        
+        if status == "error":
+            error_msg = server_response["text"]
+            logging.error(error_msg)
+            return None
+
+        success_msg = f"Successfully added new engineer {engin_name} to the database!"
         logging.info(success_msg)
+
         
         if prompt_vehicle_assign:
             assign_vehicle = get_yes_no_choice("Assign the new engineer to any vehicles? (Y/N):")
             if assign_vehicle == 'y':
                 vehicle_models = input("Enter models of vehicles to assign.\nIt is assumed that manufacture date is irrelevant.\nSeparate model names by a comma (e.g. Fusion, Bronco):")
                 vehicle_models = vehicle_models.split(',')
-                logging.info(f"Attempting to assign engineer {engin_name} to vehicles {vehicle_models}")
-                for model in vehicle_models:
-                    model = model.strip()
-                    cars = self.car_utils.read_vehicles_by_model(model)
-                    if not cars:
-                        logging.info(f"No vehicles of model {model} existed in the database.")
-                        add_car = get_yes_no_choice(f"No vehicles of model {model} exist in the database. Would you like to add one? (Y/N):")
-                        if add_car == 'y':
-                            logging.info(f"Attempting to add vehicle model {model} to the database.")
-                            cars.append(self.add_vehicle(model, prompt_engin_assign=False))
-                        else:
-                            # Skip trying to add this model below and move to the next one
-                            logging.info(f"User skipped adding non-existant vehicle model {model} to the database")
-                            continue
-                    for car in cars:
-                        new_engins_list = car.engineers + [new_engin]
-                        self.car_utils.update_vehicle_db(car.id, engineers=new_engins_list)
-                        assignment_msg = f"New engineer {engin_name} successfully assigned to model {car.model} manufactured on {car.manufacture_date}"
-                        print(assignment_msg)
-                        logging.info(assignment_msg)
+                logging.info(f"Asking the server to assign engineer {engin_name} to vehicles {vehicle_models}")
+                assign_msg = {
+                    "response": "y",
+                    "vehicles": vehicle_models
+                }
+                send_message("localhost", new_server_port, assign_msg)
+
+                server_response = self.get_server_response()
+                status = server_response["status"]
+
+                if status == "error":
+                    error_msg = server_response["text"]
+                    logging.error(error_msg)
+                    return
+                
+                assigned = server_response["assigned"]
+                unassigned = server_response["unassigned"]
+
                 print(f"Successfully assigned {engin_name} to vehicles!")
-                logging.info(f"Successfully assigned engineer {engin_name} to vehicles.")
+                logging.info(f"Successfully assigned engineer {engin_name} to vehicles {assigned}.")
+                logging.info(f"Vehicle models {unassigned} did not exist in the database, and could not be assigned to the new engineer {engin_name}.")
             else:
+                assign_msg = {
+                    "response" : "n"
+                }
                 logging.info(f"User skipped assigning engineer {engin_name} to any vehicles.")
-        
-        return new_engin
+                send_message("localhost", new_server_port, assign_msg)
 
     # Add a laptop to the DB and loan to an engineer if desired
     def add_laptop(self):
         engin_name = input("Enter the name of the engineer this laptop will be loaned to:")
         engin_name = engin_name.strip()
-        logging.info(f"Adding a new laptop to the database. Attempting to loan it to engineer {engin_name}")
-        engin = self.engin_utils.read_engineer_by_name(engin_name)
-        if engin is None:
-            logging.info(f"Engineer {engin_name} did not exist in the database.")
-            add_engin = get_yes_no_choice(f"Engineer {engin_name} does not exist in the database. Would you like to add them? (Y/N):")
-            if add_engin == 'y':
-                logging.info(f"Attempting to add engineer {engin_name} to the database.")
-                engin = self.add_engineer(engin_name)
-            else:
-                abort_laptop = get_yes_no_choice(f"Would you still like to add this laptop without loaning it to an engineer? (Y/N):")
-                if abort_laptop == 'n':
-                    logging.info(f"User chose to abort adding a new laptop since engineer {engin_name} did not exist in the database.")
-                    print("Aborted adding new laptop to the database.")
-                    return None
-        # if engineer already has a laptop, prompt to replace it with the new one
-        prev_laptop = self.laptop_utils.read_laptop_by_owner(engin_name)
-        if prev_laptop is not None:
-            warning_msg = f"Engineer {engin_name} already has a laptop loaned to them\n" + \
-                          f"\n!!! WARNING !!! - Adding a new laptop would replace the laptop already loaned to {engin_name}" + \
-                          f"{engin_name}'s previous laptop would not be deleted from the database, but would be loaned by no one."
-            print(warning_msg)
-            logging.warning(warning_msg)
-            replace_laptop = get_yes_no_choice(f"Replace {engin_name}'s laptop with the new one? (Y/N)")
-            if replace_laptop == 'n':
-                logging.info(f"User aborted adding a new laptop to the database as to not replace engineer {engin_name}'s current laptop.")
-                print(f"Aborted adding new laptop to the database.")
-                return
         model = input("Enter the model of the new laptop:")
         year_loaned = get_year(f"Enter the year the laptop was loaned to {engin_name}:")
         month_loaned = get_month(f"Enter the month the laptop was loaned to {engin_name}:")
         day_loaned = get_day(f"Enter the date the laptop was loaned to {engin_name}")
-        date_loaned = date(year_loaned, month_loaned, day_loaned)
-        new_laptop = self.laptop_utils.add_laptop_db(model, date_loaned, engin_name)
-        if engin is None:
-            no_engin_msg = f"Successfully added new {model} laptop, but it is not loaned by any engineer."
-            print(no_engin_msg)
-            logging.info(no_engin_msg)
-        else:
-            loaned_msg = f"Successfully loaned new {model} laptop to {engin_name}"
-            print(loaned_msg)
-            logging.info(loaned_msg)
-        return new_laptop
+        logging.info(f"Asking server to add a new laptop to the database. Attempting to loan it to engineer {engin_name}")
+
+        insert_msg = {
+            "data_type": "laptop",
+            "action": "add",
+            "port": self.port,
+            "model": model,
+            "loan_year": year_loaned,
+            "loan_month": month_loaned,
+            "loan_date": day_loaned,
+            "engineer": engin_name
+        }
+        send_message("localhost", self.server_port, insert_msg)
+
+        success = False
+        while not success:
+            server_response = self.get_server_response()
+
+            try:
+                status = server_response["status"]
+            except:
+                error_msg = "Server response has no entry for \"status\" to let client know how to proceed."
+                print(error_msg)
+                logging.error(error_msg)
+                return
+
+            if status == "error":
+                error_msg = server_response["text"]
+                logging.error(error_msg)
+                print(error_msg)
+                return
+
+            elif status == "success":
+                success = True
+                loaned_to = server_response["engineer"]
+                success_msg = f"Successfully added laptop {model} to the database and loaned it to {loaned_to}."
+                logging.info(success_msg)
+                print(success_msg)
+                return
+
+            try:
+                new_server_port = server_response["port"]
+            except:
+                error_msg = "Server response has no entry for \"port\" to let the client know where to send the response to."
+                print(error_msg)
+                logging.error(error_msg)
+                return
+            
+            if status == "no_engineer":
+                logging.info(f"Engineer {engin_name} did not exist in the database.")
+                print(f"Engineer {engin_name} did not exist in the database.")
+                abort_laptop = get_yes_no_choice(f"Would you still like to add this laptop without loaning it to an engineer? (Y/N):")
+                response_msg = {
+                    "response": abort_laptop
+                }
+                send_message("localhost", new_server_port, response_msg)
+                if abort_laptop == 'n':
+                    logging.info("Client chose to abort adding the laptop without loaning it to an existing engineer.")
+                    return
+            
+            elif status == "previous_laptop":
+                warning_msg = f"Engineer {engin_name} already has a laptop loaned to them\n" + \
+                          f"\n!!! WARNING !!! - Adding a new laptop would replace the laptop already loaned to {engin_name}" + \
+                          f"{engin_name}'s previous laptop would not be deleted from the database, but would be loaned by no one."
+                print(warning_msg)
+                logging.warning(warning_msg)
+                replace_laptop = get_yes_no_choice(f"Replace {engin_name}'s laptop with the new one? (Y/N)")
+                response_msg = {
+                    "response": replace_laptop
+                }
+                send_message("localhost", new_server_port, response_msg)
+                if replace_laptop == 'n':
+                    logging.info(f"Client chose to abort adding the laptop as to not replace {engin_name}'s existing laptop")
+                    return
+            
 
     # Add contact details for an engineer
     def add_contact(self):
         engin_name = input("Which engineer's contact info are you providing? Enter their name:")
         engin_name = engin_name.strip()
-        engin = self.engin_utils.read_engineer_by_name(engin_name)
-        logging.info(f"Attempting to add contact details for engineer {engin_name}.")
-        if engin is None:
-            doesnt_exist_msg = f"Engineer {engin_name} does not exist in the database."
-            print(doesnt_exist_msg)
-            logging.info(doesnt_exist_msg)
-            add_engin = get_yes_no_choice(f"Contact details cannot be added without an existing engineer. Would you like to add {engin_name} as a new engineer? (Y/N):")
-            if add_engin == 'n':
-                logging.info(f"User chose to abort adding contact details for non-existant engineer {engin_name}.")
-                print(f"Aborting adding contact details for non-existant engineer {engin_name}.")
-                return None
-            logging.info(f"Attempting to add engineer {engin_name} to the database before adding contact details.")
-            engin = self.add_engineer(engin_name)
         phone_number = input(f"Enter {engin_name}'s phone number (XXX)-XXX-XXXX:")
         address = input(f"Enter {engin_name}'s address:")
-        new_contact = self.contact_utils.add_contact_details_db(phone_number, address, engin_name)
+        logging.info(f"Asking server to add contact details for engineer {engin_name}.")
+        insert_msg = {
+            "data_type": "contact_details",
+            "action": "add",
+            "port": self.port,
+            "phone_number": phone_number,
+            "address": address,
+            "engineer": engin_name
+        }
+        send_message("localhost", self.server_port, insert_msg)
+
+        server_response = self.get_server_response()
+
+        try:
+            status = server_response["status"]
+        except:
+            error_msg = "Server response has no entry \"status\" to let the client know how to proceed."
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
+        if status == "error":
+            error_msg = server_response["text"]
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
         success_msg = f"Successfully added new contact information for {engin_name}!"
         print(success_msg)
         logging.info(success_msg)
-        return new_contact
+        return
         
     # Delete an engineer
     def delete_engineer(self):
         engin_name = input("Enter the name of the engineer to be deleted:")
         engin_name = engin_name.strip()
-        logging.info(f"Attempting to delete engineer {engin_name} from the database.")
-        engin = self.engin_utils.read_engineer_by_name(engin_name)
-        if engin is None:
-            doesnt_exist_msg = f"Engineer {engin_name} does not exist in the database." + \
-                               f"Aborting deleting non-existant engineer {engin_name}."
-            print(doesnt_exist_msg)
-            logging.info(doesnt_exist_msg)
-            return
         proceed = get_yes_no_choice(f"!!! WARNING !!! - Deleting engineer {engin_name} will also delete any of their contact details. Proceed? (Y/N):")
         if proceed == 'n':
             print(f"Aborted deleting engineer {engin_name} from the database.")
             logging.info(f"User chose to abort deleting engineer {engin_name} as to not delete their contact details.")
             return
-        self.engin_utils.delete_engineer_by_name(engin_name)
+        logging.info(f"Asking server to delete engineer {engin_name} from the database.")
+        delete_msg = {
+            "data_type": "engineer",
+            "action": "delete",
+            "port": self.port,
+            "name": engin_name
+        }
+        send_message("localhost", self.server_port, delete_msg)
+
+        server_response = self.get_server_response()
+
+        try:
+            status = server_response["status"]
+        except:
+            error_msg = "Server response has no entry for \"status\" to let the client know how to proceed."
+            logging.error(error_msg)
+            print(error_msg)
+            return
+
+        if status == "error":
+            error_msg = server_response["text"]
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
         success_msg = f"Successfully deleted engineer {engin_name} and their contact details from the database."
         print(success_msg)
         logging.info(success_msg)
@@ -314,7 +415,30 @@ class Client:
             logging.info(f"User chose to abort deleting all {model} vehicle records.")
             print(f"Aborted deletion of {model} vehicle records.")
             return
-        self.car_utils.delete_vehicle_by_model(model)
+        delete_msg = {
+            "data_type": "vehicle",
+            "action": "delete",
+            "port": self.port,
+            "model": model
+        }
+        send_message("localhost", self.server_port, delete_msg)
+
+        server_response = self.get_server_response()
+
+        try:
+            status = server_response["status"]
+        except:
+            error_msg = "Server response has no entry \"status\" to let the client know how to proceed."
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
+        if status == "error":
+            error_msg = server_response["text"]
+            logging.error(error_msg)
+            print(error_msg)
+            return
+
         success_msg = f"Successfully deleted all {model} vehicle records."
         print(success_msg)
         logging.info(success_msg)
@@ -323,26 +447,39 @@ class Client:
     def delete_laptop(self):
         engin_name = input("Enter the name of the engineer this laptop is loaned to.\n(Leave empty if laptop is loaned to no engineer):")
         engin_name = engin_name.strip()
+        delete_msg = {
+            "data_type": "laptop",
+            "action": "delete",
+            "port": self.port,
+            "engineer": engin_name
+        }
         if engin_name == "":
             id = get_digit_choice(f"Enter the ID number of the un-loaned laptop to be deleted:",
                                    "Invalid Laptop ID. Enter a number > 0", 1, inf)
-            try:
-                logging.info(f"Attempting to delete laptop with ID {id}")
-                self.laptop_utils.delete_laptop_by_id(id)
-                success_msg = f"Successfully deleted laptop with ID {id}!"
-                print(success_msg)
-                logging.info(success_msg)
-            except UnmappedInstanceError:
-                error_msg = f"Laptop with ID {id} has already been deleted from the database."
-                print(error_msg)
-                logging.error(error_msg)
-                return
-        else:
-            logging.info(f"Attempting to delete laptop loaned to engineer {engin_name} from the database.")
-            self.laptop_utils.delete_laptop_by_owner(engin_name)
-            success_msg = f"Successfully deleted laptop loaned by {engin_name}!"
-            print(success_msg)
-            logging.info(success_msg)
+            delete_msg["id"] = id
+
+        send_message("localhost", self.server_port, delete_msg)
+
+        server_response = self.get_server_response()
+
+        try:
+            status = server_response["status"]
+        except:
+            error_msg = "Server response did not include an entry \"status\" to let the client know how to proceed."
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
+        if status == "error":
+            error_msg = server_response["text"]
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
+        success_msg = f"Successfully deleted laptop from the database"
+        logging.info(success_msg)
+        print(success_msg)
+
 
     # Delete contact details
     def delete_contact(self):
@@ -353,33 +490,40 @@ class Client:
             logging.info(f"User chose to abort deleting all contact details for engineer {engin_name}")
             print(f"Aborted deleting contact details for engineer {engin_name}.")
             return
+
+        delete_msg = {
+            "data_type": "contact_details",
+            "action": "delete",
+            "port": self.port,
+            "engineer": engin_name
+        }
         if engin_name == "":
             id = get_digit_choice(f"Enter the ID number of the contact details to be deleted:",
                                    "Invalid Contact Details ID. Enter a number > 0", 1, inf)
-            try:
-                logging.info(f"Attempting to delete contact details with ID {id}")
-                self.contact_utils.delete_contact_details_by_id(id)
-            except UnmappedInstanceError:
-                error_msg = f"Contact Details with id {id} has already been deleted from the database."
-                print(error_msg)
-                logging.error(error_msg)
-                return
-        else:
-            logging.info(f"Attempting to delete all contact details for engineer {engin_name}")
-            engin = self.engin_utils.read_engineer_by_name(engin_name)
-            if engin is None:
-                doesnt_exist_msg = f"Engineer {engin_name} does not exist in the database." + \
-                                   f"Aborted deleting contact details for non-existant engineer {engin_name}."
-                print(doesnt_exist_msg)
-                logging.info(doesnt_exist_msg)
-                return
-            try:
-                self.contact_utils.delete_contact_details_by_engin_id(engin.id)
-            except UnmappedInstanceError:
-                error_msg = f"Engineer {engin_name} has no contact details to delete." + \
-                            f"Aborted deleting contact details for engineer {engin_name}."
-                print(error_msg)
-                logging.error(error_msg)
+            delete_msg["id"] = id
+
+        send_message("localhost", self.server_port, delete_msg)
+
+        server_response = self.get_server_response()
+
+        try:
+            status = server_response["status"]
+        except:
+            error_msg = "Server response had no entry \"status\" to let the client know how to proceed."
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
+        if status == "error":
+            error_msg = server_response["text"]
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
+        success_msg = "Successfully deleted contact details."
+        logging.info(success_msg)
+        print(success_msg)
+
 
     # Decorator for query functions, prompts to dump the results as a JSON object/array
     def json_dump_prompt(func):
