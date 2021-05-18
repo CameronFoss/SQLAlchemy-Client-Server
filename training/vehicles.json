@@ -6,7 +6,7 @@
         "manufacture_year": 2019,
         "model": "Fusion",
         "price": 23170.0,
-        "quantity": 3
+        "quantity": 8
     },
     {
         "data_type": "vehicle",
@@ -43,5 +43,41 @@
         "model": "Shelby",
         "price": 15679.0,
         "quantity": 8
+    },
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 5,
+        "manufacture_month": 4,
+        "manufacture_year": 2009,
+        "model": "Dondai",
+        "price": 30000.0,
+        "quantity": 4
+    },
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 8,
+        "manufacture_month": 4,
+        "manufacture_year": 2011,
+        "model": "Civic",
+        "price": 24000.0,
+        "quantity": 6
+    },
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 20,
+        "manufacture_month": 2,
+        "manufacture_year": 2004,
+        "model": "Charger",
+        "price": 20004.0,
+        "quantity": 8
+    },
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 23,
+        "manufacture_month": 3,
+        "manufacture_year": 2006,
+        "model": "Fiesta",
+        "price": 14000.0,
+        "quantity": 2
     }
 ]

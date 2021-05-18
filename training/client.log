@@ -53,3 +53,46 @@ Updated quantity of Fusion vehicles by 10.
 2021-05-18 10:27:41,899 - INFO: Asking server to add new engineers Cameron Foss born on 1999-04-20 to the database.
 2021-05-18 10:27:41,908 - ERROR: Engineer named Cameron Foss already exists in the database.
 Aborted adding duplicate engineer Cameron Foss to the database.
+2021-05-18 10:30:16,256 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer ASDF
+2021-05-18 10:30:16,268 - INFO: Engineer ASDF did not exist in the database.
+2021-05-18 10:30:20,289 - INFO: Successfully added laptop Example Laptop to the database and loaned it to None.
+2021-05-18 10:30:37,776 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer ASDF
+2021-05-18 10:30:37,783 - INFO: Engineer ASDF did not exist in the database.
+2021-05-18 10:30:40,324 - INFO: Successfully added laptop Example Laptop to the database and loaned it to None.
+2021-05-18 10:31:02,162 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer ASDF
+2021-05-18 10:31:02,168 - INFO: Engineer ASDF did not exist in the database.
+2021-05-18 10:31:03,386 - INFO: Client chose to abort adding the laptop without loaning it to an existing engineer.
+2021-05-18 10:31:30,611 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer Steven Universe
+2021-05-18 10:31:30,640 - INFO: Successfully added laptop GemBook to the database and loaned it to Steven Universe.
+2021-05-18 10:31:50,439 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer Cameron Foss
+2021-05-18 10:31:50,450 - WARNING: Engineer Cameron Foss already has a laptop loaned to them
+
+!!! WARNING !!! - Adding a new laptop would replace the laptop already loaned to Cameron FossCameron Foss's previous laptop would not be deleted from the database, but would be loaned by no one.
+2021-05-18 10:32:00,527 - INFO: Successfully added laptop Ford Laptop to the database and loaned it to Cameron Foss.
+2021-05-18 10:33:06,852 - INFO: Asking server to add contact details for engineer ASDF.
+2021-05-18 10:33:06,859 - ERROR: Engineer ASDF does not exist in the database. Contact details cannot be added for a non-existant engineer.
+2021-05-18 10:33:40,679 - INFO: Asking server to add contact details for engineer Cameron Foss.
+2021-05-18 10:33:40,700 - INFO: Successfully added new contact information for Cameron Foss!
+2021-05-18 10:46:23,779 - INFO: Asking the server to read info for vehicles of model Fusion
+2021-05-18 10:46:23,872 - INFO: Successfully read vehicles. Vehicle info:
+2021-05-18 10:46:23,872 - INFO: {'data_type': 'vehicle', 'model': 'Fusion', 'quantity': 8, 'price': 23170.0, 'manufacture_year': 2019, 'manufacture_month': 10, 'manufacture_date': 5}
+2021-05-18 10:46:30,776 - INFO: Attempting to dump user read result as JSON to file named fusion_vehicle.json
+2021-05-18 10:46:30,780 - INFO: Successfully dumped [{'data_type': 'vehicle', 'model': 'Fusion', 'quantity': 8, 'price': 23170.0, 'manufacture_year': 2019, 'manufacture_month': 10, 'manufacture_date': 5}] to fusion_vehicle.json
+2021-05-18 10:46:44,027 - INFO: Attempting to dump user read result to Word document named fusion_vehicle.docx
+2021-05-18 10:48:35,219 - INFO: Reading info for vehicle with ID 5
+2021-05-18 10:48:35,236 - INFO: Successfully read vehicles. Vehicle info:
+2021-05-18 10:48:35,236 - INFO: {'data_type': 'vehicle', 'model': 'Shelby', 'quantity': 8, 'price': 15679.0, 'manufacture_year': 2008, 'manufacture_month': 4, 'manufacture_date': 30}
+2021-05-18 10:48:44,421 - INFO: Asking the server to read info for vehicles of model all
+2021-05-18 10:48:44,429 - INFO: Successfully read vehicles. Vehicle info:
+2021-05-18 10:48:44,429 - INFO: {'data_type': 'vehicle', 'model': 'Fusion', 'quantity': 8, 'price': 23170.0, 'manufacture_year': 2019, 'manufacture_month': 10, 'manufacture_date': 5}
+2021-05-18 10:48:44,429 - INFO: {'data_type': 'vehicle', 'model': 'Explorer', 'quantity': 1, 'price': 32765.0, 'manufacture_year': 2019, 'manufacture_month': 6, 'manufacture_date': 15}
+2021-05-18 10:48:44,430 - INFO: {'data_type': 'vehicle', 'model': 'Bronco', 'quantity': 0, 'price': 26820.0, 'manufacture_year': 2018, 'manufacture_month': 12, 'manufacture_date': 20}
+2021-05-18 10:48:44,430 - INFO: {'data_type': 'vehicle', 'model': 'Mustang Shelby GT500', 'quantity': 10, 'price': 73995.0, 'manufacture_year': 2019, 'manufacture_month': 3, 'manufacture_date': 30}
+2021-05-18 10:48:44,430 - INFO: {'data_type': 'vehicle', 'model': 'Shelby', 'quantity': 8, 'price': 15679.0, 'manufacture_year': 2008, 'manufacture_month': 4, 'manufacture_date': 30}
+2021-05-18 10:48:44,430 - INFO: {'data_type': 'vehicle', 'model': 'Dondai', 'quantity': 4, 'price': 30000.0, 'manufacture_year': 2009, 'manufacture_month': 4, 'manufacture_date': 5}
+2021-05-18 10:48:44,430 - INFO: {'data_type': 'vehicle', 'model': 'Civic', 'quantity': 6, 'price': 24000.0, 'manufacture_year': 2011, 'manufacture_month': 4, 'manufacture_date': 8}
+2021-05-18 10:48:44,431 - INFO: {'data_type': 'vehicle', 'model': 'Charger', 'quantity': 8, 'price': 20004.0, 'manufacture_year': 2004, 'manufacture_month': 2, 'manufacture_date': 20}
+2021-05-18 10:48:44,431 - INFO: {'data_type': 'vehicle', 'model': 'Fiesta', 'quantity': 2, 'price': 14000.0, 'manufacture_year': 2006, 'manufacture_month': 3, 'manufacture_date': 23}
+2021-05-18 10:48:50,851 - INFO: Attempting to dump user read result as JSON to file named vehicles.json
+2021-05-18 10:48:50,853 - INFO: Successfully dumped [{'data_type': 'vehicle', 'model': 'Fusion', 'quantity': 8, 'price': 23170.0, 'manufacture_year': 2019, 'manufacture_month': 10, 'manufacture_date': 5}, {'data_type': 'vehicle', 'model': 'Explorer', 'quantity': 1, 'price': 32765.0, 'manufacture_year': 2019, 'manufacture_month': 6, 'manufacture_date': 15}, {'data_type': 'vehicle', 'model': 'Bronco', 'quantity': 0, 'price': 26820.0, 'manufacture_year': 2018, 'manufacture_month': 12, 'manufacture_date': 20}, {'data_type': 'vehicle', 'model': 'Mustang Shelby GT500', 'quantity': 10, 'price': 73995.0, 'manufacture_year': 2019, 'manufacture_month': 3, 'manufacture_date': 30}, {'data_type': 'vehicle', 'model': 'Shelby', 'quantity': 8, 'price': 15679.0, 'manufacture_year': 2008, 'manufacture_month': 4, 'manufacture_date': 30}, {'data_type': 'vehicle', 'model': 'Dondai', 'quantity': 4, 'price': 30000.0, 'manufacture_year': 2009, 'manufacture_month': 4, 'manufacture_date': 5}, {'data_type': 'vehicle', 'model': 'Civic', 'quantity': 6, 'price': 24000.0, 'manufacture_year': 2011, 'manufacture_month': 4, 'manufacture_date': 8}, {'data_type': 'vehicle', 'model': 'Charger', 'quantity': 8, 'price': 20004.0, 'manufacture_year': 2004, 'manufacture_month': 2, 'manufacture_date': 20}, {'data_type': 'vehicle', 'model': 'Fiesta', 'quantity': 2, 'price': 14000.0, 'manufacture_year': 2006, 'manufacture_month': 3, 'manufacture_date': 23}] to vehicles.json
+2021-05-18 10:48:58,339 - INFO: Attempting to dump user read result to Word document named vehicles.docx

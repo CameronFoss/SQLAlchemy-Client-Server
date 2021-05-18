@@ -531,34 +531,23 @@ class Client:
     # Decorator for query functions, prompts to dump the results as a JSON object/array
     def json_dump_prompt(func):
         def wrapper(*args, **kwargs):
-            db_object = func(*args, **kwargs)
+            json_object = func(*args, **kwargs)
             dump = get_yes_no_choice("Dump the result as JSON? (Y/N)")
             if dump == 'n':
-                return db_object
+                return json_object
             out_file_name = input("Enter the name of the file to dump JSON to:")
             logging.info(f"Attempting to dump user read result as JSON to file named {out_file_name}")
-            if isinstance(db_object, dict):
-                # db_object is a single json object
-                json_obj = db_object.to_json()
-                dump_to_json(json_obj, out_file_name)
-                succcess_msg = f"Successfully dumped {json_obj} to {out_file_name}"
-                print(succcess_msg)
-                logging.info(succcess_msg)
-                return db_object
-            else:
-                # db_object is a list of json objects
-                json_array = [obj.to_json() for obj in db_object]
-                dump_to_json(json_array, out_file_name)
-                succcess_msg = f"Successfully dumped {json_array} to {out_file_name}"
-                print(succcess_msg)
-                logging.info(succcess_msg)
-                return db_object
+            dump_to_json(json_object, out_file_name)
+            succcess_msg = f"Successfully dumped {json_object} to {out_file_name}"
+            print(succcess_msg)
+            logging.info(succcess_msg)
+            return json_object
         return wrapper
 
     # Decorator for query functions, prompts to dump results to a Word document (docx)
     def docx_dump_prompt(func):
         def wrapper(*args, **kwargs):
-            db_object = func(*args, **kwargs)
+            json_object = func(*args, **kwargs)
             dump = get_yes_no_choice("Dump the result to a Word document? (Y/N):")
             if dump == 'n':
                 return
@@ -566,14 +555,10 @@ class Client:
             # remove any potential file extension and replace with .docx
             out_file_name = out_file_name.rsplit('.', 1)[0] + ".docx"
             logging.info(f"Attempting to dump user read result to Word document named {out_file_name}")
-            if isinstance(db_object, dict):
-                # db_object is a single DB object
-                json_obj = db_object.to_json()
-                dump_to_docx(json_obj, out_file_name)
-            else:
-                # db_object is a list of DB objects
-                json_array = [obj.to_json() for obj in db_object]
-                dump_to_docx(json_array, out_file_name)
+            dump_to_docx(json_object, out_file_name)
+            success_msg = f"Successfully dumped read result to Word document {out_file_name}"
+            logging.info(success_msg)
+            print(success_msg)
         return wrapper
 
     # Query vehicles, prompt for each column
@@ -582,28 +567,56 @@ class Client:
     def query_vehicles(self):
         model = input("Enter the model of vehicles to read.\nEnter \"all\" to read all vehicles.\n(Leave blank to read by vehicle ID):")
         model = model.strip()
+        read_msg = {
+            "data_type": "vehicle",
+            "action": "read",
+            "port": self.port,
+            "model": model
+        }
         if model == "":
             id = get_digit_choice("Enter the vehicle id to read:",
                                   "Invalid vehicle ID. Enter a number > 0", 1, inf)
             logging.info(f"Reading info for vehicle with ID {id}")
-            car = self.car_utils.read_vehicle_by_id(id)
-            print(f"Info for vehicle id {id}:")
-            print(str(car))
-            return car
-        elif model == "all":
-            logging.info("Reading all vehicle info.")
-            cars = self.car_utils.read_vehicles_all()
-            print("Info for all vehicles:")
-            for car in cars:
-                print(str(car))
-            return cars
+            read_msg["id"] = id
         else:
-            logging.info(f"Reading info for model {model} vehicles.")
-            cars = self.car_utils.read_vehicles_by_model(model)
-            print(f"Info for vehicles of model {model}:")
-            for car in cars:
-                print(str(car))
-            return cars
+            logging.info(f"Asking the server to read info for vehicles of model {model}")
+
+        send_message("localhost", self.server_port, read_msg)
+
+        server_response = self.get_server_response()
+
+        try:
+            status = server_response["status"]
+        except:
+            error_msg = "Server response for vehicle read job had no entry for \"status\" to let the client know how to proceed."
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
+        if status == "error":
+            error_msg = server_response["text"]
+            logging.error(error_msg)
+            print(error_msg)
+            return
+
+        try:
+            cars_json = server_response["vehicles"]
+        except:
+            error_msg = "Server response was marked as successful, but did not provide an entry \"vehicles\" containing data for vehicle information "
+            logging.error(error_msg)
+            print(error_msg)
+            return
+
+
+        success_msg = "Successfully read vehicles. Vehicle info:"
+        logging.info(success_msg)
+        print(success_msg)
+
+        for car in cars_json:
+            logging.info(car)
+            print(car)
+
+        return cars_json
 
     # Query engineers, prompt for each column
     @docx_dump_prompt

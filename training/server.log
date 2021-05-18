@@ -27637,3 +27637,2312 @@ Aborted adding duplicate engineer Cameron Foss to the database.
 2021-05-18 10:27:47,671 - INFO: Top of shutdown prompt loop
 2021-05-18 10:27:47,918 - INFO: Timed out on sock.accept()
 2021-05-18 10:27:48,174 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:48,677 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:48,923 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:49,180 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:49,683 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:49,927 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:50,186 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:50,691 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:50,928 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:51,198 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:51,703 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:51,932 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:52,208 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:52,708 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:52,938 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:53,214 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:53,719 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:53,941 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:54,224 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:54,725 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:54,943 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:55,231 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:55,736 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:55,948 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:56,237 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:56,741 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:56,949 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:57,243 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:57,745 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:57,949 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:58,248 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:58,751 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:58,955 - INFO: Timed out on sock.accept()
+2021-05-18 10:27:59,252 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:59,755 - INFO: Top of shutdown prompt loop
+2021-05-18 10:27:59,959 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:00,257 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:00,775 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:00,959 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:01,280 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:01,783 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:01,965 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:02,288 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:02,792 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:02,971 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:03,292 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:03,798 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:03,975 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:04,299 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:04,802 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:04,980 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:05,308 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:05,809 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:05,981 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:06,315 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:06,820 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:06,982 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:07,325 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:07,826 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:07,987 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:08,326 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:08,832 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:08,992 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:09,334 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:09,839 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:09,998 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:10,342 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:10,843 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:10,999 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:11,345 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:11,846 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:12,004 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:12,351 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:12,857 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:13,010 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:13,360 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:13,865 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:14,010 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:14,371 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:14,876 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:15,016 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:15,377 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:15,882 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:16,021 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:16,388 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:16,892 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:17,026 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:17,393 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:17,894 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:18,030 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:18,399 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:18,904 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:19,036 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:19,410 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:19,915 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:20,041 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:20,419 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:20,920 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:21,044 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:21,421 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:21,922 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:22,047 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:22,427 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:22,928 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:23,052 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:23,433 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:23,934 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:24,053 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:24,439 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:24,944 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:25,059 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:25,445 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:25,949 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:26,061 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:26,450 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:26,956 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:27,061 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:27,461 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:27,967 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:28,067 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:28,468 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:28,969 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:29,069 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:29,471 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:29,977 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:30,069 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:30,478 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:30,989 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:31,075 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:31,495 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:31,995 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:32,078 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:32,496 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:33,001 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:33,079 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:33,504 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:34,009 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:34,084 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:34,515 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:35,017 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:35,089 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:35,522 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:36,025 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:36,092 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:36,529 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:37,033 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:37,096 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:37,538 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:38,044 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:38,099 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:38,546 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:39,048 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:39,104 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:39,549 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:40,051 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:40,108 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:40,554 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:41,059 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:41,113 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:41,563 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:42,068 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:42,113 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:42,571 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:43,077 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:43,116 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:43,579 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:44,080 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:44,117 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:44,585 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:45,091 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:45,118 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:45,594 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:46,096 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:46,119 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:46,600 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:47,106 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:47,124 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:47,607 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:48,113 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:48,129 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:48,614 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:49,120 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:49,134 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:49,620 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:50,122 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:50,139 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:50,627 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:51,130 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:51,143 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:51,636 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:52,141 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:52,147 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:52,645 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:53,147 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:53,153 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:53,653 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:54,158 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:54,158 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:54,661 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:55,162 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:55,166 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:55,671 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:56,164 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:56,177 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:56,681 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:57,164 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:57,186 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:57,689 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:58,165 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:58,191 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:58,692 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:59,166 - INFO: Timed out on sock.accept()
+2021-05-18 10:28:59,197 - INFO: Top of shutdown prompt loop
+2021-05-18 10:28:59,698 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:00,168 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:00,198 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:00,702 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:01,170 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:01,208 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:01,713 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:02,176 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:02,215 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:02,717 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:03,181 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:03,223 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:03,725 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:04,181 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:04,230 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:04,732 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:05,186 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:05,232 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:05,734 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:06,192 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:06,240 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:06,742 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:07,197 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:07,244 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:07,748 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:08,199 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:08,253 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:08,755 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:09,204 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:09,257 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:09,761 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:10,205 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:10,262 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:10,765 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:11,211 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:11,266 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:11,771 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:12,215 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:12,277 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:12,777 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:13,217 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:13,282 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:13,786 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:14,219 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:14,291 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:14,796 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:15,221 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:15,301 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:15,806 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:16,227 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:16,312 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:16,816 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:17,232 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:17,322 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:17,824 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:18,233 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:18,325 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:18,827 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:19,234 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:19,330 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:19,832 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:20,237 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:20,333 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:20,838 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:21,242 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:21,339 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:21,844 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:22,247 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:22,347 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:22,848 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:23,250 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:23,350 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:23,856 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:24,254 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:24,357 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:24,858 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:25,259 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:25,360 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:25,865 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:26,263 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:26,367 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:26,868 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:27,264 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:27,368 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:27,869 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:28,266 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:28,370 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:28,874 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:29,267 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:29,380 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:29,884 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:30,269 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:30,385 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:30,895 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:31,282 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:31,399 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:31,900 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:32,284 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:32,401 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:32,904 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:33,285 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:33,405 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:33,910 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:34,290 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:34,415 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:34,918 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:35,295 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:35,423 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:35,929 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:36,296 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:36,431 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:36,934 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:37,301 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:37,435 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:37,936 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:38,302 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:38,439 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:38,942 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:39,307 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:39,443 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:39,946 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:40,313 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:40,449 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:40,952 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:41,317 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:41,452 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:41,954 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:42,317 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:42,456 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:42,959 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:43,319 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:43,460 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:43,962 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:44,319 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:44,464 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:44,969 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:45,324 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:45,474 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:45,977 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:46,328 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:46,478 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:46,983 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:47,329 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:47,486 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:47,991 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:48,330 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:48,495 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:49,000 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:49,335 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:49,503 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:50,003 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:50,340 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:50,509 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:51,010 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:51,341 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:51,512 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:52,012 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:52,347 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:52,513 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:53,018 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:53,348 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:53,523 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:54,026 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:54,350 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:54,531 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:55,036 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:55,353 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:55,537 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:56,038 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:56,358 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:56,542 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:57,043 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:57,363 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:57,548 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:58,053 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:58,369 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:58,554 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:59,054 - INFO: Top of shutdown prompt loop
+2021-05-18 10:29:59,370 - INFO: Timed out on sock.accept()
+2021-05-18 10:29:59,560 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:00,065 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:00,372 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:00,570 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:01,081 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:01,373 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:01,581 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:02,082 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:02,378 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:02,586 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:03,087 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:03,384 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:03,593 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:04,097 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:04,387 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:04,603 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:05,104 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:05,393 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:05,610 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:06,111 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:06,398 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:06,615 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:07,120 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:07,404 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:07,621 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:08,127 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:08,404 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:08,632 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:09,136 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:09,410 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:09,638 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:10,141 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:10,415 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:10,644 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:11,146 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:11,421 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:11,649 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:12,152 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:12,422 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:12,655 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:13,156 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:13,427 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:13,658 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:14,161 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:14,429 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:14,663 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:15,166 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:15,435 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:15,669 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:16,171 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:16,258 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:30:16,267 - INFO: Engineer ASDF does not exist in the database. Prompting client as to whether the laptop should be added without a loaner.
+2021-05-18 10:30:16,672 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:17,174 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:17,259 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:17,676 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:18,178 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:18,265 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:18,680 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:19,183 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:19,269 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:19,686 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:20,189 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:20,271 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:20,288 - INFO: Successfully added laptop Example Laptop, but it is not loaned by any engineer.
+2021-05-18 10:30:20,690 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:21,193 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:21,274 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:21,698 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:22,202 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:22,280 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:22,707 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:23,212 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:23,284 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:23,717 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:24,222 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:24,289 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:24,723 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:25,223 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:25,290 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:25,729 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:26,234 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:26,295 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:26,740 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:27,240 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:27,301 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:27,746 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:28,251 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:28,306 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:28,754 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:29,257 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:29,307 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:29,762 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:30,263 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:30,310 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:30,783 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:31,298 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:31,312 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:31,800 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:32,305 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:32,315 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:32,807 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:33,313 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:33,317 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:33,818 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:34,322 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:34,323 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:34,824 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:35,324 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:35,329 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:35,835 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:36,329 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:36,336 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:36,841 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:37,331 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:37,341 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:37,778 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:30:37,781 - INFO: Engineer ASDF does not exist in the database. Prompting client as to whether the laptop should be added without a loaner.
+2021-05-18 10:30:37,846 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:38,350 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:38,784 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:38,850 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:39,354 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:39,787 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:39,858 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:40,322 - INFO: Successfully added laptop Example Laptop, but it is not loaned by any engineer.
+2021-05-18 10:30:40,359 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:40,790 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:40,861 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:41,367 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:41,791 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:41,871 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:42,373 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:42,797 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:42,875 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:43,375 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:43,797 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:43,876 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:44,380 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:44,798 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:44,881 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:45,383 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:45,804 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:45,888 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:46,392 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:46,806 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:46,892 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:47,397 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:47,808 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:47,900 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:48,402 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:48,813 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:48,903 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:49,409 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:49,818 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:49,914 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:50,420 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:50,821 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:50,920 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:51,425 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:51,825 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:51,931 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:52,432 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:52,830 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:52,933 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:53,436 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:53,835 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:53,941 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:54,442 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:54,839 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:54,943 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:55,452 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:55,840 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:55,954 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:56,458 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:56,842 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:56,960 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:57,463 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:57,845 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:57,964 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:58,469 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:58,845 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:58,972 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:59,476 - INFO: Top of shutdown prompt loop
+2021-05-18 10:30:59,850 - INFO: Timed out on sock.accept()
+2021-05-18 10:30:59,978 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:00,481 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:00,851 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:00,988 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:01,493 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:01,852 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:01,998 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:02,164 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:31:02,167 - INFO: Engineer ASDF does not exist in the database. Prompting client as to whether the laptop should be added without a loaner.
+2021-05-18 10:31:02,501 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:03,005 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:03,167 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:03,386 - INFO: Client chose not to proceed with adding the laptop.
+2021-05-18 10:31:03,510 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:04,010 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:04,171 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:04,516 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:05,020 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:05,177 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:05,526 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:06,027 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:06,181 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:06,527 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:07,030 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:07,185 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:07,533 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:08,035 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:08,191 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:08,539 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:09,045 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:09,194 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:09,550 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:10,056 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:10,199 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:10,561 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:11,066 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:11,204 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:11,568 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:12,069 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:12,207 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:12,569 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:13,070 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:13,211 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:13,571 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:14,076 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:14,211 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:14,580 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:15,083 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:15,217 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:15,591 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:16,092 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:16,222 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:16,594 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:17,095 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:17,228 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:17,600 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:18,106 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:18,233 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:18,611 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:19,117 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:19,238 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:19,622 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:20,127 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:20,239 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:20,628 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:21,134 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:21,240 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:21,635 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:22,139 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:22,244 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:22,639 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:23,140 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:23,245 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:23,645 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:24,151 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:24,246 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:24,654 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:25,159 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:25,247 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:25,662 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:26,162 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:26,252 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:26,668 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:27,173 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:27,258 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:27,679 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:28,184 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:28,262 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:28,690 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:29,192 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:29,268 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:29,694 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:30,196 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:30,268 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:30,620 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:31:30,639 - INFO: Successfully added laptop GemBook and loaned it to engineer Steven Universe
+2021-05-18 10:31:30,696 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:31,202 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:31,624 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:31,707 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:32,210 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:32,624 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:32,712 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:33,213 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:33,629 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:33,716 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:34,222 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:34,629 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:34,727 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:35,230 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:35,632 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:35,730 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:36,235 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:36,633 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:36,740 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:37,246 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:37,638 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:37,747 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:38,247 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:38,644 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:38,752 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:39,258 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:39,647 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:39,763 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:40,264 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:40,647 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:40,764 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:41,265 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:41,653 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:41,771 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:42,274 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:42,658 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:42,780 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:43,281 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:43,663 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:43,786 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:44,289 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:44,664 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:44,795 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:45,297 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:45,664 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:45,801 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:46,306 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:46,669 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:46,812 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:47,314 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:47,670 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:47,820 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:48,325 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:48,676 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:48,831 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:49,331 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:49,681 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:49,832 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:50,337 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:50,441 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:31:50,448 - INFO: Engineer Cameron Foss already has a laptop loaned to them. Prompting client to see if we should add the laptop and replace the currently loaned one.
+2021-05-18 10:31:50,838 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:51,344 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:51,442 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:51,848 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:52,352 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:52,448 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:52,856 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:53,357 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:53,448 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:53,860 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:54,365 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:54,449 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:54,870 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:55,376 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:55,454 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:55,881 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:56,382 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:56,460 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:56,882 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:57,388 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:57,464 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:57,893 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:58,399 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:58,466 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:58,899 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:59,405 - INFO: Top of shutdown prompt loop
+2021-05-18 10:31:59,468 - INFO: Timed out on sock.accept()
+2021-05-18 10:31:59,907 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:00,412 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:00,474 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:00,525 - INFO: Successfully added laptop Ford Laptop and loaned it to engineer Cameron Foss
+2021-05-18 10:32:00,916 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:01,421 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:01,479 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:01,927 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:02,432 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:02,482 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:02,933 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:03,435 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:03,483 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:03,939 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:04,445 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:04,488 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:04,949 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:05,452 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:05,491 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:05,957 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:06,459 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:06,494 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:06,959 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:07,465 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:07,497 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:07,966 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:08,467 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:08,499 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:08,972 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:09,475 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:09,500 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:09,975 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:10,477 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:10,506 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:10,982 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:11,483 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:11,511 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:11,984 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:12,489 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:12,516 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:12,989 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:13,495 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:13,517 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:14,000 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:14,501 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:14,517 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:15,005 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:15,510 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:15,523 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:16,014 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:16,517 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:16,528 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:17,023 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:17,528 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:17,534 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:18,031 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:18,534 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:18,534 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:19,035 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:19,540 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:19,540 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:20,046 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:20,546 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:20,546 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:21,051 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:21,551 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:21,557 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:22,061 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:22,551 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:22,566 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:23,068 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:23,557 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:23,573 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:24,079 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:24,562 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:24,584 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:25,085 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:25,568 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:25,590 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:26,096 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:26,568 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:26,601 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:27,102 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:27,574 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:27,607 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:28,113 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:28,577 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:28,618 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:29,119 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:29,583 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:29,624 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:30,129 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:30,585 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:30,635 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:31,135 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:31,594 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:31,636 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:32,141 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:32,599 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:32,642 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:33,148 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:33,602 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:33,652 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:34,158 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:34,608 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:34,663 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:35,169 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:35,613 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:35,673 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:36,176 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:36,619 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:36,682 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:37,186 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:37,619 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:37,686 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:38,186 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:38,620 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:38,692 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:39,197 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:39,625 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:39,703 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:40,203 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:40,626 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:40,708 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:41,214 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:41,632 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:41,719 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:42,220 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:42,636 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:42,725 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:43,231 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:43,637 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:43,736 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:44,237 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:44,642 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:44,737 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:45,242 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:45,643 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:45,748 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:46,253 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:46,645 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:46,754 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:47,259 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:47,646 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:47,765 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:48,270 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:48,646 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:48,775 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:49,281 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:49,649 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:49,785 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:50,287 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:50,651 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:50,788 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:51,288 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:51,654 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:51,794 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:52,299 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:52,660 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:52,804 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:53,304 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:53,661 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:53,810 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:54,315 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:54,665 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:54,818 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:55,321 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:55,667 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:55,824 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:56,329 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:56,670 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:56,830 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:57,336 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:57,671 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:57,837 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:58,343 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:58,672 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:58,846 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:59,349 - INFO: Top of shutdown prompt loop
+2021-05-18 10:32:59,674 - INFO: Timed out on sock.accept()
+2021-05-18 10:32:59,854 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:00,355 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:00,677 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:00,855 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:01,361 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:01,682 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:01,866 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:02,372 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:02,688 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:02,876 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:03,381 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:03,689 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:03,887 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:04,390 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:04,693 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:04,891 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:05,396 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:05,693 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:05,901 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:06,405 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:06,697 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:06,854 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:33:06,858 - ERROR: Engineer ASDF does not exist in the database. Contact details cannot be added for a non-existant engineer.
+2021-05-18 10:33:06,907 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:07,410 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:07,856 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:07,913 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:08,415 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:08,857 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:08,917 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:09,420 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:09,857 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:09,922 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:10,423 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:10,863 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:10,926 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:11,429 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:11,868 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:11,932 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:12,435 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:12,873 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:12,939 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:13,445 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:13,873 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:13,951 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:14,456 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:14,879 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:14,957 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:15,462 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:15,884 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:15,966 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:16,471 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:16,890 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:16,973 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:17,474 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:17,890 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:17,980 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:18,486 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:18,895 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:18,990 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:19,490 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:19,899 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:19,996 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:20,501 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:20,905 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:21,005 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:21,507 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:21,907 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:22,007 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:22,509 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:22,909 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:23,012 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:23,517 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:23,914 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:24,021 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:24,524 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:24,916 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:25,028 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:25,533 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:25,918 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:26,039 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:26,541 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:26,923 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:27,042 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:27,548 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:27,924 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:28,053 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:28,557 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:28,927 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:29,058 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:29,559 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:29,933 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:30,062 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:30,567 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:30,938 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:31,075 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:31,575 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:31,941 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:32,080 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:32,585 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:32,944 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:33,091 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:33,592 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:33,950 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:34,097 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:34,601 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:34,955 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:35,107 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:35,608 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:35,959 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:36,111 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:36,616 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:36,964 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:37,117 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:37,623 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:37,970 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:38,125 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:38,626 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:38,975 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:39,131 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:39,633 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:39,976 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:40,138 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:40,642 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:40,682 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:33:40,699 - INFO: Successfully added contact details for engineer Cameron Foss
+2021-05-18 10:33:41,142 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:41,643 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:41,684 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:42,147 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:42,651 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:42,688 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:43,156 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:43,660 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:43,694 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:44,163 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:44,666 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:44,695 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:45,168 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:45,672 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:45,701 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:46,175 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:46,676 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:46,703 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:47,180 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:47,683 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:47,704 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:48,186 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:48,688 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:48,710 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:49,193 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:49,699 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:49,710 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:50,204 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:50,707 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:50,716 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:51,209 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:51,710 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:51,721 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:52,215 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:52,717 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:52,724 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:53,219 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:53,720 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:53,727 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:54,225 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:54,728 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:54,729 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:55,234 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:55,729 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:55,739 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:56,244 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:56,735 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:56,744 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:57,250 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:57,740 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:57,750 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:58,255 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:58,744 - INFO: Timed out on sock.accept()
+2021-05-18 10:33:58,761 - INFO: Top of shutdown prompt loop
+2021-05-18 10:33:58,829 - INFO: Shutting down the server...
+2021-05-18 10:33:58,830 - INFO: Server shutdown
+2021-05-18 10:46:02,071 - INFO: Server started
+2021-05-18 10:46:02,075 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:02,575 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:03,080 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:03,080 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:03,584 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:04,084 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:04,085 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:04,590 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:05,085 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:05,091 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:05,592 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:06,086 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:06,093 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:06,599 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:07,092 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:07,101 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:07,606 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:08,094 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:08,109 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:08,614 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:09,095 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:09,118 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:09,618 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:10,098 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:10,123 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:10,626 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:11,102 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:11,127 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:11,633 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:12,109 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:12,135 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:12,635 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:13,113 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:13,137 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:13,639 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:14,118 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:14,140 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:14,646 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:15,121 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:15,151 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:15,652 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:16,121 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:16,152 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:16,655 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:17,126 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:17,159 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:17,662 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:18,131 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:18,164 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:18,669 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:19,136 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:19,169 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:19,675 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:20,139 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:20,180 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:20,686 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:21,144 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:21,191 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:21,696 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:22,146 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:22,202 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:22,703 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:23,151 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:23,208 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:23,714 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:23,784 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:46:23,784 - INFO: Attempting to read all Fusion model vehicles from the database.
+2021-05-18 10:46:23,868 - INFO: Vehicle read on Fusion model vehicles successful.
+2021-05-18 10:46:24,219 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:24,720 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:24,786 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:25,223 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:25,724 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:25,792 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:26,225 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:26,727 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:26,793 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:27,232 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:27,735 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:27,798 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:28,238 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:28,743 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:28,802 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:29,246 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:29,747 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:29,803 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:30,252 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:30,754 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:30,809 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:31,267 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:31,770 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:31,813 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:32,271 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:32,776 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:32,815 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:33,279 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:33,784 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:33,820 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:34,286 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:34,791 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:34,821 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:35,296 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:35,798 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:35,822 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:36,302 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:36,803 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:36,825 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:37,304 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:37,805 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:37,826 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:38,310 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:38,811 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:38,827 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:39,316 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:39,821 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:39,829 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:40,327 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:40,828 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:40,835 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:41,334 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:41,838 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:41,838 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:42,344 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:42,842 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:42,848 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:43,354 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:43,848 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:43,855 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:44,360 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:44,852 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:44,862 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:45,363 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:45,854 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:45,864 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:46,365 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:46,855 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:46,871 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:47,377 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:47,856 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:47,883 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:48,390 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:48,861 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:48,894 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:49,396 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:49,867 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:49,899 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:50,404 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:50,872 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:50,905 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:51,406 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:51,877 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:51,911 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:52,412 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:52,881 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:52,917 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:53,421 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:53,885 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:53,923 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:54,424 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:54,888 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:54,929 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:55,438 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:55,889 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:55,941 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:56,443 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:56,889 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:56,945 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:57,448 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:57,890 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:57,950 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:58,455 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:58,893 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:58,956 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:59,459 - INFO: Top of shutdown prompt loop
+2021-05-18 10:46:59,898 - INFO: Timed out on sock.accept()
+2021-05-18 10:46:59,960 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:00,463 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:00,901 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:00,973 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:01,478 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:01,907 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:01,982 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:02,487 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:02,907 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:02,988 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:03,492 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:03,909 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:04,002 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:04,506 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:04,910 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:05,006 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:05,511 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:05,914 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:06,014 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:06,515 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:06,920 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:07,021 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:07,524 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:07,923 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:08,027 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:08,528 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:08,924 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:09,031 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:09,532 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:09,924 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:10,037 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:10,541 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:10,925 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:11,043 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:11,547 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:11,925 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:12,049 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:12,551 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:12,931 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:13,054 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:13,556 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:13,932 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:14,058 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:14,558 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:14,936 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:15,063 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:15,567 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:15,938 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:16,072 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:16,575 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:16,941 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:17,075 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:17,575 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:17,946 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:18,080 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:18,582 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:18,957 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:19,092 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:19,595 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:19,958 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:20,096 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:20,598 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:20,958 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:21,099 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:21,600 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:21,963 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:22,100 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:22,602 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:22,967 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:23,104 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:23,609 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:23,970 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:24,113 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:24,618 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:24,975 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:25,120 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:25,626 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:25,976 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:26,131 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:26,633 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:26,979 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:27,135 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:27,641 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:27,983 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:28,151 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:28,653 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:28,984 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:29,156 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:29,658 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:29,987 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:30,159 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:30,662 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:30,987 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:31,175 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:31,676 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:31,988 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:32,177 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:32,686 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:32,989 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:33,188 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:33,693 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:33,993 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:34,193 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:34,694 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:34,994 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:35,195 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:35,700 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:35,999 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:36,202 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:36,706 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:37,010 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:37,210 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:37,710 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:38,013 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:38,214 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:38,719 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:39,018 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:39,224 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:39,727 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:40,025 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:40,228 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:40,730 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:41,035 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:41,233 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:41,734 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:42,037 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:42,235 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:42,737 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:43,042 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:43,241 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:43,752 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:44,044 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:44,261 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:44,766 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:45,046 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:45,267 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:45,769 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:46,049 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:46,274 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:46,778 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:47,053 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:47,278 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:47,783 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:48,056 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:48,286 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:48,787 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:49,061 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:49,287 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:49,789 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:50,064 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:50,294 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:50,795 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:51,069 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:51,300 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:51,806 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:52,070 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:52,311 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:52,811 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:53,072 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:53,313 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:53,814 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:54,077 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:54,315 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:54,817 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:55,078 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:55,319 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:55,820 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:56,078 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:56,324 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:56,828 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:57,084 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:57,329 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:57,829 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:58,086 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:58,334 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:58,835 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:59,089 - INFO: Timed out on sock.accept()
+2021-05-18 10:47:59,338 - INFO: Top of shutdown prompt loop
+2021-05-18 10:47:59,843 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:00,089 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:00,345 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:00,849 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:01,090 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:01,379 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:01,883 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:02,096 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:02,383 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:02,885 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:03,099 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:03,385 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:03,886 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:04,104 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:04,389 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:04,891 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:05,105 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:05,395 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:05,896 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:06,110 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:06,396 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:06,900 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:07,113 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:07,404 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:07,904 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:08,115 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:08,406 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:08,908 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:09,120 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:09,412 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:09,915 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:10,122 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:10,420 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:10,925 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:11,123 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:11,429 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:11,930 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:12,125 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:12,431 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:12,934 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:13,129 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:13,440 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:13,940 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:14,134 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:14,441 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:14,945 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:15,138 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:15,446 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:15,948 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:16,139 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:16,450 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:16,953 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:17,142 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:17,457 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:17,962 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:18,146 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:18,464 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:18,966 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:19,149 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:19,471 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:19,972 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:20,151 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:20,475 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:20,977 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:21,153 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:21,477 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:21,981 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:22,157 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:22,483 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:22,986 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:23,158 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:23,489 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:23,995 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:24,161 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:24,500 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:25,005 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:25,165 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:25,510 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:26,015 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:26,170 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:26,521 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:27,026 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:27,171 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:27,530 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:28,032 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:28,172 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:28,539 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:29,042 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:29,178 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:29,548 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:30,049 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:30,182 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:30,554 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:31,065 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:31,188 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:31,571 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:32,076 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:32,193 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:32,582 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:33,083 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:33,193 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:33,588 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:34,089 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:34,196 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:34,595 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:35,099 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:35,199 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:35,224 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:48:35,225 - INFO: Attempting to read vehicle id 5 from the database.
+2021-05-18 10:48:35,234 - INFO: Successfully read vehicle id 5 from the database:ID: 5
+Model: Shelby
+Quantity: 8
+Price: 15679
+Manufacture Date: 2008-04-30
+2021-05-18 10:48:35,605 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:36,110 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:36,225 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:36,615 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:37,116 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:37,231 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:37,616 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:38,122 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:38,231 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:38,627 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:39,133 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:39,236 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:39,638 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:40,139 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:40,236 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:40,642 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:41,147 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:41,237 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:41,650 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:42,155 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:42,240 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:42,660 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:43,166 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:43,242 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:43,670 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:44,174 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:44,247 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:44,423 - INFO: Successfully received message from client. Spawning a new thread to handle the job.
+2021-05-18 10:48:44,424 - INFO: Attempting to read all vehicles from the database.
+2021-05-18 10:48:44,427 - INFO: Vehicle read on all model vehicles successful.
+2021-05-18 10:48:44,679 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:45,180 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:45,427 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:45,682 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:46,187 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:46,432 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:46,693 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:47,198 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:47,434 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:47,700 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:48,206 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:48,439 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:48,711 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:49,212 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:49,441 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:49,717 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:50,222 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:50,445 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:50,728 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:51,233 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:51,451 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:51,737 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:52,241 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:52,451 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:52,746 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:53,251 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:53,457 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:53,754 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:54,259 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:54,462 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:54,765 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:55,268 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:55,468 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:55,769 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:56,275 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:56,468 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:56,776 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:57,277 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:57,474 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:57,778 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:58,283 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:58,475 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:58,784 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:59,286 - INFO: Top of shutdown prompt loop
+2021-05-18 10:48:59,481 - INFO: Timed out on sock.accept()
+2021-05-18 10:48:59,791 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:00,294 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:00,483 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:00,818 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:01,324 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:01,509 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:01,828 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:02,332 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:02,514 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:02,835 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:03,338 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:03,519 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:03,840 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:04,344 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:04,520 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:04,845 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:05,351 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:05,520 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:05,855 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:06,357 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:06,522 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:06,861 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:07,364 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:07,524 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:07,868 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:08,370 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:08,528 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:08,872 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:09,373 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:09,529 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:09,878 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:10,384 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:10,529 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:10,885 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:11,386 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:11,534 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:11,887 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:12,390 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:12,537 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:12,893 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:13,395 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:13,541 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:13,897 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:14,402 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:14,543 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:14,903 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:15,403 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:15,544 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:15,904 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:16,407 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:16,550 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:16,909 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:17,412 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:17,553 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:17,916 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:18,419 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:18,553 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:18,922 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:19,426 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:19,555 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:19,927 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:20,429 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:20,557 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:20,934 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:21,437 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:21,557 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:21,940 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:22,440 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:22,557 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:22,944 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:23,449 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:23,561 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:23,950 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:24,451 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:24,564 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:24,953 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:25,460 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:25,568 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:25,962 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:26,466 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:26,570 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:26,971 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:27,472 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:27,572 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:27,973 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:28,475 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:28,573 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:28,979 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:29,487 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:29,574 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:29,991 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:30,494 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:30,578 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:31,002 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:31,505 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:31,581 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:32,009 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:32,511 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:32,587 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:33,012 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:33,512 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:33,588 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:34,014 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:34,517 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:34,594 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:35,022 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:35,522 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:35,595 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:36,024 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:36,527 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:36,599 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:37,029 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:37,530 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:37,601 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:38,031 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:38,532 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:38,604 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:39,032 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:39,533 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:39,605 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:40,034 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:40,538 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:40,611 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:41,039 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:41,542 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:41,614 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:42,047 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:42,552 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:42,616 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:43,056 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:43,557 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:43,617 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:44,058 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:44,560 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:44,622 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:45,063 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:45,569 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:45,623 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:46,073 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:46,577 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:46,628 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:47,081 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:47,587 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:47,631 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:48,090 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:48,591 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:48,637 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:49,095 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:49,601 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:49,640 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:50,101 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:50,607 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:50,645 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:51,108 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:51,612 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:51,650 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:52,117 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:52,619 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:52,651 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:53,124 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:53,625 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:53,653 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:54,126 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:54,631 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:54,657 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:55,136 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:55,640 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:55,657 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:56,145 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:56,650 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:56,658 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:57,156 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:57,657 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:57,664 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:58,162 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:58,663 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:58,664 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:59,168 - INFO: Top of shutdown prompt loop
+2021-05-18 10:49:59,667 - INFO: Timed out on sock.accept()
+2021-05-18 10:49:59,670 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:00,174 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:00,670 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:00,675 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:01,181 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:01,682 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:01,683 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:02,186 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:02,685 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:02,687 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:03,188 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:03,686 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:03,691 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:04,191 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:04,691 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:04,693 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:05,194 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:05,697 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:05,697 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:06,198 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:06,702 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:06,702 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:07,207 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:07,707 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:07,708 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:08,208 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:08,710 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:08,710 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:09,216 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:09,712 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:09,719 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:10,222 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:10,714 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:10,725 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:11,227 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:11,717 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:11,729 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:12,235 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:12,722 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:12,735 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:13,235 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:13,726 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:13,739 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:14,242 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:14,726 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:14,743 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:15,246 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:15,729 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:15,753 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:16,256 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:16,730 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:16,759 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:17,260 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:17,732 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:17,761 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:18,266 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:18,734 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:18,769 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:19,274 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:19,735 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:19,775 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:20,276 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:20,735 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:20,778 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:21,281 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:21,738 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:21,784 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:22,289 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:22,739 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:22,793 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:23,294 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:23,743 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:23,795 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:24,299 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:24,745 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:24,804 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:25,305 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:25,747 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:25,807 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:26,309 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:26,752 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:26,810 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:27,313 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:27,754 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:27,814 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:28,318 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:28,760 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:28,819 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:29,319 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:29,765 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:29,821 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:30,322 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:30,772 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:30,839 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:31,343 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:31,776 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:31,847 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:32,353 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:32,777 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:32,859 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:33,360 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:33,777 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:33,864 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:34,369 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:34,783 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:34,870 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:35,372 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:35,785 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:35,874 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:36,375 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:36,787 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:36,878 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:37,381 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:37,789 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:37,886 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:38,388 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:38,795 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:38,889 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:39,391 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:39,800 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:39,894 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:40,397 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:40,806 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:40,900 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:41,403 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:41,811 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:41,912 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:42,417 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:42,812 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:42,918 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:43,420 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:43,813 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:43,921 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:44,422 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:44,815 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:44,923 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:45,425 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:45,820 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:45,929 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:46,432 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:46,821 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:46,940 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:47,442 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:47,822 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:47,946 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:48,446 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:48,827 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:48,951 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:49,453 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:49,829 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:49,955 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:50,456 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:50,832 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:50,960 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:51,462 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:51,833 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:51,963 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:52,463 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:52,837 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:52,968 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:53,472 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:53,842 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:53,974 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:54,476 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:54,843 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:54,987 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:55,492 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:55,845 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:55,995 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:56,498 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:56,847 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:56,999 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:57,504 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:57,848 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:58,005 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:58,518 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:58,848 - INFO: Timed out on sock.accept()
+2021-05-18 10:50:59,019 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:59,521 - INFO: Top of shutdown prompt loop
+2021-05-18 10:50:59,850 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:00,025 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:00,531 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:00,856 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:01,047 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:01,550 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:01,856 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:02,055 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:02,560 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:02,859 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:03,069 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:03,572 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:03,863 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:04,074 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:04,576 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:04,868 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:05,077 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:05,580 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:05,873 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:06,081 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:06,584 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:06,874 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:07,089 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:07,595 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:07,877 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:08,100 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:08,605 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:08,881 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:09,107 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:09,608 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:09,886 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:10,110 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:10,615 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:10,889 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:11,123 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:11,628 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:11,890 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:12,133 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:12,634 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:12,891 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:13,137 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:13,639 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:13,892 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:14,148 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:14,649 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:14,894 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:15,151 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:15,655 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:15,897 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:16,156 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:16,659 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:16,901 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:17,160 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:17,665 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:17,910 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:18,169 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:18,673 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:18,915 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:19,173 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:19,674 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:19,916 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:20,180 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:20,681 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:20,921 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:21,191 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:21,691 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:21,924 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:22,192 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:22,695 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:22,927 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:23,199 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:23,699 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:23,933 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:24,199 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:24,708 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:24,934 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:25,213 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:25,714 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:25,938 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:26,216 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:26,722 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:26,943 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:27,226 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:27,727 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:27,948 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:28,232 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:28,733 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:28,950 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:29,233 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:29,736 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:29,955 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:30,241 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:30,743 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:30,956 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:31,250 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:31,750 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:31,960 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:32,252 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:32,756 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:32,961 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:33,258 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:33,759 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:33,967 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:34,261 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:34,763 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:34,967 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:35,267 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:35,768 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:35,968 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:36,269 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:36,773 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:36,969 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:37,277 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:37,778 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:37,974 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:38,284 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:38,784 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:38,976 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:39,290 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:39,795 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:39,981 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:40,301 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:40,801 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:40,984 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:41,302 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:41,807 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:41,985 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:42,311 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:42,815 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:42,985 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:43,326 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:43,832 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:43,986 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:44,334 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:44,835 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:44,987 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:45,338 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:45,843 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:45,989 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:46,349 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:46,853 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:46,994 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:47,356 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:47,859 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:47,995 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:48,360 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:48,866 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:48,999 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:49,368 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:49,869 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:50,000 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:50,370 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:50,872 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:51,001 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:51,376 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:51,884 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:52,003 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:52,385 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:52,888 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:53,005 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:53,394 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:53,898 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:54,006 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:54,402 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:54,905 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:55,009 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:55,409 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:55,914 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:56,012 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:56,418 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:56,921 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:57,017 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:57,426 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:57,930 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:58,018 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:58,430 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:58,932 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:59,022 - INFO: Timed out on sock.accept()
+2021-05-18 10:51:59,436 - INFO: Top of shutdown prompt loop
+2021-05-18 10:51:59,936 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:00,023 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:00,437 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:00,946 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:01,029 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:01,447 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:01,952 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:02,029 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:02,452 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:02,953 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:03,034 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:03,455 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:03,956 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:04,036 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:04,461 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:04,963 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:05,037 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:05,464 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:05,965 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:06,042 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:06,470 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:06,970 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:07,048 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:07,477 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:07,979 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:08,050 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:08,482 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:08,987 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:09,054 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:09,488 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:09,993 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:10,057 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:10,499 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:11,004 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:11,062 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:11,505 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:12,010 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:12,062 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:12,516 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:13,021 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:13,068 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:13,526 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:14,030 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:14,071 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:14,531 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:15,037 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:15,071 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:15,538 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:16,043 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:16,072 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:16,546 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:17,052 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:17,077 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:17,554 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:18,059 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:18,082 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:18,560 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:19,064 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:19,088 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:19,569 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:20,071 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:20,094 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:20,577 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:21,077 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:21,096 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:21,583 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:22,088 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:22,097 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:22,589 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:23,092 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:23,097 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:23,597 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:24,102 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:24,102 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:24,602 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:25,105 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:25,105 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:25,611 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:26,110 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:26,113 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:26,619 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:27,115 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:27,122 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:27,628 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:28,121 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:28,129 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:28,633 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:29,122 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:29,139 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:29,639 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:30,128 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:30,145 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:30,651 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:31,132 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:31,163 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:31,666 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:32,134 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:32,167 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:32,667 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:33,135 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:33,172 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:33,672 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:34,139 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:34,175 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:34,677 - INFO: Top of shutdown prompt loop
+2021-05-18 10:52:35,140 - INFO: Timed out on sock.accept()
+2021-05-18 10:52:35,182 - INFO: Top of shutdown prompt loop

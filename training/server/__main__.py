@@ -418,9 +418,9 @@ class Server:
                 send_message("localhost", client_port, msg)
                 return
             msg["status"] = "success"
+            msg["vehicles"] = [car.to_json()]
             logging.info(f"Successfully read vehicle id {id} from the database:" + str(car))
-            car_json = car.to_json()
-            send_message("localhost", client_port, {**msg, **car_json})
+            send_message("localhost", client_port, msg)
             return
         
         elif model == "all":
