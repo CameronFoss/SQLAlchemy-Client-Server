@@ -2,6 +2,7 @@ from json.decoder import JSONDecodeError
 from math import inf
 from datetime import date
 from os import replace
+from random import seed
 
 from sqlalchemy.orm.exc import UnmappedInstanceError
 from sqlalchemy.sql.expression import delete, insert
@@ -733,200 +734,103 @@ class Client:
 
     def parse_json_object_and_insert(self, json_object):
         logging.info(f"Attempting to parse JSON object and insert into the database.")
+        
         data_type = json_object.get('data_type', None)
+        insert_msg = {
+            "data_type": data_type,
+            "action": "add",
+            "port": self.port
+        }
         if data_type is None:
             error_msg = "Error: no \"data_type\" entry found in JSON object." + \
                         f"\nAborted adding {json_object} to the database."
             print(error_msg)
             logging.error(error_msg)
+        
+        send_message("localhost", self.server_port, {**insert_msg, **json_object})
+
+        server_response = self.get_server_response()
+        status = self.check_server_status(server_response)
+        if not status:
+            return
 
         elif data_type == "vehicle":
             logging.info("Attempting to add a vehicle to the database from JSON object.")
-            model = json_object.get('model', None)
-            quantity = json_object.get('quantity', None)
-            price = json_object.get('price', None)
-            manufacture_year = json_object.get('manufacture_year', None)
-            manufacture_month = json_object.get('manufacture_month', None)
-            manufacture_date = json_object.get('manufacture_date', None)
-            abort = False
-            if model is None:
-                model_error = "Error: no entry for vehicle \"model\" found."
-                print(model_error)
-                logging.error(model_error)
-                abort = True
-            if quantity is None:
-                quantity_error = "Error: no entry for vehicle \"quantity\" found."
-                print(quantity_error)
-                logging.error(quantity_error)
-                abort = True
-            if price is None:
-                price_error = "Error: no entry for vehicle \"price\" found."
-                print(price_error)
-                logging.error(price_error)
-                abort = True
-            if manufacture_year is None:
-                year_error = "Error: no entry for vehicle \"manufacture_year\" found."
-                print(year_error)
-                logging.error(year_error)
-                abort = True
-            if manufacture_month is None:
-                month_error = "Error: no entry for vehicle \"manufacture_month\" found."
-                print(month_error)
-                logging.error(month_error)
-                abort = True
-            if manufacture_date is None:
-                date_error = "Error: no entry for vehicle \"manufacture_date\" found."
-                print(date_error)
-                logging.error(date_error)
-                abort = True
-            if abort:
-                abort_msg = f"Aborted adding vehicle {json_object} to the database."
-                print(abort_msg)
-                logging.error(abort_msg)
+            
+            try:
+                model = server_response["model"]
+                quantity = server_response["quantity"]
+                price = server_response["price"]
+                manufacture_year = server_response["manufacture_year"]
+                manufacture_month = server_response["manufacture_month"]
+                manufacture_date = server_response["manufacture_date"]
+            except:
+                error_msg = "Server JSON vehicle insert job is missing one of [\"model\", \"quantity\", \"price\", \"manufacture_year\", \"manufacture_month\", \"manufacture_date\"]"
+                logging.error(error_msg)
+                print(error_msg)
                 return
-            new_car = self.car_utils.add_vehicle_db(model, quantity, price, date(manufacture_year, manufacture_month, manufacture_date))
-            if new_car is None:
-                car_exists = f"Vehicle model {model} manufactured on {date(manufacture_year, manufacture_month, manufacture_date)} " + \
-                             f"already exists in the database.\nIncreased quantity of vehicle model {model} by {quantity}"
-                print(car_exists)
-                logging.info(car_exists)
-            else:
-                success_msg = "New vehicle info:" + "\n" + str(new_car) + f"\nSuccessfully added new vehicle to the database!"
-                print(success_msg)
-                logging.info(success_msg)
+
+            success_msg = "New vehicle info:" + "\n" + \
+                          f"Model: {model}\nQuantity: {quantity}\nPrice: {price}\nManufacture Year: {manufacture_year}\nManufacture Month: {manufacture_month}\nManufacture Date: {manufacture_date}" + \
+                          f"\nSuccessfully added new vehicle to the database!"
+            print(success_msg)
+            logging.info(success_msg)
 
         elif data_type == "engineer":
             logging.info("Attempting to add an engineer to the database from JSON object.")
-            name = json_object.get('name', None)
-            birth_year = json_object.get('birth_year', None)
-            birth_month = json_object.get('birth_month', None)
-            birth_date = json_object.get('birth_date', None)
-            abort = False
-            if name is None:
-                name_error = "Error: no entry for engineer \"name\" found."
-                print(name_error)
-                logging.error(name_error)
-                abort = True
-            if birth_year is None:
-                year_error = "Error: no entry for engineer \"birth_year\" found."
-                print(year_error)
-                logging.error(year_error)
-                abort = True
-            if birth_month is None:
-                month_error = "Error: no entry for engineer \"birth_month\" found."
-                print(month_error)
-                logging.error(month_error)
-                abort = True
-            if birth_date is None:
-                date_error = "Error: no entry for engineer \"birth_date\" found."
-                print(date_error)
-                logging.error(date_error)
-                abort = True
-            if abort:
-                abort_msg = f"Aborted adding engineer {json_object} to the database"
-                print(abort_msg)
-                logging.error(abort_msg)
+
+            try:
+                name = server_response["name"]
+                birth_year = server_response["birth_year"]
+                birth_month = server_response["birth_month"]
+                birth_date = server_response["birth_date"]
+            except:
+                error_msg = "Server JSON engineer insert job is missing one of [\"name\", \"birth_year\", \"birth_month\", \"birth_date\"]"
+                print(error_msg)
+                logging.error(error_msg)
                 return
-            new_engin = self.engin_utils.add_engineer_db(name, date(birth_year, birth_month, birth_date))
-            if new_engin is None:
-                dup_error = f"Engineer named {name} already exists in the database." + \
-                            f"\nUpdating info for engineer {name} in the database."
-                print(dup_error)
-                logging.info(dup_error)
-                engin = self.engin_utils.read_engineer_by_name(name)
-                engin = self.engin_utils.update_engineer_by_id(engin.id, name=name, date_of_birth=date(birth_year, birth_month, birth_date))
-                success_msg = f"Successfully updated info for engineer {name}:\n" + str(engin)
-                print(success_msg)
-                logging.info(success_msg)
-                return
-            success_msg = "New engineer info:\n" + str(new_engin) + f"\nSuccessfully added new engineer to the database!"
+
+            success_msg = "New engineer info:\n" + f"Name: {name}\nBirth Year: {birth_year}\nBirth Month: {birth_month}\nBirth Date: {birth_date}" + \
+                          f"\nSuccessfully added new engineer to the database!"
             print(success_msg)
             logging.info(success_msg)
                 
 
         elif data_type == "laptop":
             logging.info("Attempting to add a laptop to the database from JSON object")
-            model = json_object.get('model', None)
-            loan_year = json_object.get('loan_year', None)
-            loan_month = json_object.get('loan_month', None)
-            loan_date = json_object.get('loan_date', None)
-            engineer = json_object.get('engineer', None)
-            abort = False
-            if model is None:
-                model_error = "Error: no entry for laptop \"model\" found."
-                print(model_error)
-                logging.error(model_error)
-                abort = True
-            if loan_year is None:
-                year_error = "Error: no entry for laptop \"loan_year\" found."
-                print(year_error)
-                logging.error(year_error)
-                abort = True
-            if loan_month is None:
-                month_error = "Error: no entry for laptop \"loan_month\" found."
-                print(month_error)
-                logging.error(month_error)
-                abort = True
-            if loan_date is None:
-                date_error = "Error: no entry for laptop \"loan_date\" found."
-                print(date_error)
-                logging.error(date_error)
-                abort = True
-            if engineer is None:
-                engineer_error = "Error: no entry for laptop \"engineer_id\" found."
-                print(engineer_error)
-                logging.error(engineer_error)
-                abort = True
-            if abort:
-                abort_msg = f"Aborted adding laptop {json_object} to the database"
-                print(abort_msg)
-                logging.error(abort_msg)
+            try:
+                model = json_object.get('model', None)
+                loan_year = json_object.get('loan_year', None)
+                loan_month = json_object.get('loan_month', None)
+                loan_date = json_object.get('loan_date', None)
+                engineer = json_object.get('engineer', None)
+            except:
+                error_msg = "Server JSON laptop insert job is missing one of [\"model\", \"loan_year\", \"loan_month\", \"loan_date\", \"engineer\"]"
+                print(error_msg)
+                logging.error(error_msg)
                 return
-            new_laptop = self.laptop_utils.add_laptop_db(model, date(loan_year, loan_month, loan_date), engineer)
-            success_msg = "New laptop info:\n" + str(new_laptop) + "\nSuccessfully added new laptop to the database!"
+                
+            success_msg = "New laptop info:\n" + f"Model: {model}\nLoan Year: {loan_year}\nLoan Month: {loan_month}" + \
+                          "\nLoan Date: {loan_date}\nEngineer: {engineer}" + \
+                          "\nSuccessfully added new laptop to the database!"
             print(success_msg)
             logging.info(success_msg)
 
         elif data_type == "contact_details":
             logging.info("Attempting to add new contact details from JSON object.")
-            phone_number = json_object.get('phone_number', None)
-            address = json_object.get('address', None)
-            engineer = json_object.get('engineer', None)
-            abort = False
-            if phone_number is None:
-                phone_error = "Error: no entry for contact details \"phone_number\" found."
-                print(phone_error)
-                logging.error(phone_error)
-                abort = True
-            if address is None:
-                addr_error = "Error: no entry for contact details \"address\" found."
-                print(addr_error)
-                logging.error(addr_error)
-                abort = True
-            if engineer is None:
-                engin_error = "Error: no entry for contact details \"engineer\" found."
-                print(engin_error)
-                logging.error(engin_error)
-                abort = True
-            engin = self.engin_utils.read_engineer_by_name(engineer)
-            if engin is None:
-                engin_error = f"Error: engineer {engineer} does not exist in the database. Contact details cannot be added without an existing engineer."
-                print(engin_error)
-                logging.error(engin_error)
-                abort = True
-            if abort:
-                abort_msg = f"Aborted adding contact details {json_object} to the database."
-                print(abort_msg)
-                logging.error(abort_msg)
+            try:
+                phone_number = json_object.get('phone_number', None)
+                address = json_object.get('address', None)
+                engineer = json_object.get('engineer', None)
+            except:
+                error_msg = "Server JSON contact details insert job is missing one of [\"phone_number\", \"address\", \"engineer\"]"
+                print(error_msg)
+                logging.error(error_msg)
                 return
-            new_contact = self.contact_utils.add_contact_details_db(phone_number, address, engineer)
-            if new_contact is None:
-                dup_error = f"Contact details with phone number {phone_number} already exists." + \
-                            f"\nAborted adding contact details {json_object} to the database."
-                print(dup_error)
-                logging.info(dup_error)
-                return
-            success_msg = "New contact details info:\n" + str(new_contact) + "\nSuccessfully added new contact details to the database!"
+            
+            success_msg = "New contact details info:\n" + \
+                          f"Phone Number: {phone_number}\nAddress: {address}\nEngineer: {engineer}" + \
+                          "\nSuccessfully added new contact details to the database!"
             print(success_msg)
             logging.info(success_msg)
 
