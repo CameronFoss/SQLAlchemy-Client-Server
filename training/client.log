@@ -36,3 +36,8 @@ Aborted deleting contact details for non-existant engineer Asdf
 Aborted deleting contact details for non-existant engineer asdf
 2021-05-18 08:56:24,268 - INFO: Asking server to add new vehicle Fusion manufactured on 2016-10-15 to the database.
 2021-05-18 08:57:49,993 - INFO: Asking server to add new vehicle Asdf manufactured on 2021-10-11 to the database.
+2021-05-18 09:19:20,788 - INFO: Asking server to add new vehicle Fusion manufactured on 2019-10-05 to the database.
+2021-05-18 09:20:37,639 - INFO: Asking server to add new vehicle Fusion manufactured on 2010-03-04 to the database.
+2021-05-18 09:23:35,051 - INFO: Asking server to add new vehicle Fusion manufactured on 2010-10-04 to the database.
+2021-05-18 09:23:35,111 - INFO: Vehicle model Fusion manufactured on 2010-10-04 already exists in the database.
+Updated quantity of Fusion vehicles by 10.

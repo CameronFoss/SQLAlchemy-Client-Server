@@ -118,7 +118,7 @@ class Client:
             print(error_msg)
             return
 
-        elif status == "update":
+        elif status == "updated":
             update_msg = server_response["text"]
             logging.info(update_msg)
             print(update_msg)
