@@ -46,3 +46,5 @@ Updated quantity of Fusion vehicles by 10.
 2021-05-18 10:23:02,614 - INFO: Attempting to delete all ASDF vehicle records from the database.
 2021-05-18 10:23:34,447 - INFO: Attempting to delete all ASDF vehicle records from the database.
 2021-05-18 10:23:35,588 - ERROR: No vehicles of model ASDF existed in the database to be deleted.
+2021-05-18 10:25:13,967 - INFO: Asking server to add new engineers Cameron Foss born on 1998-12-01 to the database.
+2021-05-18 10:25:14,040 - ERROR: Server response did not include entry "port" to let the client know where to send yes/no response.

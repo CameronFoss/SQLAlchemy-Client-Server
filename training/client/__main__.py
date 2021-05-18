@@ -194,6 +194,7 @@ class Client:
         except:
             no_port = "Server response did not include entry \"port\" to let the client know where to send yes/no response."
             logging.error(no_port)
+            print(no_port)
             return None
         
         try:
@@ -201,11 +202,13 @@ class Client:
         except:
             no_status = "Server response did not include entry \"status\" to let the client know how to proceed."
             logging.error(no_status)
+            print(no_status)
             return None
         
         if status == "error":
             error_msg = server_response["text"]
             logging.error(error_msg)
+            print(error_msg)
             return None
 
         success_msg = f"Successfully added new engineer {engin_name} to the database!"
