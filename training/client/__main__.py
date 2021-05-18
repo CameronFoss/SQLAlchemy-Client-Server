@@ -576,6 +576,8 @@ class Client:
                                   "Invalid engineer ID. Enter a number > 0", 1, inf)
             logging.info(f"Reading info for engineer with ID {id}")
             read_msg["id"] = id
+        else:
+            logging.info(f"Reading info for engineer named {name}")
 
         send_message("localhost", self.server_port, read_msg)
 
@@ -664,29 +666,48 @@ class Client:
     def query_contacts(self):
         name = input("Enter the name of the engineer whose contact details will be read.\nEnter \"all\" to read all contact details.\nLeave blank to read contact details by ID:")
         name = name.strip()
-        if name == "all":
-            logging.info("Reading info for all contact details")
-            contacts = self.contact_utils.read_all_contact_details()
-            print("Info for all contact details:")
-            for contact in contacts:
-                print(str(contact))
-            return contacts
-        elif name == "":
+        read_msg = {
+            "data_type": "contact_details",
+            "action": "read",
+            "port": self.port,
+            "engineer": name
+        }
+        
+        if name == "":
             id = get_digit_choice("Enter the contact details ID to read:",
                                   "Invalid ID. Enter a number > 0", 1, inf)
-            logging.info(f"Reading info for contact details with ID {id}")
-            contact = self.contact_utils.read_contact_details_by_id(id)
-            print(f"Info for contact details with ID {id}:")
-            print(str(contact))
-            return contact
+            logging.info(f"Asking server to read info for contact details with ID {id}")
+            read_msg["id"] = id
+
         else:
-            logging.info(f"Reading info for contact details of engineer {name}")
-            engin = self.engin_utils.read_engineer_by_name(name)
-            contacts = self.contact_utils.read_contact_details_by_engin_id(engin.id)
-            print(f"Info for contact details of engineer {name}:")
-            for contact in contacts:
-                print(str(contact))
-            return contacts
+            logging.info(f"Asking server to read info for contact details of engineer {name}")
+        
+        send_message("localhost", self.server_port, read_msg)
+
+        server_response = self.get_server_response()
+
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return None
+
+        try:
+            contacts_json = server_response["contact_details"]
+        except:
+            error_msg = "Server contact details read job had no entry \"contact_details\" with data for read contact details."
+            logging.error(error_msg)
+            print(error_msg)
+            return None
+        
+        success_msg = "Successfully read contact details. Contact details info:"
+        logging.info(success_msg)
+        print(success_msg)
+
+        for contact in contacts_json:
+            logging.info(contact)
+            print(contact)
+        
+        return contacts_json
 
     def insert_from_json(self):
         file_name = input("Enter the file name containing JSON data to insert:")

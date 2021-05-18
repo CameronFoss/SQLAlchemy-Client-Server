@@ -1058,7 +1058,78 @@ class Server:
 
 
     def query_contact_details(self, job_json, client_port):
-        pass
+        msg = {
+            "status": None
+        }
+
+        try:
+            engin_name = job_json["engineer"]
+        except:
+            error_msg = "Client contact details read job had no entry \"engineer\" for engineer name"
+            logging.error(error_msg)
+            msg["status"] = "error"
+            msg["text"] = error_msg
+            send_message("localhost", client_port, msg)
+            return
+        
+        if engin_name == "":
+            try:
+                id = job_json["id"]
+            except:
+                error_msg = "Client contact details read job left engineer name blank, but did not provide an entry \"id\" for contact details id."
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info(f"Attempting to read contact details with id {id}")
+            contact = self.contact_utils.read_contact_details_by_id(id)
+            if contact is None:
+                error_msg = f"No contact details with id {id} exists in the database."
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info(f"Successfully read contact details with id {id}")
+            msg["contact_details"] = [contact.to_json()]
+        
+        elif engin_name == "all":
+            logging.info("Attempting to read all contact details.")
+            contacts = self.contact_utils.read_all_contact_details()
+            if not contacts:
+                error_msg = "No contact details exist in the database."
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info("Successfully read all contact details.")
+            msg["contact_details"] = [contact.to_json() for contact in contacts]
+
+        else:
+            logging.info(f"Attempting to read contact details for engineer {engin_name}")
+            engin = self.engin_utils.read_engineer_by_name(engin_name)
+            if engin is None:
+                error_msg = f"No engineer named {engin_name} exists in the database. Cannot read contact details for non-existant engineer."
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            contacts = self.contact_utils.read_contact_details_by_engin_id(engin.id)
+            if not contacts:
+                error_msg = f"No contact details exist for engineer {engin_name}"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info(f"Successfully read contact details for engineer {engin_name}")
+            msg["contact_details"] = [contact.to_json() for contact in contacts]
+        
+        msg["status"] = "success"
+        send_message("localhost", client_port, msg)
 
 @click.command()
 @click.argument("port", nargs=1, type=int)
