@@ -1,0 +1,38 @@
+2021-05-17 14:58:19,012 - INFO: Asking server to add new engineers Garnet born on 1920-01-01 to the database.
+2021-05-17 14:58:19,151 - INFO: Successfully added new engineer Garnet to the database!
+2021-05-17 14:58:49,425 - INFO: Asking the server to assign engineer Garnet to vehicles ['Fusion', ' Shelby', ' Dondai', " Doesn't Exist"]
+2021-05-17 14:58:49,470 - INFO: Successfully assigned engineer Garnet to vehicles ['Fusion', 'Shelby', 'Dondai'].
+2021-05-17 14:58:49,471 - INFO: Vehicle models ["Doesn't Exist"] did not exist in the database, and could not be assigned to the new engineer Garnet.
+2021-05-17 15:47:53,001 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer Steven Universe
+2021-05-17 15:47:53,008 - ERROR: Server response has no entry for "port" to let the client know where to send the response to.
+2021-05-17 15:51:27,236 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer Steven Universe
+2021-05-17 15:51:27,376 - INFO: Successfully added laptop Wipro to the database and loaned it to Steven Universe.
+2021-05-17 15:51:27,377 - ERROR: Server response has no entry for "port" to let the client know where to send the response to.
+2021-05-17 15:53:02,864 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer Pearl
+2021-05-17 15:53:02,873 - INFO: Engineer Pearl did not exist in the database.
+2021-05-17 15:53:07,841 - INFO: Successfully added laptop GemBook to the database and loaned it to None.
+2021-05-17 15:53:52,579 - INFO: Asking server to add a new laptop to the database. Attempting to loan it to engineer Steven Universe
+2021-05-17 15:53:52,590 - WARNING: Engineer Steven Universe already has a laptop loaned to them
+
+!!! WARNING !!! - Adding a new laptop would replace the laptop already loaned to Steven UniverseSteven Universe's previous laptop would not be deleted from the database, but would be loaned by no one.
+2021-05-17 15:53:56,495 - INFO: Successfully added laptop UniBook to the database and loaned it to Steven Universe.
+2021-05-17 16:11:37,156 - INFO: Asking server to add contact details for engineer Steven Universe.
+2021-05-17 16:11:37,228 - INFO: Successfully added new contact information for Steven Universe!
+2021-05-17 16:12:43,743 - INFO: Asking server to add contact details for engineer Steven Universe.
+2021-05-17 16:12:43,761 - INFO: Successfully added new contact information for Steven Universe!
+2021-05-17 16:13:07,110 - INFO: Asking server to add contact details for engineer Pearl.
+2021-05-17 16:13:07,117 - ERROR: Engineer Pearl does not exist in the database. Contact details cannot be added for a non-existant engineer.
+2021-05-17 16:21:59,314 - INFO: Attempting to delete all Colorado vehicle records from the database.
+2021-05-17 16:22:00,947 - INFO: Successfully deleted all Colorado vehicle records.
+2021-05-17 16:30:46,816 - INFO: Asking server to delete engineer Garnet from the database.
+2021-05-17 16:30:46,920 - INFO: Successfully deleted engineer Garnet and their contact details from the database.
+2021-05-17 16:46:09,456 - INFO: Successfully deleted laptop from the database
+2021-05-17 16:47:18,817 - INFO: Successfully deleted laptop from the database
+2021-05-17 17:06:15,574 - INFO: Successfully deleted contact details.
+2021-05-17 17:06:30,783 - INFO: Successfully deleted contact details.
+2021-05-17 17:06:45,995 - ERROR: Engineer Asdf does not exist in the database.
+Aborted deleting contact details for non-existant engineer Asdf
+2021-05-17 17:07:57,375 - ERROR: Engineer asdf does not exist in the database.
+Aborted deleting contact details for non-existant engineer asdf
+2021-05-18 08:56:24,268 - INFO: Asking server to add new vehicle Fusion manufactured on 2016-10-15 to the database.
+2021-05-18 08:57:49,993 - INFO: Asking server to add new vehicle Asdf manufactured on 2021-10-11 to the database.

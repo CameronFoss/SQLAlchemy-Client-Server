@@ -1,0 +1,4 @@
+[console_scripts]
+client = training.client.__main__:main
+server = training.server.__main__:main
+

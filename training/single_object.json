@@ -1,0 +1,9 @@
+{
+"data_type": "vehicle",
+"model": "Dondai",
+"quantity": 4,
+"price": 30000,
+"manufacture_year": 2013,
+"manufacture_month": 5,
+"manufacture_date": 4
+}

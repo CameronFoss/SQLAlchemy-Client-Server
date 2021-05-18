@@ -1,0 +1,108 @@
+2021-05-14 10:05:44,669 - INFO: Attempting to insert JSON data stored in file example.json to the database
+2021-05-14 10:05:44,672 - INFO: Attempting to parse JSON object and insert into the database.
+2021-05-14 10:05:44,672 - INFO: Attempting to add a vehicle to the database from JSON object.
+2021-05-14 10:05:44,719 - INFO: New vehicle info:
+ID: 5
+Model: Shelby
+Quantity: 8
+Price: 15679
+Manufacture Date: 2008-04-30
+Successfully added new vehicle to the database!
+2021-05-14 10:05:44,719 - INFO: Attempting to parse JSON object and insert into the database.
+2021-05-14 10:05:44,719 - INFO: Attempting to add an engineer to the database from JSON object.
+2021-05-14 10:05:44,728 - INFO: New engineer info:
+ID: 4
+Name: Steven Universe
+Birthday: 2010-03-17
+Successfully added new engineer to the database!
+2021-05-14 10:05:44,728 - INFO: Attempting to parse JSON object and insert into the database.
+2021-05-14 10:05:44,728 - INFO: Attempting to add a laptop to the database from JSON object
+2021-05-14 10:05:44,740 - INFO: New laptop info:
+ID: 4
+Model: Windows
+Date Loaned: 2018-08-08
+Engineer: None
+Successfully added new laptop to the database!
+2021-05-14 10:05:44,741 - INFO: Attempting to parse JSON object and insert into the database.
+2021-05-14 10:05:44,741 - INFO: Attempting to add new contact details from JSON object.
+2021-05-14 10:05:44,756 - INFO: New contact details info:
+ID: 5
+Phone Number: 123-456-7890
+Address: 854 Example St
+Engineer: ID: 3
+Name: Cameron Foss
+Birthday: 1998-12-01
+Successfully added new contact details to the database!
+2021-05-14 10:05:44,756 - INFO: Attempting to parse JSON object and insert into the database.
+2021-05-14 10:05:44,756 - INFO: Attempting to add new contact details from JSON object.
+2021-05-14 10:05:44,758 - ERROR: Error: engineer Non-existant Engineer Name does not exist in the database. Contact details cannot be added without an existing engineer.
+2021-05-14 10:05:44,759 - ERROR: Aborted adding contact details {'data_type': 'contact_details', 'phone_number': '098-765-4321', 'address': '1345 Random Ave', 'engineer': 'Non-existant Engineer Name'} to the database.
+2021-05-14 10:06:09,512 - INFO: Reading all vehicle info.
+2021-05-14 10:06:18,901 - INFO: Attempting to dump user read result as JSON to file named vehicles.json
+2021-05-14 10:06:18,907 - INFO: Successfully dumped [{'data_type': 'vehicle', 'model': 'Fusion', 'quantity': 3, 'price': 23170.0, 'manufacture_year': 2019, 'manufacture_month': 10, 'manufacture_date': 5}, {'data_type': 'vehicle', 'model': 'Explorer', 'quantity': 1, 'price': 32765.0, 'manufacture_year': 2019, 'manufacture_month': 6, 'manufacture_date': 15}, {'data_type': 'vehicle', 'model': 'Bronco', 'quantity': 0, 'price': 26820.0, 'manufacture_year': 2018, 'manufacture_month': 12, 'manufacture_date': 20}, {'data_type': 'vehicle', 'model': 'Mustang Shelby GT500', 'quantity': 10, 'price': 73995.0, 'manufacture_year': 2019, 'manufacture_month': 3, 'manufacture_date': 30}, {'data_type': 'vehicle', 'model': 'Shelby', 'quantity': 8, 'price': 15679.0, 'manufacture_year': 2008, 'manufacture_month': 4, 'manufacture_date': 30}] to vehicles.json
+2021-05-14 12:52:40,385 - INFO: Reading all vehicle info.
+2021-05-14 12:52:48,675 - INFO: Attempting to dump user read result to Word document named vehicles.docx
+2021-05-14 12:54:23,133 - INFO: Reading all vehicle info.
+2021-05-14 12:54:27,564 - INFO: Attempting to dump user read result to Word document named vehicles.docx
+2021-05-14 12:56:06,800 - INFO: Reading all vehicle info.
+2021-05-14 12:57:58,240 - INFO: Attempting to dump user read result to Word document named vehicles.docx
+2021-05-14 12:59:06,079 - INFO: Reading all vehicle info.
+2021-05-14 13:00:14,690 - INFO: Reading all vehicle info.
+2021-05-14 13:00:22,030 - INFO: Attempting to dump user read result to Word document named vehicles.docx
+2021-05-14 13:04:21,717 - INFO: Reading all vehicle info.
+2021-05-14 13:05:04,449 - INFO: Attempting to dump user read result to Word document named vehicles.docx
+2021-05-14 13:07:59,062 - INFO: Reading info for all engineers.
+2021-05-14 13:08:02,578 - INFO: Attempting to dump user read result to Word document named engineers.docx
+2021-05-14 13:08:29,407 - INFO: Reading all vehicle info.
+2021-05-14 13:08:32,916 - INFO: Attempting to dump user read result to Word document named vehicles.docx
+2021-05-14 13:09:06,789 - INFO: Reading all vehicle info.
+2021-05-14 13:09:10,234 - INFO: Attempting to dump user read result to Word document named vehicles.docx
+2021-05-14 16:54:37,126 - INFO: Reading all vehicle info.
+2021-05-14 16:54:59,563 - INFO: Attempting to dump user read result as JSON to file named vehicles.json
+2021-05-14 16:54:59,566 - INFO: Successfully dumped [{'data_type': 'vehicle', 'model': 'Fusion', 'quantity': 3, 'price': 23170.0, 'manufacture_year': 2019, 'manufacture_month': 10, 'manufacture_date': 5}, {'data_type': 'vehicle', 'model': 'Explorer', 'quantity': 1, 'price': 32765.0, 'manufacture_year': 2019, 'manufacture_month': 6, 'manufacture_date': 15}, {'data_type': 'vehicle', 'model': 'Bronco', 'quantity': 0, 'price': 26820.0, 'manufacture_year': 2018, 'manufacture_month': 12, 'manufacture_date': 20}, {'data_type': 'vehicle', 'model': 'Mustang Shelby GT500', 'quantity': 10, 'price': 73995.0, 'manufacture_year': 2019, 'manufacture_month': 3, 'manufacture_date': 30}, {'data_type': 'vehicle', 'model': 'Shelby', 'quantity': 8, 'price': 15679.0, 'manufacture_year': 2008, 'manufacture_month': 4, 'manufacture_date': 30}] to vehicles.json
+2021-05-14 16:55:08,553 - INFO: Attempting to dump user read result to Word document named vehicles.docx
+2021-05-17 12:00:30,354 - INFO: Asking server to add new vehicle Civic manufactured on 2018-06-26 to the database.
+2021-05-17 12:07:07,620 - INFO: Asking server to add new vehicle Dondai manufactured on 1979-06-26 to the database.
+2021-05-17 12:10:54,809 - INFO: Asking server to add new vehicle Civi manufactured on 2009-04-06 to the database.
+2021-05-17 12:37:25,219 - INFO: Asking server to add new vehicle Dondai manufactured on 2009-06-26 to the database.
+2021-05-17 12:38:45,562 - INFO: Asking server to add new vehicle Dondai manufactured on 2009-03-05 to the database.
+2021-05-17 12:38:45,567 - ERROR: Client vehicle insert job has no entry for "price"
+2021-05-17 12:40:55,919 - INFO: Asking server to add new vehicle Dondai manufactured on 2009-04-05 to the database.
+2021-05-17 12:40:56,239 - INFO: Successfully added new vehicle!
+Model: Dondai
+Quantity: 4
+Price: 30000
+Manufacture Date: 2009-04-05
+2021-05-17 12:41:55,259 - INFO: Asking server to assign engineers ['Cameron Foss', ' Steven Universe', ' Autumn Tedrow'] to the Dondai manufactured on 2009-04-05.
+2021-05-17 12:45:49,724 - INFO: Asking server to add new vehicle Civic manufactured on 2011-04-08 to the database.
+2021-05-17 12:45:49,869 - INFO: Successfully added new vehicle!
+Model: Civic
+Quantity: 6
+Price: 24000
+Manufacture Date: 2011-04-08
+2021-05-17 12:46:00,657 - INFO: Asking server to assign engineers ['Cameron Foss', ' Steven Universe', ' Autumn Tedrow'] to the Civic manufactured on 2011-04-08.
+2021-05-17 12:49:46,991 - INFO: Asking server to add new vehicle Civic manufactured on 2011-12-21 to the database.
+2021-05-17 12:51:01,068 - INFO: Asking server to add new vehicle Charger manufactured on 2004-02-20 to the database.
+2021-05-17 12:51:01,203 - INFO: Successfully added new vehicle!
+Model: Charger
+Quantity: 8
+Price: 20004
+Manufacture Date: 2004-02-20
+2021-05-17 12:51:13,208 - INFO: Asking server to assign engineers ['Cameron Foss', ' Steven Universe', ' Autumn Tedrow'] to the Charger manufactured on 2004-02-20.
+2021-05-17 12:51:13,233 - INFO: 
+Successfully assigned engineers ['Cameron Foss', 'Steven Universe'] to vehicle model Charger manufactured on 2004-02-20
+2021-05-17 12:51:13,233 - INFO: 
+Engineers ['Autumn Tedrow'] did not exist in the database, and could not be assigned to the new vehicle.
+2021-05-17 12:56:06,136 - INFO: Asking server to add new vehicle Fiesta manufactured on 2006-03-23 to the database.
+2021-05-17 12:57:26,877 - INFO: Asking server to add new vehicle Fiesta manufactured on 2010-04-06 to the database.
+2021-05-17 12:59:07,201 - INFO: Asking server to add new vehicle Colorado manufactured on 2015-10-14 to the database.
+2021-05-17 12:59:07,265 - INFO: Successfully added new vehicle!
+Model: Colorado
+Quantity: 8
+Price: 24444
+Manufacture Date: 2015-10-14
+2021-05-17 12:59:23,704 - INFO: Asking server to assign engineers ['Cameron Foss', ' Prerna Sancheti', ' Unknown'] to the Colorado manufactured on 2015-10-14.
+2021-05-17 12:59:23,728 - INFO: 
+Successfully assigned engineers ['Cameron Foss', 'Prerna Sancheti'] to vehicle model Colorado manufactured on 2015-10-14
+2021-05-17 12:59:23,729 - INFO: 
+Engineers ['Unknown'] did not exist in the database, and could not be assigned to the new vehicle.

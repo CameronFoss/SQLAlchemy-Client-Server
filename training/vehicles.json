@@ -1,0 +1,47 @@
+[
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 5,
+        "manufacture_month": 10,
+        "manufacture_year": 2019,
+        "model": "Fusion",
+        "price": 23170.0,
+        "quantity": 3
+    },
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 15,
+        "manufacture_month": 6,
+        "manufacture_year": 2019,
+        "model": "Explorer",
+        "price": 32765.0,
+        "quantity": 1
+    },
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 20,
+        "manufacture_month": 12,
+        "manufacture_year": 2018,
+        "model": "Bronco",
+        "price": 26820.0,
+        "quantity": 0
+    },
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 30,
+        "manufacture_month": 3,
+        "manufacture_year": 2019,
+        "model": "Mustang Shelby GT500",
+        "price": 73995.0,
+        "quantity": 10
+    },
+    {
+        "data_type": "vehicle",
+        "manufacture_date": 30,
+        "manufacture_month": 4,
+        "manufacture_year": 2008,
+        "model": "Shelby",
+        "price": 15679.0,
+        "quantity": 8
+    }
+]
