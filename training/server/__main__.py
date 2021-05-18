@@ -370,10 +370,17 @@ class Server:
             send_message("localhost", client_port, msg)
             return
         
-        self.car_utils.delete_vehicle_by_model(model)
-        logging.info(f"Successfully deleted all {model} model vehicles.")
-        msg["status"] = "success"
-        send_message("localhost", client_port, msg)
+        models_deleted = self.car_utils.delete_vehicle_by_model(model)
+        if models_deleted:
+            logging.info(f"Successfully deleted all {model} model vehicles.")
+            msg["status"] = "success"
+            send_message("localhost", client_port, msg)
+        else:
+            error_msg = f"No vehicles of model {model} existed in the database to be deleted."
+            logging.error(error_msg)
+            msg["status"] = "error"
+            msg["text"] = error_msg
+            send_message("localhost", client_port, msg)
         return
 
     def query_vehicle(self, job_json, client_port):

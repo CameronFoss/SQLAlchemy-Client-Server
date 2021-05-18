@@ -33,10 +33,13 @@ class VehicleUtils:
     # Delete a vehicle by model
     def delete_vehicle_by_model(self, model):
         cars = self.read_vehicles_by_model(model)
+        if not cars:
+            return False
         for car in cars:
             session.query(vehicle_engineer_association).filter(vehicle_engineer_association.c.vehicle_id == car.id).delete()
             session.delete(car)
         session.commit()
+        return True
 
     # Read all vehicles
     def read_vehicles_all(self):

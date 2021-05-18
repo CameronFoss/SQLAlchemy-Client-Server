@@ -41,3 +41,8 @@ Aborted deleting contact details for non-existant engineer asdf
 2021-05-18 09:23:35,051 - INFO: Asking server to add new vehicle Fusion manufactured on 2010-10-04 to the database.
 2021-05-18 09:23:35,111 - INFO: Vehicle model Fusion manufactured on 2010-10-04 already exists in the database.
 Updated quantity of Fusion vehicles by 10.
+2021-05-18 10:20:39,368 - INFO: Attempting to delete all ASdf vehicle records from the database.
+2021-05-18 10:20:40,700 - INFO: Successfully deleted all ASdf vehicle records.
+2021-05-18 10:23:02,614 - INFO: Attempting to delete all ASDF vehicle records from the database.
+2021-05-18 10:23:34,447 - INFO: Attempting to delete all ASDF vehicle records from the database.
+2021-05-18 10:23:35,588 - ERROR: No vehicles of model ASDF existed in the database to be deleted.
