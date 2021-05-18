@@ -1,7 +1,7 @@
 from sqlalchemy.exc import IntegrityError
-from training.base import Session
+from training.server.base import Session
 from datetime import date
-from training.model import Vehicle, vehicle_engineer_association, Engineer, Laptop, ContactDetails
+from training.server.model import Vehicle, vehicle_engineer_association, Engineer, Laptop, ContactDetails
 from sqlalchemy import literal
 from sqlalchemy.orm.exc import UnmappedInstanceError
 

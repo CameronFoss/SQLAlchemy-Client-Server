@@ -9,7 +9,7 @@ from select import select
 from sqlalchemy.exc import IntegrityError
 
 from sqlalchemy.orm.exc import UnmappedInstanceError
-from training.db_utils import VehicleUtils, EngineerUtils, LaptopUtils, ContactDetailsUtils, cleanup_utils
+from training.server.db_utils import VehicleUtils, EngineerUtils, LaptopUtils, ContactDetailsUtils, cleanup_utils
 from training.sock_utils import send_message, decode_message_chunks, get_data_from_connection
 from json import JSONDecodeError
 from random import randint
@@ -370,10 +370,17 @@ class Server:
             send_message("localhost", client_port, msg)
             return
         
-        self.car_utils.delete_vehicle_by_model(model)
-        logging.info(f"Successfully deleted all {model} model vehicles.")
-        msg["status"] = "success"
-        send_message("localhost", client_port, msg)
+        models_deleted = self.car_utils.delete_vehicle_by_model(model)
+        if models_deleted:
+            logging.info(f"Successfully deleted all {model} model vehicles.")
+            msg["status"] = "success"
+            send_message("localhost", client_port, msg)
+        else:
+            error_msg = f"No vehicles of model {model} existed in the database to be deleted."
+            logging.error(error_msg)
+            msg["status"] = "error"
+            msg["text"] = error_msg
+            send_message("localhost", client_port, msg)
         return
 
     def query_vehicle(self, job_json, client_port):
@@ -411,9 +418,9 @@ class Server:
                 send_message("localhost", client_port, msg)
                 return
             msg["status"] = "success"
+            msg["vehicles"] = [car.to_json()]
             logging.info(f"Successfully read vehicle id {id} from the database:" + str(car))
-            car_json = car.to_json()
-            send_message("localhost", client_port, {**msg, **car_json})
+            send_message("localhost", client_port, msg)
             return
         
         elif model == "all":
@@ -599,7 +606,64 @@ class Server:
 
 
     def query_engineer(self, job_json, client_port):
-        pass
+        msg = {
+            "status": None
+        }
+
+        try:
+            name = job_json["name"]
+        except:
+            error_msg = "Client engineer read job has no entry for \"name\""
+            logging.error(error_msg)
+            msg["status"] = "error"
+            msg["text"] = error_msg
+            send_message("localhost", client_port, msg)
+            return
+        
+        if name == "":
+            try:
+                id = job_json["id"]
+            except:
+                error_msg = "Client left engineer name blank, but did not provide an entry for \"id\""
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info(f"Attempting to read engineer with id {id} from the database.")
+            engin = self.engin_utils.read_engineer_by_id(id)
+            if engin is None:
+                error_msg = f"No engineer with id {id} exists in the database"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["status"] = "success"
+            msg["engineers"] = [engin.to_json()]
+            logging.info(f"Successfully read engineer with id {id}:" + str(engin))
+            send_message("localhost", client_port, msg)
+        elif name == "all":
+            logging.info("Attempting to read all engineers.")
+            engins = self.engin_utils.read_all_engineers()
+            msg["engineers"] = [eng.to_json() for eng in engins]
+        
+        else:
+            logging.info(f"Attempting to read engineer named {name}")
+            engin = self.engin_utils.read_engineer_by_name(name)
+            if engin is None:
+                error_msg = f"No engineer named {name} exists in the database"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["engineers"] = [engin.to_json()]
+        
+        logging.info(f"Engineer(s) successfully read from the database.")
+        msg["status"] = "success"
+        send_message("localhost", client_port, msg)
+
 
     def add_laptop(self, job_json, client_port):
         msg = {
@@ -796,7 +860,76 @@ class Server:
         
 
     def query_laptop(self, job_json, client_port):
-        pass
+        msg = {
+            "status": None
+        }
+
+        try:
+            model = job_json["model"]
+        except:
+            error_msg = "Client laptop read job had no entry for \"model\""
+            logging.error(error_msg)
+            msg["status"] = "error"
+            msg["text"] = error_msg
+            send_message("localhost", client_port, msg)
+            return
+        
+        if model == "":
+            try:
+                engin_name = job_json["engineer"]
+            except:
+                error_msg = "Client laptop read job left model blank, but did not provide an entry for \"engineer\""
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            
+            logging.info(f"Attempting to read laptop loaned by engineer {engin_name}")
+            laptop = self.laptop_utils.read_laptop_by_owner(engin_name)
+            if laptop is None:
+                error_msg = f"No laptop is loaned by engineer {engin_name}"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["status"] = "success"
+            msg["laptops"] = [laptop.to_json()]
+            logging.info(f"Successfully read laptop loaned by engineer {engin_name}")
+            send_message("localhost", client_port, msg)
+            return
+
+        elif model == "all":
+            logging.info("Attempting to read all laptops")
+            laptops = self.laptop_utils.read_all_laptops()
+            if not laptops:
+                error_msg = "No laptops exist in the database"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["laptops"] = [lap.to_json() for lap in laptops]
+            logging.info("Successfully read all laptops")
+        
+        else:
+            logging.info(f"Attempting to read laptops with model {model}")
+            laptops = self.laptop_utils.read_laptops_by_model(model)
+            if not laptops:
+                error_msg = f"No laptops of model {model} exist in the database"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            msg["laptops"] = [lap.to_json() for lap in laptops]
+            logging.info(f"Successfully read laptops with model {model}")
+        
+        msg["status"] = "success"
+        send_message("localhost", client_port, msg)
+        
+
 
     def add_contact_details(self, job_json, client_port):
         msg = {
@@ -925,7 +1058,78 @@ class Server:
 
 
     def query_contact_details(self, job_json, client_port):
-        pass
+        msg = {
+            "status": None
+        }
+
+        try:
+            engin_name = job_json["engineer"]
+        except:
+            error_msg = "Client contact details read job had no entry \"engineer\" for engineer name"
+            logging.error(error_msg)
+            msg["status"] = "error"
+            msg["text"] = error_msg
+            send_message("localhost", client_port, msg)
+            return
+        
+        if engin_name == "":
+            try:
+                id = job_json["id"]
+            except:
+                error_msg = "Client contact details read job left engineer name blank, but did not provide an entry \"id\" for contact details id."
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info(f"Attempting to read contact details with id {id}")
+            contact = self.contact_utils.read_contact_details_by_id(id)
+            if contact is None:
+                error_msg = f"No contact details with id {id} exists in the database."
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info(f"Successfully read contact details with id {id}")
+            msg["contact_details"] = [contact.to_json()]
+        
+        elif engin_name == "all":
+            logging.info("Attempting to read all contact details.")
+            contacts = self.contact_utils.read_all_contact_details()
+            if not contacts:
+                error_msg = "No contact details exist in the database."
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info("Successfully read all contact details.")
+            msg["contact_details"] = [contact.to_json() for contact in contacts]
+
+        else:
+            logging.info(f"Attempting to read contact details for engineer {engin_name}")
+            engin = self.engin_utils.read_engineer_by_name(engin_name)
+            if engin is None:
+                error_msg = f"No engineer named {engin_name} exists in the database. Cannot read contact details for non-existant engineer."
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            contacts = self.contact_utils.read_contact_details_by_engin_id(engin.id)
+            if not contacts:
+                error_msg = f"No contact details exist for engineer {engin_name}"
+                logging.error(error_msg)
+                msg["status"] = "error"
+                msg["text"] = error_msg
+                send_message("localhost", client_port, msg)
+                return
+            logging.info(f"Successfully read contact details for engineer {engin_name}")
+            msg["contact_details"] = [contact.to_json() for contact in contacts]
+        
+        msg["status"] = "success"
+        send_message("localhost", client_port, msg)
 
 @click.command()
 @click.argument("port", nargs=1, type=int)

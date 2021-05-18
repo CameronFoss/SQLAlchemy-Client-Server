@@ -9,7 +9,7 @@ from select import select
 from sqlalchemy.exc import IntegrityError
 
 from sqlalchemy.orm.exc import UnmappedInstanceError
-from training.db_utils import VehicleUtils, EngineerUtils, LaptopUtils, ContactDetailsUtils, cleanup_utils
+from training.server.db_utils import VehicleUtils, EngineerUtils, LaptopUtils, ContactDetailsUtils, cleanup_utils
 from training.sock_utils import send_message, decode_message_chunks, get_data_from_connection
 from json import JSONDecodeError
 from random import randint

@@ -1,6 +1,6 @@
 from datetime import date
-from training.model import Vehicle, Laptop, ContactDetails, Engineer
-from training.base import Session, engine, Base
+from training.server.model import Vehicle, Laptop, ContactDetails, Engineer
+from training.server.base import Session, engine, Base
 
 Base.metadata.create_all(engine)
 

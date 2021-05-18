@@ -1,13 +1,6 @@
 setup.py
 training/__init__.py
-training/base.py
-training/choice_funcs.py
-training/db_utils.py
-training/inserts.py
-training/interface.py
-training/model.py
 training/sock_utils.py
-training/utilities.py
 training.egg-info/PKG-INFO
 training.egg-info/SOURCES.txt
 training.egg-info/dependency_links.txt
@@ -15,5 +8,10 @@ training.egg-info/entry_points.txt
 training.egg-info/top_level.txt
 training/client/__init__.py
 training/client/__main__.py
+training/client/choice_funcs.py
 training/server/__init__.py
 training/server/__main__.py
+training/server/base.py
+training/server/db_utils.py
+training/server/inserts.py
+training/server/model.py

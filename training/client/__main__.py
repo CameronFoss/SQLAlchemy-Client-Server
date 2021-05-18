@@ -6,7 +6,7 @@ from random import seed
 
 from sqlalchemy.orm.exc import UnmappedInstanceError
 from sqlalchemy.sql.expression import delete, insert
-from training.choice_funcs import get_digit_choice, get_yes_no_choice, get_day, get_month, get_year
+from training.client.choice_funcs import get_digit_choice, get_yes_no_choice, get_day, get_month, get_year
 from training.sock_utils import send_message, decode_message_chunks, get_data_from_connection
 from docx import Document
 import json
