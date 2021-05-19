@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, Date, Numeric, Table, ForeignKey
 from sqlalchemy.orm import relationship, backref
-from training.base import Base
+from training.server.base import Base
 
 vehicle_engineer_association = Table(
     'vehicle_engineers', Base.metadata,
