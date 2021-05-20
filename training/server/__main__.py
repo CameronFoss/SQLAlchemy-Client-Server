@@ -201,6 +201,9 @@ class Server:
             elif data_type == "engineer":
                 self.update_engineer(job_json, client_port)
 
+            elif data_type == "laptop":
+                self.update_laptop(job_json, client_port)
+                
             else:
                 unimplemented_err = f"Server action \"update\" is not yet implemented for data type \"{data_type}\""
                 self.send_error_msg(unimplemented_err, client_port)
@@ -1030,7 +1033,72 @@ class Server:
         msg["status"] = "success"
         send_message("localhost", client_port, msg)
         
+    def update_laptop(self, job_json, client_port):
+        msg = {
+            "status": None
+        }
 
+        try:
+            laptop_id = job_json["id"]
+        except:
+            error_msg = "Client update laptop job has no entry for \"id\""
+            self.send_error_msg(error_msg, client_port)
+            return
+        
+        logging.info(f"Attempting to update laptop ID {laptop_id} in the database.")
+
+        curr_laptop = self.laptop_utils.read_laptop_by_id(laptop_id)
+
+        if curr_laptop is None:
+            error_msg = f"No laptop exists with ID {laptop_id}. Cannot update a laptop that doesn't exist."
+            self.send_error_msg(error_msg, client_port)
+            return
+
+        model = loan_year = loan_month = loan_date = engineer_name = None
+        
+        missing_entry_msg = "Client update laptop job gave no entry for \"{entry_name}\". Skipping update for \"{entry_name}\""
+        try:
+            model = job_json["model"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "model"))
+        
+        try:
+            loan_year = job_json["loan_year"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "loan_year"))
+            loan_year = curr_laptop.date_loaned.year
+        
+        try:
+            loan_month = job_json["loan_month"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "loan_moth"))
+            loan_month = curr_laptop.date_loaned.month
+
+        try:
+            loan_date = job_json["loan_date"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "loan_date"))
+            loan_date = curr_laptop.date_loaned.day
+
+        try:
+            engineer_name = job_json["engineer"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "engineer"))
+        
+        full_loan_date = date(loan_year, loan_month, loan_date)
+
+        updated_laptop = self.laptop_utils.update_laptop_by_id(laptop_id, model, full_loan_date, engineer_name)
+
+        if updated_laptop is None:
+            error_msg = f"There was a problem updating laptop ID {laptop_id}.\nMost likely cause is a non-existant laptop with ID {laptop_id}"
+            self.send_error_msg(error_msg, client_port)
+            return
+        
+        msg["status"] = "success"
+        msg["laptop"] = updated_laptop.to_json()
+        success_msg = f"Successfully updated info for laptop ID {laptop_id}\nNew laptop info:{updated_laptop.to_json()}"
+        logging.info(success_msg)
+        send_message("localhost", client_port, msg)
 
     def add_contact_details(self, job_json, client_port):
         msg = {

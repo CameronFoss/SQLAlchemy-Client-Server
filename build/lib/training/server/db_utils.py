@@ -197,8 +197,11 @@ class LaptopUtils:
         laptop = self.read_laptop_by_id(id)
         laptop.model = model if model is not None else laptop.model
         laptop.date_loaned = date_loaned if date_loaned is not None else laptop.date_loaned
-        engin = EngineerUtils.read_engineer_by_name(EngineerUtils(), engineer_name)
-        laptop.engineer = engin if engin is not None else laptop.engineer
+        if engineer_name == "":
+            laptop.engineer = None
+        else:
+            engin = EngineerUtils.read_engineer_by_name(EngineerUtils(), engineer_name)
+            laptop.engineer = engin if engin is not None else laptop.engineer
         session.commit()
         return laptop
 

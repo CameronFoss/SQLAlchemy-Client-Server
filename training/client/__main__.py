@@ -954,7 +954,71 @@ class Client:
         return engin_json
 
     def update_laptop(self):
-        print("called update_laptop")
+        laptop_id = get_digit_choice("Enter the ID of the laptop to update:",
+                                     "Invalid ID. Enter a number > 0", 1, inf)
+        update_msg = {
+            "data_type": "laptop",
+            "action": "update",
+            "port": self.port,
+            "id": laptop_id
+        }
+
+        model = input(f"Enter the new model for laptop ID {laptop_id}\n(Leave blank to skip updating model):")
+        if model != "":
+            update_msg["model"] = model
+
+        loan_year = get_digit_choice(f"Enter the new year laptop ID {laptop_id} was loaned\n(Enter \"0\" to skip updating loan year):",
+                                     "Invalid year. Enter a number in the range (1920-2021) (or \"0\" to skip updating loan year",
+                                     0, 2022)
+        if 1920 <= loan_year < 2022:
+            update_msg["loan_year"] = loan_year
+        elif 0 < loan_year < 1920:
+            error_msg = f"User entered invalid year {loan_year}. Skipping update on loan year for laptop ID {laptop_id}"
+            logging.error(error_msg)
+            print(error_msg)
+        
+        loan_month = get_digit_choice(f"Enter the new month laptop ID {laptop_id} was loaned\n(Enter \"0\" to skip updating loan month):",
+                                      "Invalid month. Enter a number in the range (1-12) (or \"0\" to skip updating loan month",
+                                      0, 13)
+        if loan_month > 0:
+            update_msg["loan_month"] = loan_month
+        
+        loan_date = get_digit_choice(f"Enter the new date laptop ID {laptop_id} was loaned\n(Enter \"0\" to skip updating loan date):",
+                                     "Invalid date. Enter a number in the range (1-31) (or \"0\" to skip updating loan date",
+                                     0, 32)
+        if loan_date > 0:
+            update_msg["loan_date"] = loan_date
+
+        engineer = input(f"Enter the engineer to loan {laptop_id} to\n(Leave blank to keep the laptop loaned to the same engineer)\n(Enter \"None\" to loan the laptop to no engineer):")
+        if engineer.lower() == "none":
+            engineer = ""
+            update_msg["engineer"] = engineer
+        elif engineer != "":
+            update_msg["engineer"] = engineer
+        
+        send_message("localhost", self.server_port, update_msg)
+
+        server_response = self.get_server_response()
+
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return
+        
+        try:
+            laptop_json = server_response["laptop"]
+        except:
+            error_msg = f"Update laptop ID {laptop_id} job marked success, but server did not provide an entry for \"laptop\""
+            logging.error(error_msg)
+            print(error_msg)
+            return
+        
+        success_msg = f"Successfully updated laptop ID {laptop_id}\nNew laptop info:{laptop_json}"
+        logging.info(success_msg)
+        print(success_msg)
+
+        return laptop_json
+        
 
     def update_contacts(self):
         print("called update_contacts")
