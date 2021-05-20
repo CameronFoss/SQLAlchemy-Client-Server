@@ -1,7 +1,7 @@
 from json.decoder import JSONDecodeError
 from math import inf
 from datetime import date
-from os import replace
+from os import read, replace
 from random import seed
 
 from sqlalchemy.orm.exc import UnmappedInstanceError
@@ -607,6 +607,74 @@ class Client:
         
         return engins_json
 
+    @docx_dump_prompt
+    @json_dump_prompt
+    # Query vehicle_engineers, either by engineer_id or vehicle_id
+    def query_vehicle_engineers(self):
+        # TODO: test this function!!!
+        read_msg = {
+            "data_type": "vehicle_engineers",
+            "action": "read",
+            "port": self.port
+        }
+        read_vehicles = get_yes_no_choice("Read vehicles by engineer name? Enter \"N\" to read engineers by vehicle model. (Y/N):")
+        if read_vehicles == 'y':
+            name = input("Whose vehicles do you want to read? (Enter an engineer name):")
+            logging.info(f"Asking server to read vehicles engineered by {name}")
+            read_msg["engineer"] = name
+        
+        else:
+            model = input("Which vehicle model's engineers do you want to read? (Enter a model name):")
+            logging.info(f"Asking server to read engineers that worked on model {model} vehicles.")
+            read_msg["vehicle"] = model
+        
+        send_message("localhost", self.server_port, read_msg)
+
+        server_response = self.get_server_response()
+
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return
+
+        if read_vehicles == 'y':
+            try:
+                vehicles_json = server_response["vehicles"]
+            except:
+                error_msg = f"Client wanted to read vehicles made by engineer {name}, but server response did not include an entry for \"vehicles\""
+                logging.error(error_msg)
+                print(error_msg)
+                return
+            
+            success_msg = f"Successfully read vehicles made by engineer {name}. Info for vehicles:"
+            logging.info(success_msg)
+            print(success_msg)
+
+            for car_json in vehicles_json:
+                logging.info(car_json)
+                print(car_json)
+            
+            return vehicles_json
+        
+        else:
+            try:
+                engins_json = server_response["engineers"]
+            except:
+                error_msg = f"Client wanted to read engineers who worked on vehicle model {model}, but server response did not include an entry for \"engineers\""
+                logging.error(error_msg)
+                print(error_msg)
+                return
+            
+            success_msg = f"Successfully read engineers who worked on vehicle model {model}. Info for engineers:"
+            logging.info(success_msg)
+            print(success_msg)
+
+            for engin_json in engins_json:
+                logging.info(engin_json)
+                print(engin_json)
+            
+            return engins_json
+
     # Query laptops, prompt for each column
     @docx_dump_prompt
     @json_dump_prompt
@@ -856,20 +924,24 @@ class Client:
         print("2. Engineers")
         print("3. Laptops")
         print("4. Contact Details")
-        print("5. Insert data from a JSON file")
-        print("6: Exit Database Utilities")
+        print("5. Vehicle-Engineer Assignments (Read-Only)")
+        print("6. Insert data from a JSON file")
+        print("7: Exit Database Utilities")
 
         table_choice = get_digit_choice("Select a table, JSON insertion, or Exit:",
                                         "Invalid selection. Please enter a digit corresponding to the desired table, JSON insert, or Exit.",
-                                        1, 7)
+                                        1, 8)
         table_choice -= 1
 
-        if table_choice == 5:
+        if table_choice == 6:
             return False
 
-        if table_choice == 4:
+        if table_choice == 5:
             self.insert_from_json()
             return True
+        
+        if table_choice == 4:
+            self.query_vehicle_engineers()
 
         print(f"\nWhat would you like to do in the {tables[table_choice]} table?")
         print(f"1. Add a(n) {tables[table_choice][0:-1]}")

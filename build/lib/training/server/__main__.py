@@ -74,6 +74,14 @@ class Server:
                 continue
         return client_response
 
+    def send_error_msg(self, error_msg, client_port):
+        msg = {
+            "status": "error",
+            "text": error_msg
+        }
+        logging.error(error_msg)
+        send_message("localhost", client_port, msg)
+
     def user_shutdown(self):
         print("Press \"enter\" at any time to shutdown the server.")
         timeout = 0.5
@@ -119,35 +127,22 @@ class Server:
             action = job_json['action']
         except KeyError:
             text = "Client message did not include entry \"action\" to let the server know an action to take (add/delete/read/update)"
-            logging.error(text)
-            msg = {
-                'status': 'error',
-                'text': text
-            }
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(text)
             return
 
         try:
             data_type = job_json['data_type']
         except KeyError:
             text = "Client message did not include entry \"data_type\" to let the server know which table to work with."
-            logging.error(text)
-            msg = {
-                'status': 'error',
-                'text': text
-            }
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(text)
             return
 
-        if data_type not in ["vehicle", "engineer", "laptop", "contact_details"]:
-            text = "Client message entry \"data_type\" is not one of [\"vehicle\", \"engineer\", \"laptop\", \"contact_details\"]"
-            logging.error(text)
-            msg = {
-                'status': 'error',
-                'text': text
-            }
-            send_message("localhost", client_port, msg)
+        if data_type not in ["vehicle", "engineer", "laptop", "contact_details", "vehicle_engineers"]:
+            text = "Client message entry \"data_type\" is not one of [\"vehicle\", \"engineer\", \"laptop\", \"contact_details\", \"vehicle_engineers\"]"
+            self.send_error_msg(text)
             return
+
+        vehicle_engineers_error_msg = f"Data type vehicle_engineers only supports the \"read\" action and does not support action \"{action}\""
 
         if action == "add":
             if data_type == "vehicle":
@@ -160,7 +155,11 @@ class Server:
                 self.add_laptop(job_json, client_port)
             
             elif data_type == "contact_details":
-                self.add_contact_details(job_json, client_port) 
+                self.add_contact_details(job_json, client_port)
+            
+            elif data_type == "vehicle_engineers":
+                self.send_error_msg(vehicle_engineers_error_msg, client_port)
+                return
 
         elif action == "delete":
             if data_type == "vehicle":
@@ -174,6 +173,10 @@ class Server:
             
             elif data_type == "contact_details":
                 self.delete_contact_details(job_json, client_port)
+            
+            elif data_type == "vehicle_engineers":
+                self.send_error_msg(vehicle_engineers_error_msg, client_port)
+
 
         elif action == "read":
             if data_type == "vehicle":
@@ -187,16 +190,65 @@ class Server:
 
             elif data_type == "contact_details":
                 self.query_contact_details(job_json, client_port)
+            
+            elif data_type == "vehicle_engineers":
+                self.query_vehicle_engineers(job_json, client_port)
+            
+        elif action == "update":
+            unimplemented_err = "Server action \"update\" is not yet implemented"
+            self.send_error_msg(unimplemented_err, client_port)
+            return
 
         else:
             text = f"Client message entry \"action\": {action} must be one of [\"add\", \"delete\", \"read\"]"
-            logging.error(text)
-            msg = {
-                'status': 'error',
-                'text': text
-            }
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(text)
             return
+
+    def query_vehicle_engineers(self, job_json, client_port):
+        msg = {
+            "status": None
+        }
+
+        model = engineer = None
+        try:
+            model = job_json["model"]
+        except:
+            logging.info("Client vehicle_engineers read job had no entry for \"model\". Attempting to read by \"engineer\" instead.")
+        
+        try:
+            engineer = job_json["engineer"]
+        except:
+            logging.info("Client vehicle_engineers read job had no entry for \"engineer\".")
+            if model is None:
+                error_msg = "Aborted reading vehicle_engineers relationship because client did not provide either \"model\" nor \"engineer\"."
+                self.send_error_msg(error_msg, client_port)
+                return
+        
+        if model is not None:
+            engineers = self.car_utils.read_assigned_engineers_by_model(model)
+
+            if not engineers:
+                error_msg = f"No engineers are assigned to any model {model} vehicles."
+                self.send_error_msg(error_msg, client_port)
+                return
+            
+            msg["status"] = "success"
+            msg["engineers"] = [engin.to_json() for engin in engineers]
+            logging.info(f"Successfully read engineers assigned to vehicle model {model}")
+
+        if engineer is not None:
+            cars = self.engin_utils.read_assigned_vehicles_by_name(engineer)
+
+            if not cars:
+                error_msg = f"No vehicles are assigned to engineer {engineer}"
+                self.send_error_msg(error_msg, client_port)
+                return
+
+            msg["status"] = "success"
+            msg["vehicles"] = [car.to_json() for car in cars]
+            logging.info(f"Successfully read vehicles engineer {engineer} is assigned to")
+        
+        send_message("localhost", client_port, msg)
 
     def add_vehicle(self, job_json, client_port):
         msg = {
@@ -208,55 +260,37 @@ class Server:
         try:
             model = job_json['model']
         except:
-            logging.error(error_text.format("model"))
-            msg['status'] = 'error'
-            msg['text'] = error_text.format("model")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("model"), client_port)
             return
         
         try:
             quantity = job_json['quantity']
         except:
-            logging.error(error_text.format("quantity"))
-            msg['status'] = "error"
-            msg['text'] = error_text.format("quantity")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg("quantity", client_port)
             return
 
         try:
             price = job_json['price']
         except:
-            logging.error(error_text.format("price"))
-            msg['status'] = 'error'
-            msg['text'] = error_text.format("price")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg("price", client_port)
             return
 
         try:
             manufacture_year = job_json['manufacture_year']
         except:
-            logging.error(error_text.format("manufacture_year"))
-            msg['status'] = 'error'
-            msg['text'] = error_text.format("manufacture_year")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg("manufacture_year", client_port)
             return
         
         try:
             manufacture_month = job_json["manufacture_month"]
         except:
-            logging.error(error_text.format("manufacture_month"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("manufacture_month")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg("manufacture_month", client_port)
             return
         
         try:
             manufacture_date = job_json["manufacture_date"]
         except:
-            logging.error(error_text.format("manufacture_date"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("manufacture_date")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg("manufacture_date", client_port)
             return
 
         full_manufacture_date = date(manufacture_year, manufacture_month, manufacture_date)
@@ -297,12 +331,7 @@ class Server:
             add_engins = client_response['response']
         except:
             text = "Client did not include entry \"response\" to let the server know whether they wanted to assign engineers to the new vehicle."
-            logging.error(text)
-            msg = {
-                "status": "error",
-                "text": text
-            }
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(text, client_port)
             new_sock.close()
             self.used_ports.remove(new_port)
             return
@@ -320,12 +349,7 @@ class Server:
                 engineers = client_response["engineers"]
             except:
                 text = "Client did not include entry \"engineers\" to let the server know which engineers to assign to the new vehicle."
-                logging.error(text)
-                msg = {
-                    "status": "error",
-                    "text": text
-                }
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(text, client_port)
                 new_sock.close()
                 self.used_ports.remove(new_port)
             
@@ -364,10 +388,7 @@ class Server:
             model = job_json["model"]
         except:
             error_msg = "Client vehicle delete job has no entry for \"model\"."
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         models_deleted = self.car_utils.delete_vehicle_by_model(model)
@@ -377,10 +398,7 @@ class Server:
             send_message("localhost", client_port, msg)
         else:
             error_msg = f"No vehicles of model {model} existed in the database to be deleted."
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
         return
 
     def query_vehicle(self, job_json, client_port):
@@ -392,10 +410,7 @@ class Server:
             model = job_json["model"]
         except:
             error_msg = "Client vehicle read job has no entry for \"model\""
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         cars = []
         if model == "":
@@ -403,19 +418,13 @@ class Server:
                 id = job_json["id"]
             except:
                 error_msg = "Client vehicle read job entered a blank model name, but did not have an entry for \"id\""
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Attempting to read vehicle id {id} from the database.")
             car = self.car_utils.read_vehicle_by_id(id)
             if car is None:
                 error_msg = f"No vehicle with id {id} exists in the database."
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             msg["status"] = "success"
             msg["vehicles"] = [car.to_json()]
@@ -433,10 +442,7 @@ class Server:
         
         if not cars:
             error_msg = f"No cars with model {model} were found in the database."
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
         
         logging.info(f"Vehicle read on {model} model vehicles successful.")
         msg["status"] = "success"
@@ -453,37 +459,25 @@ class Server:
         try:
             engin_name = job_json["name"]
         except:
-            logging.error(error_text.format("name"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("name")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("name"), client_port)
             return
         
         try:
             birth_year = job_json["birth_year"]
         except:
-            logging.error(error_text.format("birth_year"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("birth_year")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("birth_year"), client_port)
             return
 
         try:
             birth_month = job_json["birth_month"]
         except:
-            logging.error(error_text.format("birth_month"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("birth_month")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("birth_month"), client_port)
             return
 
         try:
             birth_date = job_json["birth_date"]
         except:
-            logging.error(error_text.format("birth_date"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("birth_date")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("birth_date"), client_port)
             return
         
         full_birth_date = date(birth_year, birth_month, birth_date)
@@ -492,10 +486,7 @@ class Server:
         if new_engin is None:
             text = f"Engineer named {engin_name} already exists in the database.\n" + \
                    f"Aborted adding duplicate engineer {engin_name} to the database."
-            logging.error(text)
-            msg["status"] = "error"
-            msg["text"] = text
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(text, client_port)
             return
 
         new_port = self.get_unused_port()
@@ -520,12 +511,7 @@ class Server:
             add_vehicles = client_response['response']
         except:
             text = "Client did not include entry \"response\" to let the server know whether to assign the new engineer to any vehicles."
-            logging.error(text)
-            msg = {
-                "status": "error",
-                "text": text
-            }
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(text, client_port)
             new_sock.close()
             self.used_ports.remove(new_port)
             return
@@ -539,12 +525,7 @@ class Server:
                 vehicles = client_response['vehicles']
             except:
                 text = "Client response did not include entry \"vehicles\" to let the server know which vehicles to assign the new engineer to."
-                logging.error(text)
-                msg = {
-                    "status": "error",
-                    "text": text
-                }
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(text, client_port)
                 new_sock.close()
                 self.used_ports.remove(new_port)
                 return
@@ -583,19 +564,13 @@ class Server:
             name = job_json["name"]
         except:
             error_msg = "Client engineer delete job has no entry for \"name\""
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         engin = self.engin_utils.read_engineer_by_name(name)
         if engin is None:
             error_msg = f"Engineer {name} doesn't exist in the database. Aborted deleting non-existant engineer."
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         self.engin_utils.delete_engineer_by_name(name)
@@ -614,10 +589,7 @@ class Server:
             name = job_json["name"]
         except:
             error_msg = "Client engineer read job has no entry for \"name\""
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         if name == "":
@@ -625,19 +597,13 @@ class Server:
                 id = job_json["id"]
             except:
                 error_msg = "Client left engineer name blank, but did not provide an entry for \"id\""
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Attempting to read engineer with id {id} from the database.")
             engin = self.engin_utils.read_engineer_by_id(id)
             if engin is None:
                 error_msg = f"No engineer with id {id} exists in the database"
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             msg["status"] = "success"
             msg["engineers"] = [engin.to_json()]
@@ -653,10 +619,7 @@ class Server:
             engin = self.engin_utils.read_engineer_by_name(name)
             if engin is None:
                 error_msg = f"No engineer named {name} exists in the database"
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             msg["engineers"] = [engin.to_json()]
         
@@ -675,46 +638,31 @@ class Server:
         try:
             model = job_json["model"]
         except:
-            logging.error(error_text.format("model"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("model")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("model"), client_port)
             return
         
         try:
             loan_year = job_json["loan_year"]
         except:
-            logging.error(error_text.format("loan_year"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("loan_year")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("loan_year"), client_port)
             return
 
         try:
             loan_month = job_json["loan_month"]
         except:
-            logging.error(error_text.format("loan_month"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("loan_month")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("loan_month"), client_port)
             return
         
         try:
             loan_date = job_json["loan_date"]
         except:
-            logging.error(error_text.format("loan_date"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("loan_date")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("loan_date"), client_port)
             return
         
         try:
             engin_name = job_json["engineer"]
         except:
-            logging.error(error_text.format("engineer"))
-            msg["status"] = "error"
-            msg["text"] = error_text.format("engineer")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_text.format("engineer"), client_port)
             return
         
         new_port = self.get_unused_port()
@@ -739,12 +687,7 @@ class Server:
                 proceed = client_response["response"]
             except:
                 error_msg = "Client response has no entry \"response\" to let the server know whether to add the laptop or not."
-                logging.error(error_msg)
-                msg = {
-                    "status": "error",
-                    "text": error_msg
-                }
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 new_sock.close()
                 self.used_ports.remove(new_port)
                 return
@@ -771,12 +714,7 @@ class Server:
                 replace = client_response["response"]
             except:
                 error_msg = "Client response has no entry \"response\" to let the server know whether to replace the engineer's currently loaned laptop."
-                logging.error(error_msg)
-                msg = {
-                    "status": "error",
-                    "text": error_msg
-                }
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 new_sock.close()
                 self.used_ports.remove(new_port)
             
@@ -788,10 +726,8 @@ class Server:
         # Finally, add the laptop and send success/error back to client
         new_laptop = self.laptop_utils.add_laptop_db(model, date(loan_year, loan_month, loan_date), engin_name)
         if new_laptop is None:
-            logging.error("Laptop already exists in the database. Aborted adding the duplicate laptop.")
-            msg["status"] = "error"
-            msg["text"] = "Laptop already exists in the database. Aborted adding the duplicate laptop."
-            send_message("localhost", client_port, msg)
+            error_msg = "Laptop already exists in the database. Aborted adding the duplicate laptop."
+            self.send_error_msg(error_msg, client_port)
             new_sock.close()
             self.used_ports.remove(new_port)
             return
@@ -819,10 +755,7 @@ class Server:
             engin_name = job_json["engineer"]
         except:
             error_msg = "Client laptop delete job had no entry for \"engineer\""
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         if engin_name == "":
@@ -830,10 +763,7 @@ class Server:
                 laptop_id = job_json["id"]
             except:
                 error_msg = "Client unowned laptop delete job had no entry for \"id\""
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             
             try:
@@ -846,10 +776,7 @@ class Server:
                 return
             except UnmappedInstanceError:
                 error_msg = f"Laptop with id {laptop_id} has already been deleted from the database."
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                logging.error(error_msg)
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
         else:
             logging.info(f"Attempting to delete laptop loaned by {engin_name}")
@@ -868,10 +795,7 @@ class Server:
             model = job_json["model"]
         except:
             error_msg = "Client laptop read job had no entry for \"model\""
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         if model == "":
@@ -879,20 +803,14 @@ class Server:
                 engin_name = job_json["engineer"]
             except:
                 error_msg = "Client laptop read job left model blank, but did not provide an entry for \"engineer\""
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             
             logging.info(f"Attempting to read laptop loaned by engineer {engin_name}")
             laptop = self.laptop_utils.read_laptop_by_owner(engin_name)
             if laptop is None:
                 error_msg = f"No laptop is loaned by engineer {engin_name}"
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             msg["status"] = "success"
             msg["laptops"] = [laptop.to_json()]
@@ -905,10 +823,7 @@ class Server:
             laptops = self.laptop_utils.read_all_laptops()
             if not laptops:
                 error_msg = "No laptops exist in the database"
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             msg["laptops"] = [lap.to_json() for lap in laptops]
             logging.info("Successfully read all laptops")
@@ -918,10 +833,7 @@ class Server:
             laptops = self.laptop_utils.read_laptops_by_model(model)
             if not laptops:
                 error_msg = f"No laptops of model {model} exist in the database"
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             msg["laptops"] = [lap.to_json() for lap in laptops]
             logging.info(f"Successfully read laptops with model {model}")
@@ -940,47 +852,32 @@ class Server:
         try:
             engin_name = job_json["engineer"]
         except:
-            logging.error(error_msg.format("engineer"))
-            msg["status"] = "error"
-            msg["text"] = error_msg.format("engineer")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg.format("engineer"), client_port)
             return
         
         try:
             phone_number = job_json["phone_number"]
         except:
-            logging.error(error_msg.format("phone_number"))
-            msg["status"] = "error"
-            msg["text"] = error_msg.format("phone_number")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg.format("phone_number"), client_port)
             return
 
         try:
             address = job_json["address"]
         except:
-            logging.error(error_msg.format("address"))
-            msg["status"] = "error"
-            msg["text"] = error_msg.format("address")
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg.format("address"), client_port)
             return
         
         # Attempt to add the new contact details, report error to client if duplicate or engineer doesn't exist
         engin = self.engin_utils.read_engineer_by_name(engin_name)
         if engin is None:
             error_msg = f"Engineer {engin_name} does not exist in the database. Contact details cannot be added for a non-existant engineer."
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         new_contact = self.contact_utils.add_contact_details_db(phone_number, address, engin_name)
         if new_contact is None:
             error_msg = f"Detected duplicate contact details. Aborted adding duplicate."
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         success_msg = f"Successfully added contact details for engineer {engin_name}"
@@ -1000,10 +897,7 @@ class Server:
             engin_name = job_json["engineer"]
         except:
             error_msg = "Client contact details delete job had no entry for \"engineer\""
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         if engin_name == "":
@@ -1011,10 +905,7 @@ class Server:
                 contact_id = job_json["id"]
             except:
                 error_msg = f"Client response ommitted engineer name but did not have an entry for contact details \"id\""
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             
             try:
@@ -1026,19 +917,13 @@ class Server:
                 return
             except UnmappedInstanceError:
                 error_msg = f"Contact details with ID {contact_id} has already been deleted from the database."
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
         else:
             engin = self.engin_utils.read_engineer_by_name(engin_name)
             if engin is None:
                 error_msg = f"Engineer {engin_name} does not exist in the database.\nAborted deleting contact details for non-existant engineer {engin_name}"
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Attempting to delete contact details for engineer {engin_name}")
 
@@ -1050,10 +935,7 @@ class Server:
                 return
             except UnmappedInstanceError:
                 error_msg = f"Engineer {engin_name} has no contact details to delete. Aborted deleting non-existant contact details."
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
 
 
@@ -1066,10 +948,7 @@ class Server:
             engin_name = job_json["engineer"]
         except:
             error_msg = "Client contact details read job had no entry \"engineer\" for engineer name"
-            logging.error(error_msg)
-            msg["status"] = "error"
-            msg["text"] = error_msg
-            send_message("localhost", client_port, msg)
+            self.send_error_msg(error_msg, client_port)
             return
         
         if engin_name == "":
@@ -1077,19 +956,13 @@ class Server:
                 id = job_json["id"]
             except:
                 error_msg = "Client contact details read job left engineer name blank, but did not provide an entry \"id\" for contact details id."
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Attempting to read contact details with id {id}")
             contact = self.contact_utils.read_contact_details_by_id(id)
             if contact is None:
                 error_msg = f"No contact details with id {id} exists in the database."
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Successfully read contact details with id {id}")
             msg["contact_details"] = [contact.to_json()]
@@ -1099,10 +972,7 @@ class Server:
             contacts = self.contact_utils.read_all_contact_details()
             if not contacts:
                 error_msg = "No contact details exist in the database."
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             logging.info("Successfully read all contact details.")
             msg["contact_details"] = [contact.to_json() for contact in contacts]
@@ -1112,18 +982,12 @@ class Server:
             engin = self.engin_utils.read_engineer_by_name(engin_name)
             if engin is None:
                 error_msg = f"No engineer named {engin_name} exists in the database. Cannot read contact details for non-existant engineer."
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             contacts = self.contact_utils.read_contact_details_by_engin_id(engin.id)
             if not contacts:
                 error_msg = f"No contact details exist for engineer {engin_name}"
-                logging.error(error_msg)
-                msg["status"] = "error"
-                msg["text"] = error_msg
-                send_message("localhost", client_port, msg)
+                self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Successfully read contact details for engineer {engin_name}")
             msg["contact_details"] = [contact.to_json() for contact in contacts]

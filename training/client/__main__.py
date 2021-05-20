@@ -1,11 +1,13 @@
 from json.decoder import JSONDecodeError
 from math import inf
 from datetime import date
-from os import replace
+from os import read, replace
 from random import seed
+from sqlalchemy import engine
 
 from sqlalchemy.orm.exc import UnmappedInstanceError
-from sqlalchemy.sql.expression import delete, insert
+from sqlalchemy.sql.expression import delete, insert, update
+from sqlalchemy.sql.functions import ReturnTypeFromArgs
 from training.client.choice_funcs import get_digit_choice, get_yes_no_choice, get_day, get_month, get_year
 from training.sock_utils import send_message, decode_message_chunks, get_data_from_connection
 from docx import Document
@@ -607,6 +609,73 @@ class Client:
         
         return engins_json
 
+    @docx_dump_prompt
+    @json_dump_prompt
+    # Query vehicle_engineers, either by engineer_id or vehicle_id
+    def query_vehicle_engineers(self):
+        read_msg = {
+            "data_type": "vehicle_engineers",
+            "action": "read",
+            "port": self.port
+        }
+        read_vehicles = get_yes_no_choice("Read vehicles by engineer name? Enter \"N\" to read engineers by vehicle model. (Y/N):")
+        if read_vehicles == 'y':
+            name = input("Whose vehicles do you want to read? (Enter an engineer name):")
+            logging.info(f"Asking server to read vehicles engineered by {name}")
+            read_msg["engineer"] = name
+        
+        else:
+            model = input("Which vehicle model's engineers do you want to read? (Enter a model name):")
+            logging.info(f"Asking server to read engineers that worked on model {model} vehicles.")
+            read_msg["model"] = model
+        
+        send_message("localhost", self.server_port, read_msg)
+
+        server_response = self.get_server_response()
+
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return
+
+        if read_vehicles == 'y':
+            try:
+                vehicles_json = server_response["vehicles"]
+            except:
+                error_msg = f"Client wanted to read vehicles made by engineer {name}, but server response did not include an entry for \"vehicles\""
+                logging.error(error_msg)
+                print(error_msg)
+                return
+            
+            success_msg = f"Successfully read vehicles made by engineer {name}. Info for vehicles:"
+            logging.info(success_msg)
+            print(success_msg)
+
+            for car_json in vehicles_json:
+                logging.info(car_json)
+                print(car_json)
+            
+            return vehicles_json
+        
+        else:
+            try:
+                engins_json = server_response["engineers"]
+            except:
+                error_msg = f"Client wanted to read engineers who worked on vehicle model {model}, but server response did not include an entry for \"engineers\""
+                logging.error(error_msg)
+                print(error_msg)
+                return
+            
+            success_msg = f"Successfully read engineers who worked on vehicle model {model}. Info for engineers:"
+            logging.info(success_msg)
+            print(success_msg)
+
+            for engin_json in engins_json:
+                logging.info(engin_json)
+                print(engin_json)
+            
+            return engins_json
+
     # Query laptops, prompt for each column
     @docx_dump_prompt
     @json_dump_prompt
@@ -709,6 +778,92 @@ class Client:
             print(contact)
         
         return contacts_json
+
+    def update_vehicle(self):
+        vehicle_id = get_digit_choice("Enter the ID of the vehicle to update:",
+                                      "Invalid ID. Enter a number > 0", 1, inf)
+        update_msg = {
+            "data_type": "vehicle",
+            "action": "update",
+            "port": self.port,
+            "id": vehicle_id
+        }
+        model = input(f"Enter the new model for vehicle ID {vehicle_id}\n(Leave blank to keep model the same):")
+        if model != "":
+            update_msg["model"] = model
+
+        quantity = get_digit_choice(f"Enter the new quantity of vehicle ID {vehicle_id}\n(Enter \"-1\" to keep quantity the same):",
+                                    "Please enter a non-negative quantity (or -1 to skip updating quantity).",
+                                    -1, inf)
+        if quantity > -1:
+            update_msg["quantity"] = quantity
+
+        price = get_digit_choice(f"Enter the new price of vehicle ID {vehicle_id}\n(Enter \"0\" to keep price the same):",
+                                 "Invalid price. Please enter a price > 0 (or 0 to skip updating price)",
+                                 0, inf)
+        if price > 0:
+            update_msg["price"] = price
+
+        year = get_digit_choice(f"Enter the new year vehicle ID {vehicle_id} was manufactured\n(Enter \"0\" to keep year the same):",
+                                "Invalid year. Please enter a year in the range (1920-2021) (or enter \"0\" to skip updating manufacture year",
+                                0, 2022)
+        if 1920 <= year < 2022:
+            update_msg["manufacture_year"] = year
+        elif 0 < year < 1920:
+            logging.error(f"User entered invalid year {year}. Year should be between (1920-2021). Skipping update for vehicle year.")
+
+        month = get_digit_choice(f"Enter the new month vehicle ID {vehicle_id} was manufactured\n(Enter \"0\" to keep month the same):",
+                                "Invalid month. Please enter a month in the range (1-12) (or enter \"0\" to skip updating manufacture month",
+                                0, 12)
+        if month > 0:
+            update_msg["manufacture_month"] = month
+
+        day = get_digit_choice(f"Enter the new date vehicle ID {vehicle_id} was manufactured\n(Enter \"0\" to keep date the same):",
+                                "Invalid date. Please enter a date in the range (1-32) (or enter \"0\" to skip updating manufacture date",
+                                0, 32)
+        if day > 0:
+            update_msg["manufacture_date"] = day
+        
+        engineer_names = input(f"Enter comma-separated names (e.g. Engineer1, Engineer2, etc) of the updated engineers assigned to vehicle ID {vehicle_id}\n(Leave blank to keep assigned engineers the same):")
+        engineer_names = engineer_names.split(",")
+        engineer_names = [name.strip() for name in engineer_names]
+
+        if engineer_names:
+            update_msg["engineers"] = engineer_names
+        
+        send_message("localhost", self.server_port, update_msg)
+
+        server_response = self.get_server_response()
+
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return
+
+        try:
+            vehicle_json = server_response["vehicle"]
+        except:
+            error_msg = f"Update job for vehicle ID {vehicle_id} was marked successful, but the server did not provide an entry for \"vehicle\""
+            logging.error(error_msg)
+            print(error_msg)
+            return None
+
+        success_msg = f"Successfully updated info for vehicle ID {vehicle_id}. Vehicle new info:\n{vehicle_json}"
+
+        logging.info(success_msg)
+        print(success_msg)
+
+        return vehicle_json
+
+        
+    def update_engineer(self):
+        print("called update_engineer")
+
+    def update_laptop(self):
+        print("called update_laptop")
+
+    def update_contacts(self):
+        print("called update_contacts")
 
     def insert_from_json(self):
         file_name = input("Enter the file name containing JSON data to insert:")
@@ -836,19 +991,19 @@ class Client:
 
         else:
             data_type_error = f"\"data_type\" entry value of {data_type} is not recognized.\n" + \
-                              "\"data_type\" should be one of: \"vehicle\", \"engineer\", \"laptop\", \"contact_details\"\n" + \
+                              "\"data_type\" should be one of: \"vehicle\", \"engineer\", \"laptop\", \"contact_details\", \"vehicle_engineers\"\n" + \
                               f"Aborted adding entry {json_object} to the database."
             print(data_type_error)
             logging.error(data_type_error)
             return
 
     def display_interface(self):
-        tables = ["Vehicles", "Engineers", "Laptops", "Contact Details"]
+        tables = ["Vehicles", "Engineers", "Laptops", "Contact Details", "Vehicle-Engineer Assignments"]
         function_map = [
-            [self.add_vehicle, self.delete_vehicle, self.query_vehicles],
-            [self.add_engineer, self.delete_engineer, self.query_engineers],
-            [self.add_laptop, self.delete_laptop, self.query_laptops],
-            [self.add_contact, self.delete_contact, self.query_contacts],
+            [self.add_vehicle, self.delete_vehicle, self.query_vehicles, self.update_vehicle],
+            [self.add_engineer, self.delete_engineer, self.query_engineers, self.update_engineer],
+            [self.add_laptop, self.delete_laptop, self.query_laptops, self.update_laptop],
+            [self.add_contact, self.delete_contact, self.query_contacts, self.update_contacts],
             self.insert_from_json
         ]
         print("\nWelcome to your Database Utilities!")
@@ -856,33 +1011,39 @@ class Client:
         print("2. Engineers")
         print("3. Laptops")
         print("4. Contact Details")
-        print("5. Insert data from a JSON file")
-        print("6: Exit Database Utilities")
+        print("5. Vehicle-Engineer Assignments (Read-Only)")
+        print("6. Insert data from a JSON file")
+        print("7: Exit Database Utilities")
 
         table_choice = get_digit_choice("Select a table, JSON insertion, or Exit:",
                                         "Invalid selection. Please enter a digit corresponding to the desired table, JSON insert, or Exit.",
-                                        1, 7)
+                                        1, 8)
         table_choice -= 1
 
-        if table_choice == 5:
+        if table_choice == 6:
             return False
 
-        if table_choice == 4:
+        if table_choice == 5:
             self.insert_from_json()
+            return True
+        
+        if table_choice == 4:
+            self.query_vehicle_engineers()
             return True
 
         print(f"\nWhat would you like to do in the {tables[table_choice]} table?")
         print(f"1. Add a(n) {tables[table_choice][0:-1]}")
         print(f"2. Delete a(n) {tables[table_choice][0:-1]}")
         print(f"3. Read from the {tables[table_choice]} table")
-        print("4. Choose a different table to work with")
+        print(f"4. Update a(n) {tables[table_choice][0:-1]}")
+        print("5. Choose a different table to work with")
 
         action_choice = get_digit_choice(f"Select an action to perform on the {tables[table_choice]} table:",
                                          "Invalid selection. Please enter a digit corresponding to the desired action.",
-                                         1, 5)
+                                         1, 6)
         action_choice -= 1
 
-        if action_choice == 3:
+        if action_choice == 4:
             # tell main() to restart the interface
             return True
 

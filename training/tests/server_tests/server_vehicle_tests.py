@@ -18,6 +18,8 @@ engineer_names = [
     [], # no engineer assignment
 ]
 
+# TODO: test cases for bad client messages (e.g. wrong data_type/action, missing entries, etc)
+
 class ServerVehicleTests(slash.Test):
     def __init__(self):
         self.engineers = []

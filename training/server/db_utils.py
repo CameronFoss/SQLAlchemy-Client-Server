@@ -1,3 +1,4 @@
+from sqlalchemy.engine.base import Engine
 from sqlalchemy.exc import IntegrityError
 from training.server.base import Session
 from datetime import date
@@ -56,15 +57,27 @@ class VehicleUtils:
         cars = session.query(Vehicle).filter(Vehicle.model == model).all()
         return cars
 
+    # Read engineers assigned to a vehicle model
+    def read_assigned_engineers_by_model(self, model):
+        cars = self.read_vehicles_by_model(model)
+        engineer_ids = []
+        for car in cars:
+            engineer_ids += session.query(vehicle_engineer_association.c.engineer_id).filter(vehicle_engineer_association.c.vehicle_id == car.id).all()
+        return [EngineerUtils.read_engineer_by_id(EngineerUtils(), id) for id in engineer_ids]
+
     # Update a vehicle record by id
     def update_vehicle_db(self, id, model=None, quantity=None, price=None, manufacture_date=None, engineers=None):
         car = self.read_vehicle_by_id(id)
-        car.model = model if model is not None else car.model
-        car.quantity = quantity if quantity is not None else car.quantity
-        car.price = price if price is not None else car.price
-        car.manufacture_date = manufacture_date if manufacture_date is not None else car.manufacture_date
-        car.engineers = engineers if engineers is not None else car.engineers
-        session.commit()
+        try:
+            car.model = model if model is not None else car.model
+            car.quantity = quantity if quantity is not None else car.quantity
+            car.price = price if price is not None else car.price
+            car.manufacture_date = manufacture_date if manufacture_date is not None else car.manufacture_date
+            car.engineers = engineers if engineers is not None else car.engineers
+            session.commit()
+        except:
+            session.rollback()
+            return None
         return car
 
 class EngineerUtils:
@@ -105,6 +118,13 @@ class EngineerUtils:
     def read_engineer_by_name(self, name):
         engin = session.query(Engineer).filter(Engineer.name == name).first()
         return engin
+
+    # Read vehicles this engineer is assigned to
+    def read_assigned_vehicles_by_name(self, name):
+        engin = self.read_engineer_by_name(name)
+        vehicle_ids = session.query(vehicle_engineer_association.c.vehicle_id).filter(vehicle_engineer_association.c.engineer_id == engin.id).all()
+        car_utils = VehicleUtils()
+        return [car_utils.read_vehicle_by_id(id) for id in vehicle_ids]
 
     # Update an engineer record by id
     def update_engineer_by_id(self, id, name=None, date_of_birth=None):
