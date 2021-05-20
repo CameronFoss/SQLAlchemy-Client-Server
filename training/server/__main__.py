@@ -197,6 +197,10 @@ class Server:
         elif action == "update":
             if data_type == "vehicle":
                 self.update_vehicle(job_json, client_port)
+            
+            elif data_type == "engineer":
+                self.update_engineer(job_json, client_port)
+
             else:
                 unimplemented_err = f"Server action \"update\" is not yet implemented for data type \"{data_type}\""
                 self.send_error_msg(unimplemented_err, client_port)
@@ -715,6 +719,103 @@ class Server:
         msg["status"] = "success"
         send_message("localhost", client_port, msg)
 
+    def update_engineer(self, job_json, client_port):
+        msg = {
+            "status": None
+        }
+
+        try:
+            engin_id = job_json["id"]
+        except:
+            error_msg = "Client update engineer job did not include an entry for \"id\""
+            self.send_error_msg(error_msg, client_port)
+            return
+
+        logging.info(f"Attempting to update engineer with ID {engin_id}")
+
+        curr_engin = self.engin_utils.read_engineer_by_id(engin_id)
+
+        if curr_engin is None:
+            error_msg = f"No engineer with ID {engin_id} exists in the database. Cannot update information for an engineer that doesn't exist."
+            self.send_error_msg(error_msg)
+            return
+
+        name = birth_year = birth_month = birth_date = vehicle_models = None
+
+        missing_entry_msg = "Client did not provide a field \"{entry_name}\" for engineer update job. Skipping update for \"{entry_name}\""
+
+        try:
+            name = job_json["name"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "name"))
+
+        try:
+            birth_year = job_json["birth_year"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "birth_year"))
+            birth_year = curr_engin.birthday.year
+        
+        try:
+            birth_month = job_json["birth_month"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "birth_month"))
+            birth_month = curr_engin.birthday.month
+        
+        try:
+            birth_date = job_json["birth_date"]
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "birth_date"))
+            birth_date = curr_engin.birthday.day
+
+        vehicles_assigned = []
+        vehicles_unassigned = []
+        try:
+            vehicle_models = job_json["vehicles"]
+            logging.info(f"Attempting to update vehicle assignments for engineer with ID {engin_id}")
+            # Remove engineer from models not in the vehicle_models list
+            # Add engineer to models in the vehicle_models list
+            all_cars = self.car_utils.read_vehicles_all()
+            for car in all_cars:
+                if car.model in vehicle_models:
+                    new_engins = car.engineers + [curr_engin]
+                    self.car_utils.update_vehicle_db(car.id, engineers=new_engins)
+                    vehicles_assigned.append(car.model)
+                    logging.info(f"Successfully assigned engineer with ID {engin_id} to vehicle model {car.model}")
+                else:
+                    try:
+                        car.engineers.remove(curr_engin)
+                        self.car_utils.update_vehicle_db(car.id, engineers=car.engineers)
+                        vehicles_unassigned.append(car.model)
+                        logging.info(f"Successfully un-assigned engineer with ID {engin_id} from vehicle model {car.model}")
+                    except:
+                        logging.info(f"Engineer with ID {engin_id} was already not assigned to car model {car.model}")
+
+        except:
+            logging.info(missing_entry_msg.format(entry_name = "vehicles"))
+
+        
+        
+        full_birth_date = date(birth_year, birth_month, birth_date)
+
+        engin_updated = self.engin_utils.update_engineer_by_id(engin_id, name, full_birth_date)
+
+        if engin_updated is None:
+            error_msg = f"There was an issue updating engineer with ID {engin_id}. Most likely cause is a non-existant engineer with ID {engin_id}"
+            self.send_error_msg(error_msg, client_port)
+            return
+        
+        if vehicles_assigned:
+            msg["assigned_models"] = vehicles_assigned
+
+        if vehicles_unassigned:
+            msg["unassigned_models"] = vehicles_unassigned
+
+        msg["status"] = "success"
+        msg["engineer"] = engin_updated.to_json()
+        success_msg = f"Successfully updated info for engineer with ID {engin_id}.\nEngineer new info:\n{engin_updated.to_json()}"
+        logging.info(success_msg)
+        send_message("localhost", client_port, msg)
+        
 
     def add_laptop(self, job_json, client_port):
         msg = {

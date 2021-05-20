@@ -810,7 +810,9 @@ class Client:
         if 1920 <= year < 2022:
             update_msg["manufacture_year"] = year
         elif 0 < year < 1920:
-            logging.error(f"User entered invalid year {year}. Year should be between (1920-2021). Skipping update for vehicle year.")
+            error_msg = f"User entered invalid year {year}. Year should be between (1920-2021). Skipping update for vehicle year."
+            logging.error(error_msg)
+            print(error_msg)
 
         month = get_digit_choice(f"Enter the new month vehicle ID {vehicle_id} was manufactured\n(Enter \"0\" to keep month the same):",
                                 "Invalid month. Please enter a month in the range (1-12) (or enter \"0\" to skip updating manufacture month",
@@ -857,7 +859,99 @@ class Client:
 
         
     def update_engineer(self):
-        print("called update_engineer")
+        engin_id = get_digit_choice("Enter the ID of the engineer to update:",
+                                    "Invalid ID. Enter a number > 0", 1, inf)
+        update_msg = {
+            "data_type": "engineer",
+            "action": "update",
+            "port": self.port,
+            "id": engin_id
+        }
+
+        name = input(f"Enter the new name for engineer with ID {engin_id}\n(Leave blank to skip changing name):")
+        if name != "":
+            update_msg["name"] = name
+        
+        birth_year = get_digit_choice(f"Enter the new birth year for engineer ID {engin_id}\n(Enter \"0\" to skip changing birth year):",
+                                      "Invalid year. Enter a year in the range (1920-2021) (or \"0\" to skip changing birth year)",
+                                      0, 2022)
+        if 1920 <= birth_year < 2022:
+            update_msg["birth_year"] = birth_year
+        elif 0 < birth_year < 1920:
+            error_msg = f"User entered invalid year {birth_year}. Year should be between (1920-2021). Skipping update for engineer birth year."
+            logging.error(error_msg)
+            print(error_msg)
+        
+        birth_month = get_digit_choice(f"Enter the new birth month for engineer ID {engin_id}\n(Enter \"0\" to skip changing birth month):",
+                                       "Invalid month. Enter a month in the range (1-12) (or \"0\" to skip changing birth month",
+                                       0, 13)
+        if birth_month > 0:
+            update_msg["birth_month"] = birth_month
+
+        birth_date = get_digit_choice(f"Enter the new birth date for engineer ID {engin_id}\n(Enter \"0\" to skip changing birth date):",
+                                      "Invalid date. Enter a date in the range (1-31) (or \"0\" to skip changing birth date",
+                                      0, 32)
+        if birth_date > 0:
+            update_msg["birth_date"] = birth_date
+
+        vehicles = input(f"Enter comma-separated vehicle models (e.g. Model1, Model2, etc) of the new models to assign to engineer ID {engin_id}\n" + \
+                         f"Note that changing engineer ID {engin_id}'s assigned vehicles will also un-assign them from their current vehicles.\n" + \
+                          "(Leave blank to skip changing vehicle assignments):")
+        vehicles = vehicles.split(",")
+        vehicles = [model.strip() for model in vehicles]
+
+        if vehicles:
+            update_msg["vehicles"] = vehicles
+        
+        send_message("localhost", self.server_port, update_msg)
+
+        server_response = self.get_server_response()
+
+        status = self.check_server_status(server_response)
+
+        if not status:
+            return
+
+        try:
+            engin_json = server_response["engineer"]
+        except:
+            error_msg = f"Update for engineer ID {engin_id} marked success, but server did not provide an entry for \"engineer\""
+            logging.error(error_msg)
+            print(error_msg)
+            return
+
+        assigned_models = []
+        unassigned_models = []
+
+        try:
+            assigned_models = server_response["assigned_models"]
+        except:
+            no_assigned_models = f"Update for engineer ID {engin_id} did not assign new vehicles to the engineer"
+            logging.info(no_assigned_models)
+            print(no_assigned_models)
+        
+        try:
+            unassigned_models = server_response["unassigned_models"]
+        except:
+            no_unassigned = f"Update for engineer ID {engin_id} did not un-assign any vehicles from the engineer"
+            logging.info(no_unassigned)
+            print(no_unassigned)
+
+        success_msg = f"Successfully updated info for engineer ID {engin_id}\nNew engineer info:\n{engin_json}"
+        logging.info(success_msg)
+        print(success_msg)
+
+        if assigned_models:
+            assigned_msg = f"Newly assigned vehicle models: {assigned_models}"
+            logging.info(assigned_msg)
+            print(assigned_msg)
+        
+        if unassigned_models:
+            unassigned_msg = f"Vehicles unassigned from the engineer: {unassigned_models}"
+            logging.info(unassigned_msg)
+            print(unassigned_msg)
+        
+        return engin_json
 
     def update_laptop(self):
         print("called update_laptop")

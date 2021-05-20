@@ -68,12 +68,16 @@ class VehicleUtils:
     # Update a vehicle record by id
     def update_vehicle_db(self, id, model=None, quantity=None, price=None, manufacture_date=None, engineers=None):
         car = self.read_vehicle_by_id(id)
-        car.model = model if model is not None else car.model
-        car.quantity = quantity if quantity is not None else car.quantity
-        car.price = price if price is not None else car.price
-        car.manufacture_date = manufacture_date if manufacture_date is not None else car.manufacture_date
-        car.engineers = engineers if engineers is not None else car.engineers
-        session.commit()
+        try:
+            car.model = model if model is not None else car.model
+            car.quantity = quantity if quantity is not None else car.quantity
+            car.price = price if price is not None else car.price
+            car.manufacture_date = manufacture_date if manufacture_date is not None else car.manufacture_date
+            car.engineers = engineers if engineers is not None else car.engineers
+            session.commit()
+        except:
+            session.rollback()
+            return None
         return car
 
 class EngineerUtils:
