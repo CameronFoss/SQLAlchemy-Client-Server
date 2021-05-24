@@ -557,7 +557,7 @@ class Server:
 
         if curr_car is None:
             error_msg = f"No vehicle with id {vehicle_id} exists in the database. Cannot update a vehicle that doesn't exist."
-            self.send_error_msg(error_msg)
+            self.send_error_msg(error_msg, client_port)
             return
 
         model = quantity = price = manufacture_year = manufacture_month = manufacture_date = engineer_names = engineers = None
@@ -565,27 +565,41 @@ class Server:
         missing_entry_msg = "Client did not provide an entry for \"{entry_name}\". Skipping update for \"{entry_name}\" in the database."
         try:
             model = job_json["model"]
+            if model == "":
+                self.send_error_msg("IntegrityError: entry \"model\" must not be empty (\"\")", client_port)
         except:
             logging.info(missing_entry_msg.format(entry_name = "model"))
         
         try:
             quantity = job_json["quantity"]
+            if quantity < 0:
+                self.send_error_msg("IntegrityError: entry \"quantity\" must be more than 0", client_port)
+                return
         except:
             logging.info(missing_entry_msg.format(entry_name = "quantity"))
 
         try:
             price = job_json["price"]
+            if price < 1:
+                self.send_error_msg("IntegrityError: entry \"price\" must be more than 1", client_port)
+                return
         except:
             logging.info(missing_entry_msg.format(entry_name = "price"))
 
         try:
             manufacture_year = job_json["manufacture_year"]
+            if manufacture_year < 1920 or manufacture_year > 2021:
+                self.send_error_msg("IntegrityError: entry \"manufacture_year\" must be in the range (1920-2021)", client_port)
+                return
         except:
             logging.info(missing_entry_msg.format(entry_name = "manufacture_year"))
             manufacture_year = curr_car.manufacture_date.year
         
         try:
             manufacture_month = job_json["manufacture_month"]
+            if manufacture_month < 1 or manufacture_month > 12:
+                self.send_error_msg("IntegrityError: entry \"manufacture_month\" must be in the range (1-12)", client_port)
+                return
         except KeyError:
             logging.info(missing_entry_msg.format(entry_name = "manufacture_month"))
             manufacture_month = curr_car.manufacture_date.month
@@ -594,6 +608,9 @@ class Server:
         
         try:
             manufacture_date = job_json["manufacture_date"]
+            if manufacture_date < 1 or manufacture_date > 31:
+                self.send_error_msg("IntegrityError: entry \"manufacture_date\" must be in the range (1-31)", client_port)
+                return
         except:
             logging.info(missing_entry_msg.format(entry_name = "manufacture_date"))
             manufacture_date = curr_car.manufacture_date.day
@@ -612,6 +629,10 @@ class Server:
         full_manufacture_date = None
         try:
             full_manufacture_date = date(manufacture_year, manufacture_month, manufacture_date)
+        except ValueError:
+            error_msg = f"ValueError: client date is not a real calendar date. Year: {manufacture_year}, Month: {manufacture_month}, Date: {manufacture_date}"
+            self.send_error_msg(error_msg, client_port)
+            return
         except:
             logging.info("Client left one of the manufacture date fields empty. Skipping update for manufacture date fields.")
 

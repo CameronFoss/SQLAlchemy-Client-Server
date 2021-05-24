@@ -43,6 +43,16 @@ valid_vehicle_updates = [
     (1, None, None, 50, 1945, 9, 11), # price and date
     (1, "Brand New Fusion", 55, 12345, 2008, 8, 8) # all fields
 ]
+invalid_vehicle_updates = [
+    (50, None, None, None, None, None, None), # no car with ID 50
+    (1, "Bad quantity", -1, None, None, None, None), # negative quantity
+    (1, "Bad price", None, -1, None, None, None), # negative price
+    (1, "Bad year", None, None, 2025, None, None), # year out of range
+    (1, "Bad month", None, None, None, 14, None), # month out of range
+    (1, "Bad date", None, None, None, None, 35), # date out of range
+    (1, "Bad Day for month", None, None, None, 2, 31), # february 31st doesnt exist
+    (1, "Explorer", None, None, None, None, None) # new model we want already exists in the database
+]
 engineer_names = [
     ["Cameron Foss", "Prerna Sancheti"], # normal case, engins both exist
     ["Steven Universe"], # 1 non-present engineer
@@ -196,7 +206,27 @@ class ServerVehicleTests(slash.Test):
         print(f"Asking server to read assigned engineers for model {model} vehicles")
         send_message("localhost", self.server_port, read_msg)
 
-    #@slash.skipped
+    @slash.parametrize(vehicle_update_tuple, invalid_vehicle_updates)
+    def test_update_invalid_vehicle(self, id, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
+        curr_test_input = "Input for current test:\n" + \
+                          f"ID: {id}\n" + \
+                          f"Model: {model}\n" + \
+                          f"Quantity: {quantity}\n" + \
+                          f"Price: {price}\n" + \
+                          f"Manufacture Year: {manufacture_year}\n" + \
+                          f"Manufacture Month: {manufacture_month}\n" + \
+                          f"Manufacture Date: {manufacture_date}\n" + \
+                          f"Engineers: {self.engineers}"
+        slash.logger.error(curr_test_input)
+        self.update_vehicle(id, model, quantity, price, manufacture_year, manufacture_month, manufacture_date)
+
+        server_response = self.get_server_response()
+        assert server_response
+
+        status = self.check_server_status(server_response)
+        assert not status # Expect an error for invalid update cases
+
+    @slash.skipped
     @slash.parametrize(vehicle_update_tuple, valid_vehicle_updates)
     def test_update_valid_vehicle(self, id, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \
@@ -283,7 +313,7 @@ class ServerVehicleTests(slash.Test):
             slash.logger.error(missing_vehicle_entry_msg.format("engineers"))
             assert False
 
-    #@slash.skipped
+    @slash.skipped
     @slash.parametrize("model", invalid_vehicle_deletes)
     def test_delete_invalid_vehicle(self, model):
         curr_test_input = "Input for current test:\n" + \
@@ -297,7 +327,7 @@ class ServerVehicleTests(slash.Test):
         status = self.check_server_status(server_response)
         assert not status # expect error for invalid vehicle delete
 
-    #@slash.skipped
+    @slash.skipped
     @slash.parametrize("model", valid_vehicle_deletes)
     def test_delete_valid_vehicle(self, model):
         curr_test_input = "Input for current test:\n" + \
@@ -336,7 +366,7 @@ class ServerVehicleTests(slash.Test):
         read_status = self.check_server_status(read_response)
         assert not read_status # expect the read request to error out since we just deleted the vehicle
 
-    #@slash.skipped
+    @slash.skipped
     @slash.parametrize(vehicle_tuple, bad_vehicles)
     def test_add_invalid_vehicle(self, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \
@@ -356,7 +386,7 @@ class ServerVehicleTests(slash.Test):
         status = self.check_server_status(server_response)
         assert not status # Expect to error out on invalid vehicle add
 
-    #@slash.skipped
+    @slash.skipped
     @slash.parametrize(vehicle_tuple, valid_vehicle_adds)
     def test_add_valid_vehicle(self, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \
