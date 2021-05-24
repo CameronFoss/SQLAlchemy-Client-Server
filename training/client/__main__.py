@@ -65,6 +65,9 @@ class Client:
         self.sock.settimeout(1)
         logging.basicConfig(filename="client.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s: %(message)s")
 
+    def __del__(self):
+        self.sock.close()
+
     def get_server_response(self):
         server_response = None
         while server_response is None:
@@ -1171,21 +1174,34 @@ class Client:
         print("4. Contact Details")
         print("5. Vehicle-Engineer Assignments (Read-Only)")
         print("6. Insert data from a JSON file")
-        print("7: Exit Database Utilities")
+        print("7. Reset the database to default items")
+        print("8: Exit Database Utilities")
 
         table_choice = get_digit_choice("Select a table, JSON insertion, or Exit:",
                                         "Invalid selection. Please enter a digit corresponding to the desired table, JSON insert, or Exit.",
-                                        1, 8)
+                                        1, 9)
         table_choice -= 1
 
-        if table_choice == 6:
+        if table_choice == 7:
+            # exit
             return False
 
+        if table_choice == 6:
+            msg = {
+                "action": "reset",
+                "port": self.port
+            }
+            send_message("localhost", self.server_port, msg)
+            print("\nDatabase reset.\n")
+            return True
+
         if table_choice == 5:
+            # json insert
             self.insert_from_json()
             return True
         
         if table_choice == 4:
+            # vehicle-engineer assignments
             self.query_vehicle_engineers()
             return True
 

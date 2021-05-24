@@ -19,14 +19,15 @@ class VehicleUtils:
         if car_exists is not None:
             cars = self.read_vehicles_by_model(model)
             for car in cars:
-                if car.manufacture_date == manufacture_date:
-                    new_quantity = car.quantity + quantity
-                    self.update_vehicle_db(car.id, quantity=new_quantity)
-                    return None
+                new_quantity = car.quantity + quantity
+                print(f"Updating model {model} in the database.")
+                self.update_vehicle_db(car.id, quantity=new_quantity)
+                return None
         else:            
             new_car = Vehicle(model, quantity, price, manufacture_date)
             session.add(new_car)
             session.commit()
+            print("Committed new car")
             new_car_id = new_car.id
             new_car_engins = [engin.name for engin in new_car.engineers]
             return new_car
@@ -75,8 +76,10 @@ class VehicleUtils:
             car.manufacture_date = manufacture_date if manufacture_date is not None else car.manufacture_date
             car.engineers = engineers if engineers is not None else car.engineers
             session.commit()
+            print("Commited vehicle update")
         except:
             session.rollback()
+            print("Rollback vehicle update")
             return None
         return car
 
