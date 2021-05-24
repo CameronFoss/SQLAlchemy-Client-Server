@@ -1,10 +1,6 @@
 from json.decoder import JSONDecodeError
-from logging import critical
-
-from sqlalchemy.sql.expression import update
 import slash
 import socket
-from training.server.__main__ import Server
 from training.sock_utils import send_message, get_data_from_connection, decode_message_chunks
 
 vehicle_tuple = ("model", "quantity", "price", "manufacture_year", "manufacture_month", "manufacture_date")
