@@ -315,38 +315,57 @@ class Server:
         error_text = "Client vehicle insert job has no entry for \"{}\""
         try:
             model = job_json['model']
+            if not model:
+                self.send_error_msg("IntegrityError: model name must not be empty (\"\")", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("model"), client_port)
             return
         
         try:
             quantity = job_json['quantity']
+            if quantity < 0:
+                self.send_error_msg("IntegrityError: quantity must be no less than 0", client_port)
+                return
         except:
-            self.send_error_msg("quantity", client_port)
+            self.send_error_msg(error_text.format("quantity"), client_port)
             return
 
         try:
             price = job_json['price']
+            if price < 1:
+                self.send_error_msg("IntegrityError: price must be no less than 1", client_port)
+                return
         except:
-            self.send_error_msg("price", client_port)
+            self.send_error_msg(error_text.format("price"), client_port)
             return
 
         try:
             manufacture_year = job_json['manufacture_year']
+            if manufacture_year < 1920 or manufacture_year > 2021:
+                self.send_error_msg("IntegrityError: manufacture year must be between the years (1920-2021)", client_port)
+                return
+
         except:
-            self.send_error_msg("manufacture_year", client_port)
+            self.send_error_msg(error_text.format("manufacture_year"), client_port)
             return
         
         try:
             manufacture_month = job_json["manufacture_month"]
+            if manufacture_month < 1 or manufacture_month > 12:
+                self.send_error_msg("IntegrityError: manufacture month must be between (1-12)", client_port)
+                return
         except:
-            self.send_error_msg("manufacture_month", client_port)
+            self.send_error_msg(error_text.format("manufacture_month"), client_port)
             return
         
         try:
             manufacture_date = job_json["manufacture_date"]
+            if manufacture_date < 1 or manufacture_date > 31:
+                self.send_error_msg("IntegrityError: manufacture date must be between (1-31)", client_port)
+                return
         except:
-            self.send_error_msg("manufacture_date", client_port)
+            self.send_error_msg(error_text.format("manufacture_date"), client_port)
             return
 
         try:

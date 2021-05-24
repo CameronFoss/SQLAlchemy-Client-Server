@@ -30,14 +30,17 @@ class Vehicle(Base):
         return f"ID: {self.id}\nModel: {self.model}\nQuantity: {self.quantity}\nPrice: {self.price}\nManufacture Date: {self.manufacture_date}"
 
     def to_json(self):
+        engineers = [engin.name for engin in self.engineers]
         return {
+            "id": self.id,
             "data_type": "vehicle",
             "model": self.model,
             "quantity": self.quantity,
             "price": float(self.price),
             "manufacture_year": self.manufacture_date.year,
             "manufacture_month": self.manufacture_date.month,
-            "manufacture_date": self.manufacture_date.day
+            "manufacture_date": self.manufacture_date.day,
+            "engineers": engineers
         }
 
 class Engineer(Base):
@@ -56,6 +59,7 @@ class Engineer(Base):
 
     def to_json(self):
         return {
+            "id": self.id,
             "data_type": "engineer",
             "name": self.name,
             "birth_year": self.birthday.year,
@@ -83,6 +87,7 @@ class Laptop(Base):
     def to_json(self):
         engin_name = "None" if self.engineer is None else self.engineer.name
         return {
+            "id": self.id,
             "data_type": "laptop",
             "model": self.model,
             "loan_year": self.date_loaned.year,
@@ -111,6 +116,7 @@ class ContactDetails(Base):
     def to_json(self):
         engin_name = "None" if self.engineer is None else self.engineer.name
         return {
+            "id": self.id,
             "data_type": "contact_details",
             "phone_number": self.phone_number,
             "address": self.address,
