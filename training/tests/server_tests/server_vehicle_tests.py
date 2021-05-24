@@ -76,7 +76,7 @@ class ServerVehicleTests(slash.Test):
     def get_server_response(self):
         server_response = None
         timeout_counter = 0
-        timeout_max = 20
+        timeout_max = 100
         while server_response is None:
             if timeout_counter >= timeout_max:
                 slash.logger.error("Timed out too many times while trying to accept a message from the server")
