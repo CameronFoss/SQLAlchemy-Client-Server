@@ -58,8 +58,16 @@ class Server:
 
     def get_unused_port(self):
         port = randint(self.PORT_MIN, self.PORT_MAX)
-        while port in self.used_ports:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        taken = True
+        while taken:
             port = randint(self.PORT_MIN, self.PORT_MAX)
+            try:
+                s.bind(("localhost", port))
+                taken = False
+            except:
+                continue
+        s.close()
         self.used_ports.add(port)
         return port
 
@@ -142,19 +150,15 @@ class Server:
         print(type(job_json))
         print(job_json)
         try:
-            action = job_json['action']
-        except KeyError:
-            text = "Client message did not include entry \"action\" to let the server know an action to take (add/delete/read/update)"
-            self.send_error_msg(text)
-            return
-        
-        if action == "reset":
-            logging.info("Resetting the database...")
-            #with self.db_lock:
-                #logging.info("DB_lock held by reset thread")
-            reset_db()
-            logging.info("Database successfully reset.")
-            return
+            if job_json["action"] == "reset":
+                logging.info("Resetting the database...")
+                #with self.db_lock:
+                    #logging.info("DB_lock held by reset thread")
+                reset_db()
+                logging.info("Database successfully reset.")
+                return
+        except:
+            pass
 
         try:
             client_port = job_json['port']
@@ -165,15 +169,22 @@ class Server:
         self.used_ports.add(client_port)
 
         try:
+            action = job_json['action']
+        except KeyError:
+            text = "Client message did not include entry \"action\" to let the server know an action to take (add/delete/read/update)"
+            self.send_error_msg(text, client_port)
+            return
+        
+        try:
             data_type = job_json['data_type']
         except KeyError:
             text = "Client message did not include entry \"data_type\" to let the server know which table to work with."
-            self.send_error_msg(text)
+            self.send_error_msg(text, client_port)
             return
 
         if data_type not in ["vehicle", "engineer", "laptop", "contact_details", "vehicle_engineers"]:
             text = "Client message entry \"data_type\" is not one of [\"vehicle\", \"engineer\", \"laptop\", \"contact_details\", \"vehicle_engineers\"]"
-            self.send_error_msg(text)
+            self.send_error_msg(text, client_port)
             return
 
         vehicle_engineers_error_msg = f"Data type vehicle_engineers only supports the \"read\" action and does not support action \"{action}\""
@@ -245,7 +256,7 @@ class Server:
 
         else:
             text = f"Client message entry \"action\": {action} must be one of [\"add\", \"delete\", \"read\"]"
-            self.send_error_msg(text)
+            self.send_error_msg(text, client_port)
             return
 
     def query_vehicle_engineers(self, job_json, client_port):
@@ -854,7 +865,7 @@ class Server:
 
         if curr_engin is None:
             error_msg = f"No engineer with ID {engin_id} exists in the database. Cannot update information for an engineer that doesn't exist."
-            self.send_error_msg(error_msg)
+            self.send_error_msg(error_msg, client_port)
             return
 
         name = birth_year = birth_month = birth_date = vehicle_models = None

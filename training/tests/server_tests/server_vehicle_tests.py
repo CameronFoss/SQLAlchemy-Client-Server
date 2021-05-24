@@ -61,9 +61,19 @@ engineer_names = [
     [], # unassign all engineers
     None # no engineer assignment
 ]
-
-
-# TODO: test cases for bad client messages (e.g. wrong data_type/action, missing entries, etc)
+message_tuple = ("data_type", "action", "entry_list")
+bad_messages = [
+    ("cars", "add", ["model", "quantity", "price", "manufacture_year", "manufacture_month", "manufacture_date"]), # no "cars" data type
+    ("vehicle", "asdf", []), # no "asdf" action
+    ("vehicle", "add", ["model", "quantity", "price", "manufacture_year", "manufacture_month"]), # no manufacture date (add)
+    ("vehicle", "add", ["model", "quantity", "price", "manufacture_year", "manufacture_date"]), # no manufacture month (add)
+    ("vehicle", "add", ["model", "quantity", "price", "manufacture_month", "manufacture_month"]), # no manufacture year (add)
+    ("vehicle", "add", ["model", "quantity", "manufacture_year", "manufacture_month", "manufacture_date"]), # no price (add)
+    ("vehicle", "add", ["model", "price", "manufacture_year", "manufacture_month", "manufacture_date"]), # no quantity (add)
+    ("vehicle", "add", ["quantity", "price", "manufacture_year", "manufacture_month", "manufacture_date"]), # no model (add)
+    ("vehicle", "delete", []), # no model (delete)
+    ("vehicle", "update", ["model"]), # no id (update)
+]
 
 class ServerVehicleTests(slash.Test):
     listen_port = 6001
@@ -206,6 +216,32 @@ class ServerVehicleTests(slash.Test):
         print(f"Asking server to read assigned engineers for model {model} vehicles")
         send_message("localhost", self.server_port, read_msg)
 
+    #@slash.skipped
+    @slash.parametrize(message_tuple, bad_messages)
+    def test_invalid_messages(self, data_type, action, entry_list):
+        curr_test_input = "Input for current test:\n" + \
+                          f"Data Type: {data_type}\n" + \
+                          f"Action: {action}\n" + \
+                          f"Entries: {entry_list}\n"
+        slash.logger.error(curr_test_input)
+
+        msg = {
+            "data_type": data_type,
+            "action": action,
+            "port": self.my_port,
+        }
+        for entry in entry_list:
+            msg[entry] = None
+        
+        send_message("localhost", self.server_port, msg)
+
+        server_response = self.get_server_response()
+        assert server_response
+
+        status = self.check_server_status(server_response)
+        assert not status # Expect to error-out with invalid messages
+
+    #@slash.skipped
     @slash.parametrize(vehicle_update_tuple, invalid_vehicle_updates)
     def test_update_invalid_vehicle(self, id, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \
@@ -226,7 +262,7 @@ class ServerVehicleTests(slash.Test):
         status = self.check_server_status(server_response)
         assert not status # Expect an error for invalid update cases
 
-    @slash.skipped
+    #@slash.skipped
     @slash.parametrize(vehicle_update_tuple, valid_vehicle_updates)
     def test_update_valid_vehicle(self, id, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \
@@ -313,7 +349,7 @@ class ServerVehicleTests(slash.Test):
             slash.logger.error(missing_vehicle_entry_msg.format("engineers"))
             assert False
 
-    @slash.skipped
+    #@slash.skipped
     @slash.parametrize("model", invalid_vehicle_deletes)
     def test_delete_invalid_vehicle(self, model):
         curr_test_input = "Input for current test:\n" + \
@@ -327,7 +363,7 @@ class ServerVehicleTests(slash.Test):
         status = self.check_server_status(server_response)
         assert not status # expect error for invalid vehicle delete
 
-    @slash.skipped
+    #@slash.skipped
     @slash.parametrize("model", valid_vehicle_deletes)
     def test_delete_valid_vehicle(self, model):
         curr_test_input = "Input for current test:\n" + \
@@ -366,7 +402,7 @@ class ServerVehicleTests(slash.Test):
         read_status = self.check_server_status(read_response)
         assert not read_status # expect the read request to error out since we just deleted the vehicle
 
-    @slash.skipped
+    #@slash.skipped
     @slash.parametrize(vehicle_tuple, bad_vehicles)
     def test_add_invalid_vehicle(self, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \
@@ -386,7 +422,7 @@ class ServerVehicleTests(slash.Test):
         status = self.check_server_status(server_response)
         assert not status # Expect to error out on invalid vehicle add
 
-    @slash.skipped
+    #@slash.skipped
     @slash.parametrize(vehicle_tuple, valid_vehicle_adds)
     def test_add_valid_vehicle(self, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \
