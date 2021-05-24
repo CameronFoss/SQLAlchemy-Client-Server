@@ -16,3 +16,5 @@ training/server/db_utils.py
 training/server/inserts.py
 training/server/model.py
 training/server/reset.py
+training/tests/__init__.py
+training/tests/server_tests_base.py

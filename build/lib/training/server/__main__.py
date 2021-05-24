@@ -58,8 +58,16 @@ class Server:
 
     def get_unused_port(self):
         port = randint(self.PORT_MIN, self.PORT_MAX)
-        while port in self.used_ports:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        taken = True
+        while taken:
             port = randint(self.PORT_MIN, self.PORT_MAX)
+            try:
+                s.bind(("localhost", port))
+                taken = False
+            except:
+                continue
+        s.close()
         self.used_ports.add(port)
         return port
 
@@ -142,19 +150,15 @@ class Server:
         print(type(job_json))
         print(job_json)
         try:
-            action = job_json['action']
-        except KeyError:
-            text = "Client message did not include entry \"action\" to let the server know an action to take (add/delete/read/update)"
-            self.send_error_msg(text)
-            return
-        
-        if action == "reset":
-            logging.info("Resetting the database...")
-            #with self.db_lock:
-                #logging.info("DB_lock held by reset thread")
-            reset_db()
-            logging.info("Database successfully reset.")
-            return
+            if job_json["action"] == "reset":
+                logging.info("Resetting the database...")
+                #with self.db_lock:
+                    #logging.info("DB_lock held by reset thread")
+                reset_db()
+                logging.info("Database successfully reset.")
+                return
+        except:
+            pass
 
         try:
             client_port = job_json['port']
@@ -165,15 +169,22 @@ class Server:
         self.used_ports.add(client_port)
 
         try:
+            action = job_json['action']
+        except KeyError:
+            text = "Client message did not include entry \"action\" to let the server know an action to take (add/delete/read/update)"
+            self.send_error_msg(text, client_port)
+            return
+        
+        try:
             data_type = job_json['data_type']
         except KeyError:
             text = "Client message did not include entry \"data_type\" to let the server know which table to work with."
-            self.send_error_msg(text)
+            self.send_error_msg(text, client_port)
             return
 
         if data_type not in ["vehicle", "engineer", "laptop", "contact_details", "vehicle_engineers"]:
             text = "Client message entry \"data_type\" is not one of [\"vehicle\", \"engineer\", \"laptop\", \"contact_details\", \"vehicle_engineers\"]"
-            self.send_error_msg(text)
+            self.send_error_msg(text, client_port)
             return
 
         vehicle_engineers_error_msg = f"Data type vehicle_engineers only supports the \"read\" action and does not support action \"{action}\""
@@ -245,7 +256,7 @@ class Server:
 
         else:
             text = f"Client message entry \"action\": {action} must be one of [\"add\", \"delete\", \"read\"]"
-            self.send_error_msg(text)
+            self.send_error_msg(text, client_port)
             return
 
     def query_vehicle_engineers(self, job_json, client_port):
@@ -557,7 +568,7 @@ class Server:
 
         if curr_car is None:
             error_msg = f"No vehicle with id {vehicle_id} exists in the database. Cannot update a vehicle that doesn't exist."
-            self.send_error_msg(error_msg)
+            self.send_error_msg(error_msg, client_port)
             return
 
         model = quantity = price = manufacture_year = manufacture_month = manufacture_date = engineer_names = engineers = None
@@ -565,33 +576,52 @@ class Server:
         missing_entry_msg = "Client did not provide an entry for \"{entry_name}\". Skipping update for \"{entry_name}\" in the database."
         try:
             model = job_json["model"]
+            if model == "":
+                self.send_error_msg("IntegrityError: entry \"model\" must not be empty (\"\")", client_port)
         except:
             logging.info(missing_entry_msg.format(entry_name = "model"))
         
         try:
             quantity = job_json["quantity"]
+            if quantity < 0:
+                self.send_error_msg("IntegrityError: entry \"quantity\" must be more than 0", client_port)
+                return
         except:
             logging.info(missing_entry_msg.format(entry_name = "quantity"))
 
         try:
             price = job_json["price"]
+            if price < 1:
+                self.send_error_msg("IntegrityError: entry \"price\" must be more than 1", client_port)
+                return
         except:
             logging.info(missing_entry_msg.format(entry_name = "price"))
 
         try:
             manufacture_year = job_json["manufacture_year"]
+            if manufacture_year < 1920 or manufacture_year > 2021:
+                self.send_error_msg("IntegrityError: entry \"manufacture_year\" must be in the range (1920-2021)", client_port)
+                return
         except:
             logging.info(missing_entry_msg.format(entry_name = "manufacture_year"))
             manufacture_year = curr_car.manufacture_date.year
         
         try:
             manufacture_month = job_json["manufacture_month"]
-        except:
+            if manufacture_month < 1 or manufacture_month > 12:
+                self.send_error_msg("IntegrityError: entry \"manufacture_month\" must be in the range (1-12)", client_port)
+                return
+        except KeyError:
             logging.info(missing_entry_msg.format(entry_name = "manufacture_month"))
             manufacture_month = curr_car.manufacture_date.month
+        except:
+            logging.info("Had a non-KeyError issue with retrieving entry \"manufacture_month\" from the client job")
         
         try:
             manufacture_date = job_json["manufacture_date"]
+            if manufacture_date < 1 or manufacture_date > 31:
+                self.send_error_msg("IntegrityError: entry \"manufacture_date\" must be in the range (1-31)", client_port)
+                return
         except:
             logging.info(missing_entry_msg.format(entry_name = "manufacture_date"))
             manufacture_date = curr_car.manufacture_date.day
@@ -605,11 +635,15 @@ class Server:
                     engineers.append(engin)
             engineers = None if not engineers else engineers
         except:
-            logging.info(missing_entry_msg.format("engineers"))
+            logging.info(missing_entry_msg.format(entry_name = "engineers"))
         
         full_manufacture_date = None
         try:
             full_manufacture_date = date(manufacture_year, manufacture_month, manufacture_date)
+        except ValueError:
+            error_msg = f"ValueError: client date is not a real calendar date. Year: {manufacture_year}, Month: {manufacture_month}, Date: {manufacture_date}"
+            self.send_error_msg(error_msg, client_port)
+            return
         except:
             logging.info("Client left one of the manufacture date fields empty. Skipping update for manufacture date fields.")
 
@@ -831,7 +865,7 @@ class Server:
 
         if curr_engin is None:
             error_msg = f"No engineer with ID {engin_id} exists in the database. Cannot update information for an engineer that doesn't exist."
-            self.send_error_msg(error_msg)
+            self.send_error_msg(error_msg, client_port)
             return
 
         name = birth_year = birth_month = birth_date = vehicle_models = None
