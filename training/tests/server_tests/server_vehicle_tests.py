@@ -2,7 +2,6 @@ from json.decoder import JSONDecodeError
 from logging import critical
 import slash
 import socket
-import multiprocessing
 from training.server.__main__ import Server
 from training.sock_utils import send_message, get_data_from_connection, decode_message_chunks
 
@@ -209,7 +208,7 @@ class ServerVehicleTests(slash.Test):
                 slash.logger.error(missing_response_msg.format("manufacture_date"))
                 assert False
 
-            print("Sending engineer assignment message to server")
+            print(f"Sending engineer assignment message to server: {assign_engins_msg}")
             send_message("localhost", new_server_port, assign_engins_msg)
 
             if self.engineers is not None:

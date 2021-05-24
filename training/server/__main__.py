@@ -19,6 +19,7 @@ from datetime import date
 class Server:
     
     def __init__(self, listen_port, handle_jobs_multithreaded=False):
+        logging.basicConfig(filename="server.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s: %(message)s")
         self.shutdown = False
         self.multithreaded = handle_jobs_multithreaded
         self.used_ports = {listen_port}
@@ -32,19 +33,20 @@ class Server:
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind(("localhost", self.port))
+        logging.info(f"Bound server socket to {self.port}")
         self.sock.listen()
         self.sock.settimeout(1)
-        logging.basicConfig(filename="server.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s: %(message)s")
+        
 
         logging.info("Server started")
         self.db_lock = threading.Lock()
         self.listen_thread = threading.Thread(target=self.listen_for_jobs, args=(handle_jobs_multithreaded,))
         self.listen_thread.daemon = True
         self.listen_thread.start()
-
+        logging.info("Listen thread started")
         self.shutdown_thread = threading.Thread(target=self.user_shutdown, args=())
         self.shutdown_thread.start()
-
+        logging.info("User Shutdown Input thread started")
         self.shutdown_thread.join()
 
         logging.info("Server shutdown")
@@ -112,8 +114,6 @@ class Server:
                 self.shutdown = True
                 logging.info("Shutting down the server...")
                 break
-            else:
-                logging.info(i)
 
     def listen_for_jobs(self, single_threaded=False):
         while not self.shutdown:
@@ -127,10 +127,12 @@ class Server:
                 # decode the message and spawn a new thread to handle it
                 message_dict = decode_message_chunks(message_chunks)
                 print(type(message_dict))
-                logging.info(f"Successfully received message from client. Spawning a new thread to handle job {message_dict}.")
+                
                 if single_threaded:
+                    logging.info(f"Successfully received message from client. Handling job on this thread {message_dict}.")
                     self.handle_job(message_dict)
                 else:
+                    logging.info(f"Successfully received message from client. Spawning a new thread to handle job {message_dict}.")
                     handle_job_thread = threading.Thread(target=self.handle_job, args=(message_dict,))
                     handle_job_thread.start()
             except JSONDecodeError:

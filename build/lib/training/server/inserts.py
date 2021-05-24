@@ -37,21 +37,27 @@ def insert_default_items():
 
     # persist data to DB
     session.add(fusion_2020)
+    print("added fusion vehicle")
     session.add(explorer_2020)
+    print("added explorer vehicle")
     session.add(bronco_2020)
+    print("added bronco vehicle")
     session.add(mustang_2020)
-
+    print("added mustang vehicle")
+    print("added all vehicles and engineers")
     session.add(cameron_contact)
     session.add(prerna_contact)
     session.add(prerna_contact2)
     session.add(jaiven_contact)
-
+    print("added all contact info")
     session.add(cameron_laptop)
     session.add(prerna_laptop)
     session.add(jaiven_laptop)
+    print("added laptop info")
 
     session.commit()
-    session.close()
+    print("commit default database inserts")
+    #session.close()
 
 if __name__ == "__main__":
     insert_default_items()

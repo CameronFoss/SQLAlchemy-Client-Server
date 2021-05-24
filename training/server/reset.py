@@ -4,6 +4,8 @@ from training.server.model import Vehicle, Laptop, ContactDetails, Engineer
 from training.server.db_utils import session
 
 def reset_db():
+    print("Attempting to reset the database")
+    session.commit()
     Base.metadata.drop_all(engine)
     print("Called drop_all on base metadata")
     session.commit()

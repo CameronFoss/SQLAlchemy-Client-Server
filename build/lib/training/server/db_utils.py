@@ -18,10 +18,12 @@ class VehicleUtils:
         car_exists = (session.query(literal(True)).filter(Vehicle.model == model).first())
         if car_exists is not None:
             cars = self.read_vehicles_by_model(model)
+            session.commit()
             for car in cars:
                 new_quantity = car.quantity + quantity
                 print(f"Updating model {model} in the database.")
                 self.update_vehicle_db(car.id, quantity=new_quantity)
+                session.commit()
                 return None
         else:            
             new_car = Vehicle(model, quantity, price, manufacture_date)
@@ -46,16 +48,19 @@ class VehicleUtils:
     # Read all vehicles
     def read_vehicles_all(self):
         cars = session.query(Vehicle).all()
+        session.commit()
         return cars
 
     # Read a vehicle by id
     def read_vehicle_by_id(self, id):
         car = session.query(Vehicle).get(id)
+        session.commit()
         return car
 
     # Read a vehicles by model
     def read_vehicles_by_model(self, model):
         cars = session.query(Vehicle).filter(Vehicle.model == model).all()
+        session.commit()
         return cars
 
     # Read engineers assigned to a vehicle model
@@ -64,6 +69,7 @@ class VehicleUtils:
         engineer_ids = []
         for car in cars:
             engineer_ids += session.query(vehicle_engineer_association.c.engineer_id).filter(vehicle_engineer_association.c.vehicle_id == car.id).all()
+        session.commit()
         return [EngineerUtils.read_engineer_by_id(EngineerUtils(), id) for id in engineer_ids]
 
     # Update a vehicle record by id
@@ -110,16 +116,19 @@ class EngineerUtils:
     # Read all engineers
     def read_all_engineers(self):
         engins = session.query(Engineer).all()
+        session.commit()
         return engins
 
     # Read an engineer by id
     def read_engineer_by_id(self, id):
         engin = session.query(Engineer).get(id)
+        session.commit()
         return engin
 
     # Read an engineer by name
     def read_engineer_by_name(self, name):
         engin = session.query(Engineer).filter(Engineer.name == name).first()
+        session.commit()
         return engin
 
     # Read vehicles this engineer is assigned to
@@ -127,6 +136,7 @@ class EngineerUtils:
         engin = self.read_engineer_by_name(name)
         vehicle_ids = session.query(vehicle_engineer_association.c.vehicle_id).filter(vehicle_engineer_association.c.engineer_id == engin.id).all()
         car_utils = VehicleUtils()
+        session.commit()
         return [car_utils.read_vehicle_by_id(id) for id in vehicle_ids]
 
     # Update an engineer record by id
@@ -169,22 +179,26 @@ class LaptopUtils:
     # Read all laptops
     def read_all_laptops(self):
         laptops = session.query(Laptop).all()
+        session.commit()
         return laptops
 
     # Read laptops by model
     def read_laptops_by_model(self, model):
         laptops = session.query(Laptop).filter(Laptop.model == model).all()
+        session.commit()
         return laptops
 
     # Read a laptop by id
     def read_laptop_by_id(self, id):
         laptop = session.query(Laptop).get(id)
+        session.commit()
         return laptop
 
     # Read laptop by model and owner
     def read_laptop_by_model_owner(self, model, engineer_name):
         engin = EngineerUtils.read_engineer_by_name(EngineerUtils(), engineer_name)
         laptop = session.query(Laptop).filter(Laptop.model == model, Laptop.engineer_id == engin.id).first()
+        session.commit()
         return laptop
 
     # Read laptop by owner
@@ -193,6 +207,7 @@ class LaptopUtils:
         if engin is None:
             return None
         laptop = session.query(Laptop).filter(Laptop.engineer_id == engin.id).first()
+        session.commit()
         return laptop
 
     # Update laptop by id
@@ -240,16 +255,19 @@ class ContactDetailsUtils:
     # Read all contact details
     def read_all_contact_details(self):
         contacts = session.query(ContactDetails).all()
+        session.commit()
         return contacts
 
     # Read contact details by id
     def read_contact_details_by_id(self, id):
         contact = session.query(ContactDetails).get(id)
+        session.commit()
         return contact
 
     # Read contact details by engineer id
     def read_contact_details_by_engin_id(self, engin_id):
         contacts = session.query(ContactDetails).filter(ContactDetails.engineer_id == engin_id).all()
+        session.commit()
         return contacts
 
     # Update contact details by id
@@ -266,4 +284,5 @@ class ContactDetailsUtils:
     def update_contact_details_by_engin_id(self, engin_id, phone_number=None, address=None):
         contact = self.read_contact_details_by_engin_id(engin_id)
         engin = EngineerUtils.read_engineer_by_id(EngineerUtils(), engin_id)
+        session.commit()
         return self.update_contact_details_by_id(contact.id, phone_number, address, engin.name)
