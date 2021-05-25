@@ -18,6 +18,7 @@ invalid_engineer_adds = [
     ("Impossible Date", 2021, 2, 31), # full date impossible (February 31st)
     ("", 2021, 5, 25) # empty name
 ]
+valid_engineer_deletes = ["Cameron Foss", "Prerna Sancheti", "Jaivenkatram Harirao"]
 vehicle_models = [
     ["Fusion"],
     ["Fusion", "Explorer"],
@@ -58,6 +59,46 @@ class ServerEngineerTests(ServerTestsBase):
         }
         print(f"Asking server to add engineer: {add_msg}")
         send_message("localhost", self.server_port, add_msg)
+
+    def delete_engineer(self, name):
+        delete_msg = {
+            "data_type": "engineer",
+            "action": "delete",
+            "port": self.my_port,
+            "name": name
+        }
+        print(f"Asking server to delete engineer named {name}")
+        send_message("localhost", self.server_port, delete_msg)
+
+    #@slash.skipped
+    @slash.parametrize("name", valid_engineer_deletes)
+    def test_delete_valid_engineer(self, name):
+        curr_test_input = "Current test input:\n" + \
+                          f"Name: {name}\n"
+        slash.logger.error(curr_test_input)
+        self.delete_engineer(name)
+
+        server_response = self.get_server_response()
+        assert server_response
+
+        status = self.check_server_status(server_response)
+        assert status
+
+        read_msg = {
+            "data_type": "engineer",
+            "action": "read",
+            "port": self.my_port,
+            "name": name
+        }
+
+        send_message("localhost", self.server_port, read_msg)
+
+        read_response = self.get_server_response()
+        assert read_response
+
+        read_status = self.check_server_status(read_response)
+        assert not read_status # Expect to error out when we read the engineer we just deleted
+
 
     #@slash.skipped
     @slash.parametrize(engineer_tuple, invalid_engineer_adds)
