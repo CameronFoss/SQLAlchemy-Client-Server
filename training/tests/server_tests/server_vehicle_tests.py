@@ -362,7 +362,7 @@ class ServerVehicleTests(ServerTestsBase):
         status = self.check_server_status(server_response)
         assert not status # Expect to error out on invalid vehicle add
 
-    @slash.skipped
+    #@slash.skipped
     @slash.parametrize(vehicle_tuple, valid_vehicle_adds)
     def test_add_valid_vehicle(self, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \
@@ -447,7 +447,19 @@ class ServerVehicleTests(ServerTestsBase):
                 assert False
 
             print(f"Sending engineer assignment message to server: {assign_engins_msg}")
-            send_message("localhost", new_server_port, assign_engins_msg)
+            refused = True
+            timeout_counter = 0
+            timeout_max = 20
+            while refused:
+                if timeout_counter > timeout_max:
+                    slash.logger.error(f"Server timed out too many times when trying to send assign engineers message to new port {new_server_port}")
+                    assert False
+                try:
+                    send_message("localhost", new_server_port, assign_engins_msg)
+                    refused = False
+                except:
+                    timeout_counter += 1
+                    continue
 
             if self.engineers is not None:
                 server_response = self.get_server_response()
