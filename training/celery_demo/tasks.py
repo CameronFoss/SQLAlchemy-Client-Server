@@ -15,56 +15,65 @@ def read_contacts_for_engineer(name):
     engin = engin_utils.read_engineer_by_name(name)
     contacts = contact_utils.read_contact_details_by_engin_id(engin.id)
     contacts = [contact.to_json() for contact in contacts]
-    print("Finsihed reading contact details")
     return contacts
 
 @app.task
-def count_vehicles_by_engineer(name):
-    print(f"Counting the total number of vehicles engineer {name} has been assigned to")
-    cars = engin_utils.read_assigned_vehicles_by_name(name)
-    print("Finished reading vehicles")
-    return len(cars)
-
-@app.task
-def count_engineers_assigned_to_vehicle(model):
-    print(f"Counting the total number of engineers assigned to vehicle model {model}")
-    engins = car_utils.read_assigned_engineers_by_model(model)
-    print("Finished reading engineers")
-    return len(engins)
-
-@app.task
-def count_contacts():
-    print("Counting the total number of contact details in the database")
+def read_all_contacts():
+    print("Reading all contact info")
     contacts = contact_utils.read_all_contact_details()
-    print("Finsihed reading contacts")
-    return len(contacts)
+    contacts = [contact.to_json() for contact in contacts]
+    return contacts
 
 @app.task
-def count_laptops():
-    print("Counting the total number of laptops in the database")
+def read_laptops_by_engineer(name):
+    print(f"Reading info for laptop loaned by engineer {name}")
+    laptop = laptop_utils.read_laptop_by_owner(name)
+    return laptop.to_json()
+
+@app.task
+def read_all_laptops():
+    print("Reading info for all laptops")
     laptops = laptop_utils.read_all_laptops()
-    print("Finsihed reading laptops")
-    return len(laptops)
+    laptops = [laptop.to_json() for laptop in laptops]
+    return
 
 @app.task
-def count_engineers():
-    print("Counting the total number of engineers in the database")
-    engins = engin_utils.read_all_engineers()
-    print("Finsihed reading engineers")
-    return len(engins)
-
+def read_vehicle_by_model(model):
+    print(f"Reading info for vehicle model {model}")
+    cars = car_utils.read_vehicles_by_model(model)
+    cars = [car.to_json() for car in cars]
+    return cars
 
 @app.task
-def count_vehicles():
-    print("Counting the total number of vehicles in the database")
+def read_all_vehicles():
+    print("Reading info for all vehicles")
     cars = car_utils.read_vehicles_all()
-    print("Finished reading cars")
-    return len(cars)
+    cars = [car.to_json() for car in cars]
+    return cars
 
 @app.task
-def longtime_add(x, y):
-    print('long time task begins')
-    # sleep 5 seconds
-    time.sleep(5)
-    print('long time task finished')
-    return x + y
+def read_engineer_by_name(name):
+    print(f"Reading info for engineer {name}")
+    engin = engin_utils.read_engineer_by_name(name)
+    return engin.to_json()
+
+@app.task
+def read_all_engineers():
+    print("Reading info for all engineers")
+    engins = engin_utils.read_all_engineers()
+    engins = [engin.to_json() for engin in engins]
+    return engins
+
+@app.task
+def read_engineers_by_vehicle(model):
+    print(f"Reading info for engineers assigned to vehicle {model}")
+    engins = car_utils.read_assigned_engineers_by_model(model)
+    engins = [engin.to_json() for engin in engins]
+    return engins
+
+@app.task
+def read_vehicles_by_engineer(name):
+    print(f"Reading info for vehicles engineer {name} is assigned to")
+    cars = engin_utils.read_assigned_vehicles_by_name(name)
+    cars = [car.to_json() for car in cars]
+    return cars
