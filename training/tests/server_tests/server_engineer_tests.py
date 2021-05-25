@@ -19,6 +19,7 @@ invalid_engineer_adds = [
     ("", 2021, 5, 25) # empty name
 ]
 valid_engineer_deletes = ["Cameron Foss", "Prerna Sancheti", "Jaivenkatram Harirao"]
+invalid_engineer_deletes = ["Steven Universe", "Autumn Tedrow", ""]
 vehicle_models = [
     ["Fusion"],
     ["Fusion", "Explorer"],
@@ -69,6 +70,20 @@ class ServerEngineerTests(ServerTestsBase):
         }
         print(f"Asking server to delete engineer named {name}")
         send_message("localhost", self.server_port, delete_msg)
+
+    #@slash.skipped
+    @slash.parametrize("name", invalid_engineer_deletes)
+    def test_delete_invalid_engineer(self, name):
+        curr_test_input = "Current test input:\n" + \
+                          f"Name: {name}\n"
+        slash.logger.error(curr_test_input)
+        self.delete_engineer(name)
+
+        server_response = self.get_server_response()
+        assert server_response
+
+        status = self.check_server_status(server_response)
+        assert not status # Expect to error out for invalid engineer deletions
 
     #@slash.skipped
     @slash.parametrize("name", valid_engineer_deletes)
