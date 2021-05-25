@@ -10,6 +10,14 @@ valid_engineer_adds = [
     ("Autumn Tedrow", 2021, 12, 31), # latest accepted birth date
     ("Greg DeMayo", 1920, 1, 1) # earliest accepted birth date
 ]
+invalid_engineer_adds = [
+    ("Cameron Foss", 1998, 12, 1), # duplicate engineer
+    ("Bad Year", 2022, 1, 1), # year out of range
+    ("Bad Month", 2021, 13, 1), # month out of range
+    ("Bad Date", 2021, 1, 32), # date out of range
+    ("Impossible Date", 2021, 2, 31), # full date impossible (February 31st)
+    ("", 2021, 5, 25) # empty name
+]
 vehicle_models = [
     ["Fusion"],
     ["Fusion", "Explorer"],
@@ -51,6 +59,25 @@ class ServerEngineerTests(ServerTestsBase):
         print(f"Asking server to add engineer: {add_msg}")
         send_message("localhost", self.server_port, add_msg)
 
+    #@slash.skipped
+    @slash.parametrize(engineer_tuple, invalid_engineer_adds)
+    def test_add_invalid_engineer(self, name, birth_year, birth_month, birth_date):
+        curr_test_input = "Current test input:\n" + \
+                          f"Name: {name}\n" + \
+                          f"Birth Year: {birth_year}\n" + \
+                          f"Birth Month: {birth_month}\n" + \
+                          f"Birth Date: {birth_date}\n" + \
+                          f"Vehicles: {self.vehicles}\n"
+        slash.logger.error(curr_test_input)
+        self.add_engineer(name, birth_year, birth_month, birth_date)
+
+        server_response = self.get_server_response()
+        assert server_response
+
+        status = self.check_server_status(server_response)
+        assert not status # Expect to error out for all invalid cases
+
+    #@slash.skipped
     @slash.parametrize(engineer_tuple, valid_engineer_adds)
     def test_add_valid_engineer(self, name, birth_year, birth_month, birth_date):
         curr_test_input = "Current test input:\n" + \
@@ -112,7 +139,19 @@ class ServerEngineerTests(ServerTestsBase):
         if self.vehicles is None:
             assign_vehicles_msg["response"] = "n"
         
-        send_message("localhost", new_server_port, assign_vehicles_msg)
+        refused = True
+        timeout_counter = 0
+        timeout_max = 20
+        while refused:
+            if timeout_counter > timeout_max:
+                slash.logger.error(f"Server timed out too many times while trying to send vehicle assignment message to port {new_server_port}")
+            try:
+                send_message("localhost", new_server_port, assign_vehicles_msg)
+                refused = False
+            except:
+                timeout_counter += 1
+                continue
+
         print(f"Asking server to assign vehicles: {assign_vehicles_msg}")
         
         if self.vehicles is not None:

@@ -670,29 +670,46 @@ class Server:
         error_text = "Client engineer insert job has no entry for \"{}\""
         try:
             engin_name = job_json["name"]
+            if engin_name == "":
+                self.send_error_msg("IntegrityError: Client engineer insert job gave an empty \"name\" entry", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("name"), client_port)
             return
         
         try:
             birth_year = job_json["birth_year"]
+            if birth_year < 1920 or birth_year > 2021:
+                self.send_error_msg("IntegrityError: Client engineer insert job gave a year not in the range (1920-2021)", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("birth_year"), client_port)
             return
 
         try:
             birth_month = job_json["birth_month"]
+            if birth_month < 1 or birth_month > 12:
+                self.send_error_msg("IntegrityError: Client engineer insert job gave a month not in the range (1-12)", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("birth_month"), client_port)
             return
 
         try:
             birth_date = job_json["birth_date"]
+            if birth_date < 1 or birth_date > 31:
+                self.send_error_msg("IntegrityError: Client engineer insert job gave a date not in the range (1-31)", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("birth_date"), client_port)
             return
         
-        full_birth_date = date(birth_year, birth_month, birth_date)
+        try:
+            full_birth_date = date(birth_year, birth_month, birth_date)
+        except ValueError as err:
+            self.send_error_msg(f"ValueError: {err}", client_port)
+            return
+
         
         new_engin = self.call_with_lock(self.engin_utils.add_engineer_db, engin_name, full_birth_date)
 
