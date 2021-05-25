@@ -76,6 +76,9 @@ class ServerVehicleTests(ServerTestsBase):
     def __init__(self, test_method_name, fixture_store, fixture_namespace, variation):
         super().__init__(test_method_name, fixture_store, fixture_namespace, variation)
 
+    def __del__(self):
+        self.listen_sock.close()
+
     @slash.parametrize("engineers", engineer_names)
     def before(self, engineers):
         self.engineers = engineers
@@ -359,7 +362,7 @@ class ServerVehicleTests(ServerTestsBase):
         status = self.check_server_status(server_response)
         assert not status # Expect to error out on invalid vehicle add
 
-    #@slash.skipped
+    @slash.skipped
     @slash.parametrize(vehicle_tuple, valid_vehicle_adds)
     def test_add_valid_vehicle(self, model, quantity, price, manufacture_year, manufacture_month, manufacture_date):
         curr_test_input = "Input for current test:\n" + \

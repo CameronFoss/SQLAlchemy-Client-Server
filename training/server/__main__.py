@@ -64,6 +64,7 @@ class Server:
             port = randint(self.PORT_MIN, self.PORT_MAX)
             try:
                 s.bind(("localhost", port))
+                s.listen()
                 taken = False
             except:
                 continue
@@ -1045,6 +1046,7 @@ class Server:
                 logging.info("Client chose not to replace the engineer's current laptop.\nAborted adding new laptop")
                 new_sock.close()
                 self.used_ports.remove(new_port)
+                return
             
         # Finally, add the laptop and send success/error back to client
         new_laptop = self.call_with_lock(self.laptop_utils.add_laptop_db, model, date(loan_year, loan_month, loan_date), engin_name)
