@@ -5,6 +5,7 @@ from training.sock_utils import send_message, get_data_from_connection, decode_m
 from training.tests.server_tests_base import ServerTestsBase
 
 engineer_tuple = ("name", "birth_year", "birth_month", "birth_date")
+engineer_update_tuple = ("id",) + engineer_tuple
 valid_engineer_adds = [
     ("Steven Universe", 2010, 10, 1), 
     ("Autumn Tedrow", 2021, 12, 31), # latest accepted birth date
@@ -20,6 +21,14 @@ invalid_engineer_adds = [
 ]
 valid_engineer_deletes = ["Cameron Foss", "Prerna Sancheti", "Jaivenkatram Harirao"]
 invalid_engineer_deletes = ["Steven Universe", "Autumn Tedrow", ""]
+valid_engineer_updates = [
+    (1, "Steven Universe", 2010, 1, 1), # update all
+    (1, "Steven Universe", None, None, None), # only name
+    (1, None, 2010, None, None), # only birth year
+    (1, None, None, 1, None), # only birth month
+    (1, None, None, None, 31), # only birth date
+    (1, None, 2010, 1, 1) # full birthday
+]
 vehicle_models = [
     ["Fusion"],
     ["Fusion", "Explorer"],
@@ -71,7 +80,138 @@ class ServerEngineerTests(ServerTestsBase):
         print(f"Asking server to delete engineer named {name}")
         send_message("localhost", self.server_port, delete_msg)
 
-    #@slash.skipped
+    def update_engineer(self, id, name, birth_year, birth_month, birth_date):
+        update_msg = {
+            "data_type": "engineer",
+            "action": "update",
+            "port": self.my_port,
+            "id": id
+        }
+        if name is not None:
+            update_msg["name"] = name
+        if birth_year is not None:
+            update_msg["birth_year"] = birth_year
+        if birth_month is not None:
+            update_msg["birth_month"] = birth_month
+        if birth_date is not None:
+            update_msg["birth_date"] = birth_date
+        if self.vehicles is not None:
+            update_msg["vehicles"] = self.vehicles
+        
+        print(f"Asking server to update engineer: {update_msg}")
+        send_message("localhost", self.server_port, update_msg)
+
+    def read_vehicles_by_engineer(self, name):
+        read_msg = {
+            "data_type": "vehicle_engineers",
+            "action": "read",
+            "port": self.my_port,
+            "engineer": name
+        }
+        print(f"Asking server to read vehicles assigned to engineer {name}: {read_msg}")
+        send_message("localhost", self.server_port, read_msg)
+
+    @slash.parametrize(engineer_update_tuple, valid_engineer_updates)
+    def test_update_valid_engineer(self, id, name, birth_year, birth_month, birth_date):
+        curr_test_input = "Current test input:\n" + \
+                          f"ID: {id}\n" + \
+                          f"Name: {name}\n" + \
+                          f"Birth Year: {birth_year}\n" + \
+                          f"Birth Month: {birth_month}\n" + \
+                          f"Birth Date: {birth_date}\n" + \
+                          f"Vehicles: {self.vehicles}\n"
+        slash.logger.error(curr_test_input)
+        # Need to read previously assigned vehicles before update for later comparison
+        prev_vehicles = None
+        if name is not None:
+            self.read_vehicles_by_engineer(name)
+
+            read_response = self.get_server_response()
+            assert read_response
+
+            read_status = self.check_server_status(read_response)
+
+            try:
+                if read_status:
+                    prev_vehicles = read_response["vehicles"]
+                    prev_vehicles = [car["name"] for car in prev_vehicles]
+            except:
+                slash.logger.error(f"Server read for vehicles assigned to engineer {name} marked success, but did not provide an entry for \"vehicles\"")
+                assert False
+
+
+        self.update_engineer(id, name, birth_year, birth_month, birth_date)
+
+        server_response = self.get_server_response()
+        assert server_response
+
+        status = self.check_server_status(server_response)
+        assert status
+
+        try:
+            updated_engin = server_response["engineer"]
+            slash.logger.error(f"Got updated engineer response: {updated_engin}")
+        except KeyError:
+            slash.logger.error("Server marked update success, but did not include an entry for \"engineer\"")
+            assert False
+        
+        missing_entry_msg = "Server updated engineer response did not include an entry for \"{}\""
+        try:
+            updated_name = updated_engin["name"]
+            if name is not None:
+                assert updated_name == name
+        except KeyError:
+            slash.logger.error(missing_entry_msg.format("name"))
+            assert False
+        
+        try:
+            updated_year = updated_engin["birth_year"]
+            if birth_year is not None:
+                assert birth_year == updated_year
+        except KeyError:
+            slash.logger.error(missing_entry_msg.format("birth_year"))
+            assert False
+        
+        try:
+            updated_month = updated_engin["birth_month"]
+            if birth_month is not None:
+                assert updated_month == birth_month
+        except KeyError:
+            slash.logger.error(missing_entry_msg.format("birth_month"))
+            assert False
+        
+        try:
+            updated_date = updated_engin["birth_date"]
+            if birth_date is not None:
+                assert updated_date == birth_date
+        except KeyError:
+            slash.logger.error(missing_entry_msg.format("birth_date"))
+            assert False
+        
+
+        if self.vehicles is not None:
+            entry_seen = False
+            try:
+                assigned_vehicles = server_response["assigned_models"]
+                entry_seen = True
+                for model in assigned_vehicles:
+                    assert model in self.default_vehicle_models
+                    assert model in self.engineers
+            except KeyError:
+                slash.logger.error(missing_entry_msg.format("assigned_models"))
+
+            if prev_vehicles is not None:
+                try:
+                    unassigned_vehicles = server_response["unassigned_models"]
+                    entry_seen = True
+                    for model in unassigned_vehicles:
+                        assert model in prev_vehicles
+                except KeyError:
+                    slash.logger.error(missing_entry_msg.format("unassigned_models"))
+            
+            assert entry_seen
+
+    @slash.skipped
     @slash.parametrize("name", invalid_engineer_deletes)
     def test_delete_invalid_engineer(self, name):
         curr_test_input = "Current test input:\n" + \
@@ -85,7 +225,7 @@ class ServerEngineerTests(ServerTestsBase):
         status = self.check_server_status(server_response)
         assert not status # Expect to error out for invalid engineer deletions
 
-    #@slash.skipped
+    @slash.skipped
     @slash.parametrize("name", valid_engineer_deletes)
     def test_delete_valid_engineer(self, name):
         curr_test_input = "Current test input:\n" + \
@@ -115,7 +255,7 @@ class ServerEngineerTests(ServerTestsBase):
         assert not read_status # Expect to error out when we read the engineer we just deleted
 
 
-    #@slash.skipped
+    @slash.skipped
     @slash.parametrize(engineer_tuple, invalid_engineer_adds)
     def test_add_invalid_engineer(self, name, birth_year, birth_month, birth_date):
         curr_test_input = "Current test input:\n" + \
@@ -133,7 +273,7 @@ class ServerEngineerTests(ServerTestsBase):
         status = self.check_server_status(server_response)
         assert not status # Expect to error out for all invalid cases
 
-    #@slash.skipped
+    @slash.skipped
     @slash.parametrize(engineer_tuple, valid_engineer_adds)
     def test_add_valid_engineer(self, name, birth_year, birth_month, birth_date):
         curr_test_input = "Current test input:\n" + \

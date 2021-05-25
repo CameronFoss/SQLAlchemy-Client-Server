@@ -284,7 +284,7 @@ class ServerVehicleTests(ServerTestsBase):
             if self.engineers is not None:
                 for engin_name in self.engineers:
                     if engin_name in self.default_engineer_names:
-                        assert engin_name in self.engineers
+                        assert engin_name in updated_engineers
         except KeyError:
             slash.logger.error(missing_vehicle_entry_msg.format("engineers"))
             assert False
