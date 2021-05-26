@@ -57,7 +57,7 @@ def insert_default_items():
 
     session.commit()
     print("commit default database inserts")
-    #session.close()
+    session.close()
 
 if __name__ == "__main__":
     insert_default_items()

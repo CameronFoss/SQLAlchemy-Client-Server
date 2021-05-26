@@ -1080,6 +1080,7 @@ class Client:
                 manufacture_year = server_response["manufacture_year"]
                 manufacture_month = server_response["manufacture_month"]
                 manufacture_date = server_response["manufacture_date"]
+                new_server_port = server_response["port"]
             except:
                 error_msg = "Server JSON vehicle insert job is missing one of [\"model\", \"quantity\", \"price\", \"manufacture_year\", \"manufacture_month\", \"manufacture_date\"]"
                 logging.error(error_msg)
@@ -1092,6 +1093,11 @@ class Client:
             print(success_msg)
             logging.info(success_msg)
 
+            assign_engins_response = {
+                "response": "n"
+            }
+            send_message("localhost", new_server_port, assign_engins_response)
+
         elif data_type == "engineer":
             logging.info("Attempting to add an engineer to the database from JSON object.")
 
@@ -1100,6 +1106,7 @@ class Client:
                 birth_year = server_response["birth_year"]
                 birth_month = server_response["birth_month"]
                 birth_date = server_response["birth_date"]
+                new_server_port = server_response["port"]
             except:
                 error_msg = "Server JSON engineer insert job is missing one of [\"name\", \"birth_year\", \"birth_month\", \"birth_date\"]"
                 print(error_msg)
@@ -1111,15 +1118,35 @@ class Client:
             print(success_msg)
             logging.info(success_msg)
                 
+            assign_vehicles_response = {
+                "response": "n"
+            }
+            send_message("localhost", new_server_port, assign_vehicles_response)
 
         elif data_type == "laptop":
             logging.info("Attempting to add a laptop to the database from JSON object")
+            if status == 'no_engineer' or status == 'prev_laptop':
+                try:
+                    new_server_port = server_response["port"]
+                except:
+                    error_msg = "Server JSON laptop insert requires client permission to proceed, but did not include an entry \"port\""
+                    logging.error(error_msg)
+                    print(error_msg)
+                    return
+                add_anyways = {
+                    "response": "y"
+                }
+                send_message("localhost", new_server_port, add_anyways)
+                server_response = self.get_server_response()
+                status = self.check_server_status(server_response)
+                if not status:
+                    return
             try:
-                model = json_object.get('model', None)
-                loan_year = json_object.get('loan_year', None)
-                loan_month = json_object.get('loan_month', None)
-                loan_date = json_object.get('loan_date', None)
-                engineer = json_object.get('engineer', None)
+                model = server_response['model']
+                loan_year = server_response['loan_year']
+                loan_month = server_response['loan_month']
+                loan_date = server_response['loan_date']
+                engineer = server_response['engineer']
             except:
                 error_msg = "Server JSON laptop insert job is missing one of [\"model\", \"loan_year\", \"loan_month\", \"loan_date\", \"engineer\"]"
                 print(error_msg)
@@ -1127,17 +1154,19 @@ class Client:
                 return
                 
             success_msg = "New laptop info:\n" + f"Model: {model}\nLoan Year: {loan_year}\nLoan Month: {loan_month}" + \
-                          "\nLoan Date: {loan_date}\nEngineer: {engineer}" + \
+                          f"\nLoan Date: {loan_date}\nEngineer: {engineer}" + \
                           "\nSuccessfully added new laptop to the database!"
             print(success_msg)
             logging.info(success_msg)
 
+            
+
         elif data_type == "contact_details":
             logging.info("Attempting to add new contact details from JSON object.")
             try:
-                phone_number = json_object.get('phone_number', None)
-                address = json_object.get('address', None)
-                engineer = json_object.get('engineer', None)
+                phone_number = server_response['phone_number']
+                address = server_response['address']
+                engineer = server_response['engineer']
             except:
                 error_msg = "Server JSON contact details insert job is missing one of [\"phone_number\", \"address\", \"engineer\"]"
                 print(error_msg)

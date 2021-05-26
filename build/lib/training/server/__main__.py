@@ -7,10 +7,11 @@ from time import sleep
 from sys import stdin
 from select import select
 from sqlalchemy.exc import IntegrityError
-
+from readerwriterlock import rwlock
 from sqlalchemy.orm.exc import UnmappedInstanceError
-from training.server.db_utils import VehicleUtils, EngineerUtils, LaptopUtils, ContactDetailsUtils, cleanup_utils
+from training.server.db_utils import VehicleUtils, EngineerUtils, LaptopUtils, ContactDetailsUtils
 from training.sock_utils import send_message, decode_message_chunks, get_data_from_connection
+from training.server.base import Session
 from training.server.reset import reset_db
 from json import JSONDecodeError
 from random import randint
@@ -39,7 +40,7 @@ class Server:
         
 
         logging.info("Server started")
-        self.db_lock = threading.Lock()
+        self.db_lock = rwlock.RWLockFairD
         self.listen_thread = threading.Thread(target=self.listen_for_jobs, args=(handle_jobs_multithreaded,))
         self.listen_thread.daemon = True
         self.listen_thread.start()
@@ -54,7 +55,6 @@ class Server:
     def __del__(self):
         print("Server destructor called")
         self.sock.close()
-        cleanup_utils()
 
     def get_unused_port(self):
         port = randint(self.PORT_MIN, self.PORT_MAX)
@@ -64,6 +64,7 @@ class Server:
             port = randint(self.PORT_MIN, self.PORT_MAX)
             try:
                 s.bind(("localhost", port))
+                s.listen()
                 taken = False
             except:
                 continue
@@ -95,14 +96,24 @@ class Server:
         logging.error(error_msg)
         self.try_send_message("localhost", client_port, msg)
 
-    def call_with_lock(self, func, *args, **kwargs):
+    def call_with_wlock(self, func, *args, **kwargs):
         if self.multithreaded:
-            with self.db_lock:
+            with self.db_lock.gen_wlock():
+                logging.info(f"Writer lock held by thread calling function: {func}")
                 res = func(*args, **kwargs)
                 return res
         else:
             res = func(*args, **kwargs)
             return res
+
+    def call_with_rlock(self, func, *args, **kwargs):
+        if self.multithreaded:
+            with self.db_lock.gen_rlock():
+                logging.info(f"Reader lock held by thread calling function: {func}")
+                res = func(*args, **kwargs)
+                return res
+        else:
+            res = func(*args, **kwargs)
 
     def try_send_message(self, host, client_port, msg):
         try:
@@ -152,9 +163,7 @@ class Server:
         try:
             if job_json["action"] == "reset":
                 logging.info("Resetting the database...")
-                #with self.db_lock:
-                    #logging.info("DB_lock held by reset thread")
-                reset_db()
+                self.call_with_wlock(reset_db)
                 logging.info("Database successfully reset.")
                 return
         except:
@@ -189,77 +198,86 @@ class Server:
 
         vehicle_engineers_error_msg = f"Data type vehicle_engineers only supports the \"read\" action and does not support action \"{action}\""
 
+        session = Session()
+
         if action == "add":
             if data_type == "vehicle":
-                self.add_vehicle(job_json, client_port)
+                self.add_vehicle(session, job_json, client_port)
 
             elif data_type == "engineer":
-                self.add_engineer(job_json, client_port)
+                self.add_engineer(session, job_json, client_port)
             
             elif data_type == "laptop":
-                self.add_laptop(job_json, client_port)
+                self.add_laptop(session, job_json, client_port)
             
             elif data_type == "contact_details":
-                self.add_contact_details(job_json, client_port)
+                self.add_contact_details(session, job_json, client_port)
             
             elif data_type == "vehicle_engineers":
+                session.close()
                 self.send_error_msg(vehicle_engineers_error_msg, client_port)
                 return
 
         elif action == "delete":
             if data_type == "vehicle":
-                self.delete_vehicle(job_json, client_port)
+                self.delete_vehicle(session, job_json, client_port)
             
             elif data_type == "engineer":
-                self.delete_engineer(job_json, client_port)
+                self.delete_engineer(session, job_json, client_port)
 
             elif data_type == "laptop":
-                self.delete_laptop(job_json, client_port)
+                self.delete_laptop(session, job_json, client_port)
             
             elif data_type == "contact_details":
-                self.delete_contact_details(job_json, client_port)
+                self.delete_contact_details(session, job_json, client_port)
             
             elif data_type == "vehicle_engineers":
+                session.close()
                 self.send_error_msg(vehicle_engineers_error_msg, client_port)
+                return
 
 
         elif action == "read":
             if data_type == "vehicle":
-                self.query_vehicle(job_json, client_port)
+                self.query_vehicle(session, job_json, client_port)
             
             elif data_type == "engineer":
-                self.query_engineer(job_json, client_port)
+                self.query_engineer(session, job_json, client_port)
 
             elif data_type == "laptop":
-                self.query_laptop(job_json, client_port)
+                self.query_laptop(session, job_json, client_port)
 
             elif data_type == "contact_details":
-                self.query_contact_details(job_json, client_port)
+                self.query_contact_details(session, job_json, client_port)
             
             elif data_type == "vehicle_engineers":
-                self.query_vehicle_engineers(job_json, client_port)
+                self.query_vehicle_engineers(session, job_json, client_port)
             
         elif action == "update":
             if data_type == "vehicle":
-                self.update_vehicle(job_json, client_port)
+                self.update_vehicle(session, job_json, client_port)
             
             elif data_type == "engineer":
-                self.update_engineer(job_json, client_port)
+                self.update_engineer(session, job_json, client_port)
 
             elif data_type == "laptop":
-                self.update_laptop(job_json, client_port)
+                self.update_laptop(session, job_json, client_port)
                 
             else:
+                session.close()
                 unimplemented_err = f"Server action \"update\" is not yet implemented for data type \"{data_type}\""
                 self.send_error_msg(unimplemented_err, client_port)
                 return
 
         else:
+            session.close()
             text = f"Client message entry \"action\": {action} must be one of [\"add\", \"delete\", \"read\"]"
             self.send_error_msg(text, client_port)
             return
 
-    def query_vehicle_engineers(self, job_json, client_port):
+        session.close()
+
+    def query_vehicle_engineers(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -281,7 +299,7 @@ class Server:
         
         if model is not None:
             try:
-                engineers = self.car_utils.read_assigned_engineers_by_model(model)
+                engineers = self.call_with_rlock(self.car_utils.read_assigned_engineers_by_model, session, model)
             except AttributeError:
                 error_msg = f"No model {model} vehicles exist in the database."
                 self.send_error_msg(error_msg, client_port)
@@ -298,7 +316,7 @@ class Server:
 
         if engineer is not None:
             try:
-                cars = self.engin_utils.read_assigned_vehicles_by_name(engineer)
+                cars = self.call_with_rlock(self.engin_utils.read_assigned_vehicles_by_name, session, engineer)
             except AttributeError:
                 error_msg = f"Engineer {engineer} does not exist in the database."
                 self.send_error_msg(error_msg, client_port)
@@ -317,7 +335,7 @@ class Server:
         if not success:
             return
 
-    def add_vehicle(self, job_json, client_port):
+    def add_vehicle(self, session, job_json, client_port):
         msg = {
             'status': None
         }
@@ -384,7 +402,7 @@ class Server:
         except ValueError as err:
             self.send_error_msg(f"ValueError: {err}", client_port)
             return
-        new_car = self.call_with_lock(self.car_utils.add_vehicle_db, model, quantity, price, full_manufacture_date)
+        new_car = self.call_with_wlock(self.car_utils.add_vehicle_db, session, model, quantity, price, full_manufacture_date)
 
         # If it already exists, let client know we updated quantity and return
         if new_car is None:
@@ -449,7 +467,7 @@ class Server:
             
             for name in engineers:
                 name = name.strip()
-                engin = self.engin_utils.read_engineer_by_name(name)
+                engin = self.call_with_rlock(self.engin_utils.read_engineer_by_name, session, name)
                 if engin is None:
                     # If engineer doesn't exist, store in unassigned list
                     logging.info(f"Engineer {name} does not exist in the database. Cannot assign them to the new vehicle.")
@@ -459,7 +477,7 @@ class Server:
                     # Else, store in assigned list
                     assigned_names.append(name)
                     new_engins.append(engin)
-                    self.call_with_lock(self.car_utils.update_vehicle_db, new_car.id, engineers=new_engins)
+                    self.call_with_wlock(self.car_utils.update_vehicle_db, session, new_car.id, engineers=new_engins)
                     logging.info(f"Engineer {name} successfully assigned to new vehicle.")
 
             # Send both lists in final message to client once done
@@ -475,7 +493,7 @@ class Server:
         new_sock.close()
         self.used_ports.remove(new_port)
 
-    def delete_vehicle(self, job_json, client_port):
+    def delete_vehicle(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -486,7 +504,7 @@ class Server:
             error_msg = "Client vehicle delete job has no entry for \"model\"."
             self.send_error_msg(error_msg, client_port)
             return
-        models_deleted = self.call_with_lock(self.car_utils.delete_vehicle_by_model, model)
+        models_deleted = self.call_with_wlock(self.car_utils.delete_vehicle_by_model, session, model)
         if models_deleted:
             logging.info(f"Successfully deleted all {model} model vehicles.")
             msg["status"] = "success"
@@ -498,7 +516,7 @@ class Server:
             self.send_error_msg(error_msg, client_port)
         return
 
-    def query_vehicle(self, job_json, client_port):
+    def query_vehicle(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -518,7 +536,7 @@ class Server:
                 self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Attempting to read vehicle id {id} from the database.")
-            car = self.car_utils.read_vehicle_by_id(id)
+            car = self.call_with_rlock(self.car_utils.read_vehicle_by_id, session, id)
             if car is None:
                 error_msg = f"No vehicle with id {id} exists in the database."
                 self.send_error_msg(error_msg, client_port)
@@ -533,11 +551,11 @@ class Server:
         
         elif model == "all":
             logging.info("Attempting to read all vehicles from the database.")
-            cars = self.car_utils.read_vehicles_all()
+            cars = self.call_with_rlock(self.car_utils.read_vehicles_all, session)
 
         else:
             logging.info(f"Attempting to read all {model} model vehicles from the database.")
-            cars = self.car_utils.read_vehicles_by_model(model)
+            cars = self.call_with_rlock(self.car_utils.read_vehicles_by_model, session, model)
         
         if not cars:
             error_msg = f"No cars with model {model} were found in the database."
@@ -550,7 +568,7 @@ class Server:
         if not success:
             return
 
-    def update_vehicle(self, job_json, client_port):
+    def update_vehicle(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -564,7 +582,7 @@ class Server:
         
         logging.info(f"Attempting to update vehicle with id {vehicle_id}")
 
-        curr_car = self.car_utils.read_vehicle_by_id(vehicle_id)
+        curr_car = self.call_with_rlock(self.car_utils.read_vehicle_by_id, session, vehicle_id)
 
         if curr_car is None:
             error_msg = f"No vehicle with id {vehicle_id} exists in the database. Cannot update a vehicle that doesn't exist."
@@ -630,7 +648,7 @@ class Server:
             engineer_names = job_json["engineers"]
             engineers = []
             for name in engineer_names:
-                engin = self.engin_utils.read_engineer_by_name(name)
+                engin = self.call_with_rlock(self.engin_utils.read_engineer_by_name, session, name)
                 if engin is not None:
                     engineers.append(engin)
             engineers = None if not engineers else engineers
@@ -647,7 +665,7 @@ class Server:
         except:
             logging.info("Client left one of the manufacture date fields empty. Skipping update for manufacture date fields.")
 
-        car = self.call_with_lock(self.car_utils.update_vehicle_db, vehicle_id, model, quantity, price, full_manufacture_date, engineers)
+        car = self.call_with_wlock(self.car_utils.update_vehicle_db, session, vehicle_id, model, quantity, price, full_manufacture_date, engineers)
 
         if car is None:
             error_msg = f"There was an issue updating vehicle id {vehicle_id}. Most likely cause is that no vehicle with id {vehicle_id} exists in the database."
@@ -660,7 +678,7 @@ class Server:
         if not success:
             return
 
-    def add_engineer(self, job_json, client_port):
+    def add_engineer(self, session, job_json, client_port):
         msg = {
             'status': None
         }
@@ -669,31 +687,48 @@ class Server:
         error_text = "Client engineer insert job has no entry for \"{}\""
         try:
             engin_name = job_json["name"]
+            if engin_name == "":
+                self.send_error_msg("IntegrityError: Client engineer insert job gave an empty \"name\" entry", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("name"), client_port)
             return
         
         try:
             birth_year = job_json["birth_year"]
+            if birth_year < 1920 or birth_year > 2021:
+                self.send_error_msg("IntegrityError: Client engineer insert job gave a year not in the range (1920-2021)", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("birth_year"), client_port)
             return
 
         try:
             birth_month = job_json["birth_month"]
+            if birth_month < 1 or birth_month > 12:
+                self.send_error_msg("IntegrityError: Client engineer insert job gave a month not in the range (1-12)", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("birth_month"), client_port)
             return
 
         try:
             birth_date = job_json["birth_date"]
+            if birth_date < 1 or birth_date > 31:
+                self.send_error_msg("IntegrityError: Client engineer insert job gave a date not in the range (1-31)", client_port)
+                return
         except:
             self.send_error_msg(error_text.format("birth_date"), client_port)
             return
         
-        full_birth_date = date(birth_year, birth_month, birth_date)
+        try:
+            full_birth_date = date(birth_year, birth_month, birth_date)
+        except ValueError as err:
+            self.send_error_msg(f"ValueError: {err}", client_port)
+            return
+
         
-        new_engin = self.call_with_lock(self.engin_utils.add_engineer_db, engin_name, full_birth_date)
+        new_engin = self.call_with_wlock(self.engin_utils.add_engineer_db, session, engin_name, full_birth_date)
 
         if new_engin is None:
             text = f"Engineer named {engin_name} already exists in the database.\n" + \
@@ -746,7 +781,7 @@ class Server:
             
             for car_model in vehicles:
                 car_model = car_model.strip()
-                cars = self.car_utils.read_vehicles_by_model(car_model)
+                cars = self.call_with_rlock(self.car_utils.read_vehicles_by_model, session, car_model)
                 if not cars:
                     logging.error(f"No vehicles of model {car_model} exist in the database. Cannot assign engineer {engin_name} to this model.")
                     unassigned.append(car_model)
@@ -754,7 +789,7 @@ class Server:
 
                 for car in cars:
                     new_engins_list = car.engineers + [new_engin]
-                    self.call_with_lock(self.car_utils.update_vehicle_db, car.id, engineers=new_engins_list)
+                    self.call_with_wlock(self.car_utils.update_vehicle_db, session, car.id, engineers=new_engins_list)
                     assignment_msg = f"Successfully assigned {engin_name} to vehicle {car_model} manufactured on {car.manufacture_date}"
                     logging.info(assignment_msg)
                 assigned.append(car_model)
@@ -771,7 +806,7 @@ class Server:
         self.used_ports.remove(new_port)
 
 
-    def delete_engineer(self, job_json, client_port):
+    def delete_engineer(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -782,12 +817,12 @@ class Server:
             error_msg = "Client engineer delete job has no entry for \"name\""
             self.send_error_msg(error_msg, client_port)
             return
-        engin = self.engin_utils.read_engineer_by_name(name)
+        engin = self.call_with_rlock(self.engin_utils.read_engineer_by_name, session, name)
         if engin is None:
             error_msg = f"Engineer {name} doesn't exist in the database. Aborted deleting non-existant engineer."
             self.send_error_msg(error_msg, client_port)
             return
-        self.call_with_lock(self.engin_utils.delete_engineer_by_name, name)
+        self.call_with_wlock(self.engin_utils.delete_engineer_by_name, session, name)
         logging.info(f"Successfully deleted engineer {name} from the database.")
         msg["status"] = "success"
         success = self.try_send_message("localhost", client_port, msg)
@@ -796,7 +831,7 @@ class Server:
         return
 
 
-    def query_engineer(self, job_json, client_port):
+    def query_engineer(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -816,7 +851,7 @@ class Server:
                 self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Attempting to read engineer with id {id} from the database.")
-            engin = self.engin_utils.read_engineer_by_id(id)
+            engin = self.call_with_rlock(self.engin_utils.read_engineer_by_id, session, id)
             if engin is None:
                 error_msg = f"No engineer with id {id} exists in the database"
                 self.send_error_msg(error_msg, client_port)
@@ -829,12 +864,12 @@ class Server:
                 return
         elif name == "all":
             logging.info("Attempting to read all engineers.")
-            engins = self.engin_utils.read_all_engineers()
+            engins = self.call_with_rlock(self.engin_utils.read_all_engineers, session)
             msg["engineers"] = [eng.to_json() for eng in engins]
         
         else:
             logging.info(f"Attempting to read engineer named {name}")
-            engin = self.engin_utils.read_engineer_by_name(name)
+            engin = self.call_with_rlock(self.engin_utils.read_engineer_by_name, session, name)
             if engin is None:
                 error_msg = f"No engineer named {name} exists in the database"
                 self.send_error_msg(error_msg, client_port)
@@ -847,7 +882,7 @@ class Server:
         if not success:
             return
 
-    def update_engineer(self, job_json, client_port):
+    def update_engineer(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -861,7 +896,7 @@ class Server:
 
         logging.info(f"Attempting to update engineer with ID {engin_id}")
 
-        curr_engin = self.engin_utils.read_engineer_by_id(engin_id)
+        curr_engin = self.call_with_rlock(self.engin_utils.read_engineer_by_id, session, engin_id)
 
         if curr_engin is None:
             error_msg = f"No engineer with ID {engin_id} exists in the database. Cannot update information for an engineer that doesn't exist."
@@ -902,17 +937,17 @@ class Server:
             logging.info(f"Attempting to update vehicle assignments for engineer with ID {engin_id}")
             # Remove engineer from models not in the vehicle_models list
             # Add engineer to models in the vehicle_models list
-            all_cars = self.car_utils.read_vehicles_all()
+            all_cars = self.call_with_rlock(self.car_utils.read_vehicles_all, session)
             for car in all_cars:
                 if car.model in vehicle_models:
                     new_engins = car.engineers + [curr_engin]
-                    self.call_with_lock(self.car_utils.update_vehicle_db, car.id, engineers=new_engins)
+                    self.call_with_wlock(self.car_utils.update_vehicle_db, session, car.id, engineers=new_engins)
                     vehicles_assigned.append(car.model)
                     logging.info(f"Successfully assigned engineer with ID {engin_id} to vehicle model {car.model}")
                 else:
                     try:
                         car.engineers.remove(curr_engin)
-                        self.call_with_lock(self.car_utils.update_vehicle_db, car.id, engineers=car.engineers)
+                        self.call_with_wlock(self.car_utils.update_vehicle_db, session, car.id, engineers=car.engineers)
                         vehicles_unassigned.append(car.model)
                         logging.info(f"Successfully un-assigned engineer with ID {engin_id} from vehicle model {car.model}")
                     except:
@@ -925,7 +960,7 @@ class Server:
         
         full_birth_date = date(birth_year, birth_month, birth_date)
 
-        engin_updated = self.call_with_lock(self.engin_utils.update_engineer_by_id, engin_id, name, full_birth_date)
+        engin_updated = self.call_with_wlock(self.engin_utils.update_engineer_by_id, session, engin_id, name, full_birth_date)
 
         if engin_updated is None:
             error_msg = f"There was an issue updating engineer with ID {engin_id}. Most likely cause is a non-existant engineer with ID {engin_id}"
@@ -947,7 +982,7 @@ class Server:
             return
         
 
-    def add_laptop(self, job_json, client_port):
+    def add_laptop(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -992,7 +1027,7 @@ class Server:
         new_sock.settimeout(1)
 
         # First, if engineer doesn't exist in the database, prompt client if we should add it without loaning to an engineer
-        engin = self.engin_utils.read_engineer_by_name(engin_name)
+        engin = self.call_with_rlock(self.engin_utils.read_engineer_by_name, session, engin_name)
         if engin is None:
             no_engin_text = f"Engineer {engin_name} does not exist in the database. Prompting client as to whether the laptop should be added without a loaner."
             logging.info(no_engin_text)
@@ -1020,7 +1055,7 @@ class Server:
                 return
             
         # Second, see if the engineer already has a laptop loaned to them. Prompt to replace if so
-        prev_laptop = self.laptop_utils.read_laptop_by_owner(engin_name)
+        prev_laptop = self.call_with_rlock(self.laptop_utils.read_laptop_by_owner, session, engin_name)
         if prev_laptop is not None:
             prev_owner_text = f"Engineer {engin_name} already has a laptop loaned to them. Prompting client to see if we should add the laptop and replace the currently loaned one."
             logging.info(prev_owner_text)
@@ -1045,9 +1080,10 @@ class Server:
                 logging.info("Client chose not to replace the engineer's current laptop.\nAborted adding new laptop")
                 new_sock.close()
                 self.used_ports.remove(new_port)
+                return
             
         # Finally, add the laptop and send success/error back to client
-        new_laptop = self.call_with_lock(self.laptop_utils.add_laptop_db, model, date(loan_year, loan_month, loan_date), engin_name)
+        new_laptop = self.call_with_wlock(self.laptop_utils.add_laptop_db, session, model, date(loan_year, loan_month, loan_date), engin_name)
         if new_laptop is None:
             error_msg = "Laptop already exists in the database. Aborted adding the duplicate laptop."
             self.send_error_msg(error_msg, client_port)
@@ -1071,7 +1107,7 @@ class Server:
         self.used_ports.remove(new_port)
 
 
-    def delete_laptop(self, job_json, client_port):
+    def delete_laptop(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -1093,7 +1129,7 @@ class Server:
             
             try:
                 logging.info(f"Attempting to delete laptop with id {laptop_id}")
-                self.call_with_lock(self.laptop_utils.delete_laptop_by_id, laptop_id)
+                self.call_with_wlock(self.laptop_utils.delete_laptop_by_id, session, laptop_id)
                 success_msg = f"Successfully deleted laptop with id {laptop_id}"
                 logging.info(success_msg)
                 msg["status"] = "success"
@@ -1107,14 +1143,14 @@ class Server:
                 return
         else:
             logging.info(f"Attempting to delete laptop loaned by {engin_name}")
-            self.call_with_lock(self.laptop_utils.delete_laptop_by_owner, engin_name)
+            self.call_with_wlock(self.laptop_utils.delete_laptop_by_owner, session, engin_name)
             logging.info(f"Successfully deleted laptop loaned by {engin_name}")
             msg["status"] = "success"
             success =self.try_send_message("localhost", client_port, msg)
             if not success:
                 return
 
-    def query_laptop(self, job_json, client_port):
+    def query_laptop(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -1135,7 +1171,7 @@ class Server:
                 return
             
             logging.info(f"Attempting to read laptop loaned by engineer {engin_name}")
-            laptop = self.laptop_utils.read_laptop_by_owner(engin_name)
+            laptop = self.call_with_rlock(self.laptop_utils.read_laptop_by_owner, session, engin_name)
             if laptop is None:
                 error_msg = f"No laptop is loaned by engineer {engin_name}"
                 self.send_error_msg(error_msg, client_port)
@@ -1150,7 +1186,7 @@ class Server:
 
         elif model == "all":
             logging.info("Attempting to read all laptops")
-            laptops = self.laptop_utils.read_all_laptops()
+            laptops = self.call_with_rlock(self.laptop_utils.read_all_laptops, session)
             if not laptops:
                 error_msg = "No laptops exist in the database"
                 self.send_error_msg(error_msg, client_port)
@@ -1160,7 +1196,7 @@ class Server:
         
         else:
             logging.info(f"Attempting to read laptops with model {model}")
-            laptops = self.laptop_utils.read_laptops_by_model(model)
+            laptops = self.call_with_rlock(self.laptop_utils.read_laptops_by_model, session, model)
             if not laptops:
                 error_msg = f"No laptops of model {model} exist in the database"
                 self.send_error_msg(error_msg, client_port)
@@ -1173,7 +1209,7 @@ class Server:
         if not success:
             return
         
-    def update_laptop(self, job_json, client_port):
+    def update_laptop(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -1187,7 +1223,7 @@ class Server:
         
         logging.info(f"Attempting to update laptop ID {laptop_id} in the database.")
 
-        curr_laptop = self.laptop_utils.read_laptop_by_id(laptop_id)
+        curr_laptop = self.call_with_rlock(self.laptop_utils.read_laptop_by_id, session, laptop_id)
 
         if curr_laptop is None:
             error_msg = f"No laptop exists with ID {laptop_id}. Cannot update a laptop that doesn't exist."
@@ -1227,7 +1263,7 @@ class Server:
         
         full_loan_date = date(loan_year, loan_month, loan_date)
 
-        updated_laptop = self.call_with_lock(self.laptop_utils.update_laptop_by_id, laptop_id, model, full_loan_date, engineer_name)
+        updated_laptop = self.call_with_wlock(self.laptop_utils.update_laptop_by_id, session, laptop_id, model, full_loan_date, engineer_name)
 
         if updated_laptop is None:
             error_msg = f"There was a problem updating laptop ID {laptop_id}.\nMost likely cause is a non-existant laptop with ID {laptop_id}"
@@ -1242,7 +1278,7 @@ class Server:
         if not success:
             return
 
-    def add_contact_details(self, job_json, client_port):
+    def add_contact_details(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -1267,13 +1303,13 @@ class Server:
             return
         
         # Attempt to add the new contact details, report error to client if duplicate or engineer doesn't exist
-        engin = self.engin_utils.read_engineer_by_name(engin_name)
+        engin = self.call_with_rlock(self.engin_utils.read_engineer_by_name, session, engin_name)
         if engin is None:
             error_msg = f"Engineer {engin_name} does not exist in the database. Contact details cannot be added for a non-existant engineer."
             self.send_error_msg(error_msg, client_port)
             return
         
-        new_contact = self.call_with_lock(self.contact_utils.add_contact_details_db, phone_number, address, engin_name)
+        new_contact = self.call_with_wlock(self.contact_utils.add_contact_details_db, session, phone_number, address, engin_name)
         if new_contact is None:
             error_msg = f"Detected duplicate contact details. Aborted adding duplicate."
             self.send_error_msg(error_msg, client_port)
@@ -1289,7 +1325,7 @@ class Server:
         return
      
 
-    def delete_contact_details(self, job_json, client_port):
+    def delete_contact_details(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -1311,7 +1347,7 @@ class Server:
             
             try:
                 logging.info(f"Attempting to delete contact details with ID {contact_id}")
-                self.call_with_lock(self.contact_utils.delete_contact_details_by_id, contact_id)
+                self.call_with_wlock(self.contact_utils.delete_contact_details_by_id, session, contact_id)
                 success_msg = f"Successfully deleted contact details with ID {contact_id}"
                 msg["status"] = "success"
                 success = self.try_send_message("localhost", client_port, msg)
@@ -1323,7 +1359,7 @@ class Server:
                 self.send_error_msg(error_msg, client_port)
                 return
         else:
-            engin = self.engin_utils.read_engineer_by_name(engin_name)
+            engin = self.call_with_rlock(self.engin_utils.read_engineer_by_name, session, engin_name)
             if engin is None:
                 error_msg = f"Engineer {engin_name} does not exist in the database.\nAborted deleting contact details for non-existant engineer {engin_name}"
                 self.send_error_msg(error_msg, client_port)
@@ -1331,7 +1367,7 @@ class Server:
             logging.info(f"Attempting to delete contact details for engineer {engin_name}")
 
             try:
-                self.call_with_lock(self.contact_utils.delete_contact_details_by_engin_id, engin.id)
+                self.call_with_wlock(self.contact_utils.delete_contact_details_by_engin_id, session, engin.id)
                 logging.info(f"Successfully deleted all contact details for engineer {engin_name}")
                 msg["status"] = "success"
                 success = self.try_send_message("localhost", client_port, msg)
@@ -1344,7 +1380,7 @@ class Server:
                 return
 
 
-    def query_contact_details(self, job_json, client_port):
+    def query_contact_details(self, session, job_json, client_port):
         msg = {
             "status": None
         }
@@ -1364,7 +1400,7 @@ class Server:
                 self.send_error_msg(error_msg, client_port)
                 return
             logging.info(f"Attempting to read contact details with id {id}")
-            contact = self.contact_utils.read_contact_details_by_id(id)
+            contact = self.call_with_rlock(self.contact_utils.read_contact_details_by_id, session, id)
             if contact is None:
                 error_msg = f"No contact details with id {id} exists in the database."
                 self.send_error_msg(error_msg, client_port)
@@ -1374,7 +1410,7 @@ class Server:
         
         elif engin_name == "all":
             logging.info("Attempting to read all contact details.")
-            contacts = self.contact_utils.read_all_contact_details()
+            contacts = self.call_with_rlock(self.contact_utils.read_all_contact_details, session)
             if not contacts:
                 error_msg = "No contact details exist in the database."
                 self.send_error_msg(error_msg, client_port)
@@ -1384,12 +1420,12 @@ class Server:
 
         else:
             logging.info(f"Attempting to read contact details for engineer {engin_name}")
-            engin = self.engin_utils.read_engineer_by_name(engin_name)
+            engin = self.call_with_rlock(self.engin_utils.read_engineer_by_name, session, engin_name)
             if engin is None:
                 error_msg = f"No engineer named {engin_name} exists in the database. Cannot read contact details for non-existant engineer."
                 self.send_error_msg(error_msg, client_port)
                 return
-            contacts = self.contact_utils.read_contact_details_by_engin_id(engin.id)
+            contacts = self.call_with_rlock(self.contact_utils.read_contact_details_by_engin_id, session, engin.id)
             if not contacts:
                 error_msg = f"No contact details exist for engineer {engin_name}"
                 self.send_error_msg(error_msg, client_port)
